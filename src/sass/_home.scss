@@ -1,0 +1,58 @@
+/* ########## */
+/*   HOME     */
+/* ########## */
+
+#HomeHeader {
+  text-align: center;
+  font-style: normal;
+  font-size: 3rem;
+  margin-bottom:	20px;
+  min-height: 4.25rem;
+  @media (max-width: $bootstrap-xxs-max) {
+      font-size: 2.25rem;
+  }
+}
+
+#HomePortal {
+  min-height: 300px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+
+}
+
+#HomePortalBotch {
+  margin-bottom: 20px;
+  padding-left: 0;
+  @media (max-width: $bootstrap-xxs-max) {
+    img {
+      height: 175px;
+    }
+  }
+}
+
+#HomePortalLinks {
+  padding: 10px 0 40px;
+  text-align: left;
+  color: #ccc;
+  font-size: 1em;
+  line-height: 1.8em;
+
+  a.standout {
+    font-family: 'Exo 2', Arial, Verdana, sans-serif;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+  }
+
+  div {
+    margin-bottom: 25px;
+  }
+}
+
+#home-search-form {
+  font-size: 1.2em;
+
+  input[type="text"],
+  input[type="search"] {
+    width: 200px;
+  }
+}

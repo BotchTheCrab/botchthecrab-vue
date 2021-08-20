@@ -1,0 +1,416 @@
+/* ###################### */
+/* BOX ART ARCHIVE STYLES */
+/* ###################### */
+
+#archiveHomeLogo {
+	margin: 0 auto 25px;
+	color: #aaa;
+	font-size: 0.8em;
+	font-family: Tahoma, Geneva, sans-serif;
+	letter-spacing: 0.1em;
+
+	img {
+		width: 100%;
+		margin-bottom: 5px;
+		max-width: 541px;
+	}
+}
+
+#archiveLogo {
+	margin: 0 auto 10px;
+
+	img {
+		width: 100%;
+		margin-bottom: 5px;
+		max-width: 425px;
+	}
+}
+
+.quicklink-container {
+	margin:	0 auto;
+}
+
+.quicklink {
+	margin: 0 auto 30px;
+
+	a {
+		font-family: 		'Exo 2', Arial, Verdana, sans-serif;
+		font-size:			1.0em;
+		letter-spacing: 	1px;
+
+		img:hover {
+			position:	relative;
+			top:		-1px;
+			left:		-1px;
+		}
+	}
+}
+
+
+.archiveQuickLink img {
+	border:			0px;
+}
+
+#archive-search-form {
+	input[type="text"],
+	input[type="search"] {
+		width:	190px;
+		margin: 0 auto 5px;
+	}
+}
+
+.teletranHeader {
+	display: block;
+	margin-bottom: 25px;
+
+	.teletranHeaderAutobot,
+	.teletranHeaderDecepticon,
+	.teletranHeaderNeutral {
+		display: inline-block;
+		padding: 7px 25px 0;
+		min-height: 60px;
+		background-repeat: no-repeat;
+		@extend .btc-header;
+	}
+
+	$page-title-autobot: url(/archive/images/page-title-autobot.jpg);
+	$page-title-decepticon: url(/archive/images/page-title-decepticon.jpg);
+
+	.teletranHeaderAutobot {
+		background-image: $page-title-autobot;
+		@extend .btc-header-autobot;;
+	}
+	.teletranHeaderDecepticon {
+		background-image: $page-title-decepticon;
+		@extend .btc-header-decepticon;
+	}
+	.teletranHeaderNeutral {
+		padding: 0 35px;
+		@extend .btc-header-neutral;
+
+		&::before, &::after {
+			content:'';
+			display: inline-block;
+			vertical-align: middle;
+			width: 60px;
+			height: 60px;
+		}
+		$page-title-neutral-margin: 10px;
+		&::before {
+			background-image: $page-title-autobot;
+			margin-right: $page-title-neutral-margin;
+		}
+		&::after {
+			background-image: $page-title-decepticon;
+			margin-left: $page-title-neutral-margin;
+		}
+	}
+
+	.teletran_header_small {
+		font-size: 2.3rem;
+	}
+
+	img {
+		width: 100%;
+		max-width: 425px;
+	}
+}
+
+
+// .bot, .bot A, A.bot { color: RED; }
+// .con, .con A, A.con { color: #E500E4; }
+
+#micromasterTeamName {
+	font-family: BTCHeader, Exo, "Arial Black", Arial, Verdana, sans-serif;
+	font-weight: bold;
+	font-size: 2em;
+	padding: 0 10px 20px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 0 darkred;
+}
+
+
+
+/* THUMBNAILS */
+
+#teletranContainer,
+.teletranContainer {
+	@include flexbox;
+	@include justify-content(center);
+	@include flex-wrap(wrap);
+
+	.teletranEntry {
+		$entrySideMargin: 15px;
+		margin-left: $entrySideMargin;
+		margin-right: $entrySideMargin;
+	}
+
+	&.teletranContainerCentered {
+		@include justify-content(center);
+	}
+}
+
+
+.teletranEntry {
+	margin: 0 0 25px;
+	min-width: 145px;
+	display: inline-block;
+}
+
+.teletranLoadMore {
+	width: 127px;
+	height: 127px;
+	margin: 0 25px;
+	padding: 10px;
+	background: black;
+
+	@include flexbox;
+	@include align-items(center);
+
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.teletranBox {
+	margin: 0 auto;
+	width: 127px;
+	padding-top: 1px;
+	background-color: BLACK;
+	box-shadow: 3px 5px 25px #333;
+}
+
+.teletranThumb {
+	width:				125px;
+	height:				125px;
+	margin:				0 auto;
+
+	&:hover {
+		position: relative;
+		top: -1px;
+		left: -1px;
+	}
+}
+
+
+.teletranIcons {
+	min-height:			25px;
+	padding:			5px 0 0;
+	margin:				0 auto;
+	text-align:			center;
+
+	img {
+		margin:		0px 5px;
+		border:		0px;
+
+		&:hover {
+			position: relative;
+			top: -1px;
+			left: -1px;
+		}
+	}
+}
+
+.teletranName {
+	height: 		55px;
+	padding:		7px 2px 0;
+	overflow:		hidden;
+	margin:			0 auto;
+
+	font-weight: 	bold;
+	font-variant: 	small-caps;
+	font-family: 	Tahoma;
+	text-align: center;
+
+	font-size: 		1.2em;
+	letter-spacing:	1px;
+	line-height:	1.1em;
+
+	color:			#eee;
+
+	.teletranContainerSearch &,
+	.teletranContainerJapan & {
+		height: 		70px;
+	}
+
+	.teletranNameYear {
+		font-size:		1.1em;
+		line-height:	175%;
+	}
+}
+
+
+
+.teletranNameNote,
+.teletranReleaseNumber {
+	font-family:	Arial;
+	font-weight:	normal;
+	font-size:		0.7em;
+	white-space:	nowrap;
+	line-height:	1.2em;
+}
+.teletranReleaseNumber {
+	margin-top:		5px;
+}
+
+
+#teletranNext {
+	@media (min-width: $bootstrap-xs-max) {
+		min-width: 350px;
+		max-width: 350px;
+	}
+}
+
+#teletranContinue,
+#teletranSwitch,
+#teletranBack {
+	margin-top: 40px;
+	white-space: nowrap;
+
+	a {
+		display:			inline-block;
+		height:				27px;
+
+		color:				white;
+		text-shadow:		2px 2px 2px BLACK;
+		font-variant:		small-caps;
+		font-size:			1.3em;
+
+		font-weight:		bold;
+	}
+}
+
+.teletranNextAutobot,
+.teletranNextDecepticon {
+	white-space: normal;
+
+	& > span {
+		white-space: nowrap;
+
+		&:first-of-type {
+			&::before {
+				content: '';
+				display: inline-block;
+				width: 24px;
+				height: 24px;
+				background-repeat: 	no-repeat;
+				background-size: contain;
+				margin-right: 6px;
+				vertical-align: middle;
+			}
+		}
+	}
+}
+.teletranNextAutobot {
+	& > span {
+		&:first-of-type {
+			&::before {
+				background-image:	url(/archive/images/teletranNextBot.png);
+			}
+		}
+	}
+}
+.teletranNextDecepticon {
+	& > span {
+		&:first-of-type {
+			&::before {
+				background-image:	url(/archive/images/teletranNextCon.png);
+			}
+		}
+	}
+}
+
+
+
+/**********************************************/
+/*** PAPERWORK (Tech Specs, Instructions) *****/
+/**********************************************/
+
+.PaperworkCredits {
+	font-size:	0.9em;
+	margin:		15px 15px 30px;
+	color:		#ddd;
+}
+
+.PaperworkFaction_Autobot,
+.PaperworkFaction_Decepticon {
+	background-color:		#CA4735;
+	color:					BLACK;
+	padding:				3px 5px;
+	width:					97%;
+	margin-bottom:			5px;
+	border:					2px solid BLACK;
+
+	background-color:		#C9321E;
+
+	font-family:			Audiowide, Verdana, Arial, sans-serif;
+	font-size:				1.4em;
+	font-variant:			small-caps;
+	letter-spacing:			2px;
+	font-weight:			bold;
+}
+
+.PaperworkFaction_Decepticon {
+	background-color:		#803A99;
+}
+
+
+.PaperworkYear {
+	margin-top:			20px;
+	margin-bottom:		10px;
+
+	padding:			0 10px 20px;
+
+	text-align: 		left;
+	border-bottom:		1px dotted #666666;
+}
+.PaperworkYearHeader {
+	font-size:			1.3em;
+	font-weight:		bold;
+	margin-top:			2px;
+	margin-bottom:		3px;
+}
+.PaperworkYearContent {
+	column-width:		250px;
+	white-space:		nowrap;
+
+	column-width:			150px;
+	-moz-column-width:		150px;
+	-webkit-column-width:	150px;
+
+	div {
+		max-width: 150px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		a {
+			// white-space:		normal;
+			// font-size:			1.1em;
+			line-height:		1.7em;
+		}
+	}
+}
+
+#BotchTechSpec {
+	padding: 50px 0;
+	margin: 0 auto;
+	font-size: 0.9em;
+	clear: both;
+
+	& > div {
+		margin-bottom: 10px;
+	}
+
+	img {
+		width: 100%;
+		max-width: 400px;
+	}
+
+	a {
+		white-space: nowrap;
+	}
+
+}

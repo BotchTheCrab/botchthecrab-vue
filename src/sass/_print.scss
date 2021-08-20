@@ -1,0 +1,17 @@
+/************************/
+/*** PRINT STYLES  ******/
+/************************/
+
+@media print {
+
+  #menu, #menu_trigger, #mm-blocker,
+  #footer, .back-to-top
+  { display: none; }
+
+  a[href]:after {
+  	content: none !important;
+  }
+
+  section { padding: 0; }
+
+}

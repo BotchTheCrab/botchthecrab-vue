@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BotchTheCrab.com Audio Playlist</title>
+
+  <!--
+    MODIFIED FROM
+    https://codepen.io/markhillard/pen/Hjcwu
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5media/1.1.8/html5media.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/plyr/3.6.2/plyr.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="//cdn.plyr.io/3.6.2/plyr.css" />
+  <link rel="stylesheet" type="text/css" href="/css/audioplayer/audioplayer.css" />
+
+  <script>
+
+
+    var playlists = {
+      BlackSabbathCovers: {
+        mediaPath: '/post_tunes/Sabbath/',
+        tracks: [
+          {
+            file: "Sepultura - Symptom Of The Universe",
+            name: "Symptom Of The Universe - Sepultura"
+          },
+          {
+            file: "Megadeth - Paranoid",
+            name: "Paranoid - Megadeth"
+          },
+          {
+            file: "Overkill - Cornucopia",
+            name: "Cornucopia - Overkill"
+          },
+          {
+            file: "Cathedral - Solitude",
+            name: "Solitude - Cathedral"
+          },
+          {
+            file: "Sleep - Snowblind",
+            name: "Snowblind - Sleep"
+          },
+          {
+            file: "Entombed - Under The Sun",
+            name: "Under The Sun - Entombed"
+          },
+          {
+            file: "Cardigans - Iron Man",
+            name: "Iron Man - The Cardigans"
+          },
+          {
+            file: "Slayer - Hand of Doom",
+            name: "Hand Of Doom - Slayer"
+          },
+          {
+            file: "Ozzy Osbourne - Sweet Leaf",
+            name: "Sweet Leaf - Ozzy Osbourne"
+          },
+          {
+            file: "Coffin Break - Hole In The Sky",
+            name: "Hole In The Sky - Coffin Break"
+          },
+          {
+            file: "Corrosion Of Conformity - Lord Of This World",
+            name: "Lord Of This World - Corrosion Of Conformity"
+          },
+          {
+            file: "Pantera - Planet Caravan",
+            name: "Planet Caravan - Pantera"
+          },
+          {
+            file: "Faith No More - War Pigs",
+            name: "War Pigs - Faith No More"
+          },
+          {
+            file: "Megadeth - Never Say Die",
+            name: "Never Say Die - Megadeth"
+          },
+          {
+            file: "Ugly Kid Joe - N.I.B.",
+            name: "N.I.B. - Ugly Kid Joe"
+          },
+          {
+            file: "Overkill - Changes",
+            name: "Changes - Overkill"
+          },
+          {
+            file: "Cathedral - Wheels Of Confusion",
+            name: "Wheels Of Confusion - Cathedral"
+          },
+          {
+            file: "OLD - Who Are You",
+            name: "Who Are You - OLD"
+          },
+          {
+            file: "Pantera - Electric Funeral",
+            name: "Electric Funeral - Pantera"
+          },
+          {
+            file: "Silencer - Into The Void",
+            name: "Into The Void - Silencer"
+          },
+          {
+            file: "Type O Negative - Black Sabbath",
+            name: "Black Sabbath - Type O Negative"
+          },
+          {
+            file: "Anthrax - Sabbath Bloody Sabbath",
+            name: "Sabbath Bloody Sabbath - Anthrax"
+          }
+        ]
+      },
+      BromptonsCocktailPlug: {
+        mediaPath: '/post_tunes/Cocktail/',
+        tracks: [
+          {
+            file: "Brompton_s Cocktail - Kabonkers",
+            name: "Kabonkers"
+          },
+          {
+            file: "Brompton_s Cocktail - Ethan In Space",
+            name: "Ethan In Space"
+          },
+          {
+            file: "Brompton_s Cocktail - Me Myself Simpatico",
+            name: "Me Myself Simpatico"
+          }
+        ]
+      },
+      BenzeneRingPlug: {
+        mediaPath: '/post_tunes/Benzene/',
+        tracks: [
+          {
+            file: "The Benzene Ring - Pretend I_m Not Here",
+            name: "Pretend I'm Not Here"
+          },
+          {
+            file: "The Benzene Ring - You And Me In The Absence Of Predators",
+            name: "You And Me In The Absence Of Predators"
+          },
+          {
+            file: "The Benzene Ring - Sweet Pioneer",
+            name: "Sweet Pioneer"
+          }
+        ]
+      }
+    };
+
+    var playlistName = window.location.search.substring(1);
+    var playlist = playlists[playlistName] || {};
+
+    console.log({
+      "playlist.mediaPath": playlist.mediaPath,
+      "playlist.tracks": playlist.tracks
+    });
+
+  </script>
+
+</head>
+<body>
+
+  <div id="mainwrap">
+
+    <div id="nowPlay">
+      <span id="npTitle"></span>
+    </div>
+
+    <div id="audiowrap">
+      <div id="audio0">
+        <audio id="audio1" preload controls>Your browser does not support HTML5 Audio</audio>
+      </div>
+      <div id="tracks">
+        <a id="btnPrev">Prev</a><a id="btnNext">Next</a>
+      </div>
+    </div>
+
+    <div id="plwrap">
+      <ul id="plList"></ul>
+    </div>
+
+  </div>
+
+  <script type="text/javascript" src="/js/audioplayer/audioplayer.js"></script>
+
+</body>
+</html>

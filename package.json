@@ -1,0 +1,36 @@
+{
+  "name": "botchthecrab",
+  "version": "4.0.0",
+  "description": "Botch the Crab",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Alexander aka Botch the Crab <Adam@BotchTheCrab.com> (http:/www.BotchTheCrab.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^14.5.0",
+    "browserify-shim": "^3.8.14",
+    "gulp": "^3.9.1",
+    "gulp-concat-css": "^3.1.0",
+    "gulp-cssimport": "^7.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-sass": "^3.2.1",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "uglify": "^0.1.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "vueify": "^9.4.1"
+  },
+  "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
+    "bootstrap": "^3.1.1",
+    "jquery": "^1.11.0",
+    "jquery-touchswipe": "^1.6.19",
+    "jquery-ui": "^1.10.4",
+    "underscore": "^1.9.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.5"
+  }
+}

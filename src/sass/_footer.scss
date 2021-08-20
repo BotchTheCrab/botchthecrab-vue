@@ -1,0 +1,60 @@
+/* ########## */
+/*   FOOTER   */
+/* ########## */
+
+$footerHeight: 50px;
+
+// though referenced by ID, #footer is a semantic <footer> element
+#footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: right;
+	height: $footerHeight;
+	padding: 10px 15px 10px 10px;
+	background: #333;
+	border-top: 1px solid #666;
+	/* ensure backwards compatibility */
+	display: block;
+}
+#footer.fancybox-margin {
+	padding-right:	27px;
+}
+@media (max-width: $bootstrap-xs-max) {
+	#footer {
+		position: absolute;
+		bottom: $footerHeight * -1;
+	}
+	#footer.fancybox-margin {
+		margin-right:	0;
+		padding-right:	0;
+	}
+}
+
+
+#footer .footer-item  {
+	display: inline-block;
+	margin-left: 15px;
+	height: 32px;
+	vertical-align: middle;
+}
+#footer .footer-item:first-of-type  {
+	margin-left: 0;
+}
+
+#footer-search-form {	
+	input {
+		margin-left: 5px;
+
+		@media (max-width: $bootstrap-xs-max) {
+			display: none;
+		}
+	}
+}
+
+
+#footer-paypal-form {
+	width:		62px;
+	height:		32px;
+	overflow:	hidden;
+}

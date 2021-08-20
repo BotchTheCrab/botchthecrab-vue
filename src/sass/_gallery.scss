@@ -1,0 +1,132 @@
+/* ############# */
+/*   GALLERIES   */
+/* ############# */
+
+
+.galleryDescription {
+	margin:		0 auto 50px;
+	max-width:	800px;
+	font-size:	0.9em;
+	text-align: left;
+	color:		#ddd;
+	background-color: #222;
+	box-shadow: 1px 1px 5px #6E1C13;
+	padding:	10px;
+}
+
+#galleries .teletranName,
+#gallery .teletranName {
+	font-size:	1.0em;
+	height:		70px;
+}
+
+#galleryEntryName {
+	font-family: 		Audiowide, Arial, Verdana, sans-serif;
+	font-size:			2em;
+	letter-spacing: 	1px;
+	font-weight: 		bold;
+
+	padding: 			5px 15px;
+	text-align: 		center;
+}
+
+
+#galleryEntryContainer {
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	position: relative;
+}
+
+/*
+	Only display next/prev when mouse-hovering over the parent.
+	In a touch interface, no mouse-hover will be detected, so the
+	full fancybox outer area can be swiped!
+*/
+#galleryEntryContainer .prevLink,
+#galleryEntryContainer .nextLink {
+	/* display: none; */
+}
+#galleryEntryContainer:hover .prevLink,
+#galleryEntryContainer:hover .nextLink {
+	display: block;
+}
+
+#galleryEntryContainer .prevLink a,
+#galleryEntryContainer .nextLink a {
+	position: absolute;
+	width: 5%;
+	min-width: 50px;
+	height: 100%;
+}
+#galleryEntryContainer .prevLink a {
+	left: 0px;
+	text-align: left;
+	padding-left: 10px;
+}
+#galleryEntryContainer .nextLink a {
+	right: 0px;
+	text-align: right;
+	padding-right: 10px;
+}
+#galleryEntryContainer .prevLink img,
+#galleryEntryContainer .nextLink img {
+	/* display: none; */
+	position: relative;
+	top: 40%;
+	width: 36px;
+	height: 34px;
+	background-image: url(/fancybox/source/fancybox_sprite.png);
+	opacity: 0.3;
+}
+@media (max-width: $bootstrap-xs-max) {
+	#galleryEntryContainer .prevLink img,
+	#galleryEntryContainer .nextLink img {
+		top: 70%;
+		opacity: 0.6;
+	}
+}
+
+#galleryEntryContainer .prevLink:hover img,
+#galleryEntryContainer .nextLink:hover img {
+	display: inline;
+	opacity: 1;
+}
+#galleryEntryContainer .prevLink img {
+	background-position: 0px -36px;
+}
+#galleryEntryContainer .nextLink img {
+	background-position: 0px -72px;
+}
+
+#galleryEntryDisplay {
+	border: 2px solid BLACK;
+	/* max-width: 99%;  */
+	max-width: 88%;
+	max-height: 600px;
+ }
+
+
+.galleryEntryDesc {
+	width:				90%;
+	background-color:	#444;
+	box-shadow: 		2px 2px 3px #333;
+	font-size:			1em;
+
+	border-radius:		8px 8px 0 0;
+
+	margin: 0 auto 10px;
+	max-width: 600px;
+	font-size: 1em;
+	text-align: left;
+	color: #eee;
+	padding: 10px;
+
+	&.galleryEntryDescShort {
+		text-align: center;
+	}
+}
+
+#galleryEntry .adjacentPosts {
+	max-width: 600px;
+}

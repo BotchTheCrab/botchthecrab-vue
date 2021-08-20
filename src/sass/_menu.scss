@@ -1,0 +1,125 @@
+/* ########## */
+/*   MENU     */
+/* ########## */
+
+#menu {
+	visibility: hidden;
+}
+
+
+#menu_trigger {
+	position: fixed;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+
+	cursor: pointer;
+}
+.mm-opened #menu_trigger { display: none; }
+#menu_trigger div {
+	margin: 0 0 25px;
+	opacity: 0.8;
+}
+@media (max-width: $bootstrap-xs-max) {
+	#menu_trigger {
+		position: absolute;
+	}
+	#menu_trigger div {
+		display: inline-block;
+		margin: 0 20px 0 0;
+	}
+}
+
+
+
+
+
+.mm-menu {
+	text-align: left;
+	background-color: #eee;
+	/*
+	background-image: url(/images/botch_menu_background.png);
+	background-repeat: no-repeat;
+	background-position: 120px 80px;
+	*/
+}
+
+.mm-list > li > a,
+.mm-list > li > span,
+.mm-navbar__title span,
+.mm-menu .mm-header,
+.mm-menu .mm-footer {
+  color: #222;
+}
+
+.mm-navbar__title {
+	span {
+		font-family: 		Audiowide, Arial, Verdana, sans-serif;
+		font-size:			1.7em;
+		letter-spacing: 	1px;
+		font-weight: 		bold;
+
+		a {
+			color: 		inherit;
+		}
+	}
+}
+
+ .mm-menu .mm-list > li > a.mm-subopen:after, .mm-menu .mm-list > li > a.mm-subclose:before {
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+.mm-menu .mm-header .mm-prev:before,
+.mm-menu .mm-header .mm-next:after {
+	border-color: rgba(0, 0, 0, 0.3);
+}
+
+.mm-menu .mm-footer {
+  bottom: 100px;
+}
+
+
+.menu_icon  {
+	background-repeat: no-repeat;
+	background-position: left 1px;
+	padding-left: 24px;
+	display: block;
+}
+#menu_icon_home  { background-image: url(/images/crab_black.gif); }
+#menu_icon_archive  { background-image: url(/images/icon_decepticon.png); }
+#menu_icon_autobot  { background-image: url(/images/icon_autobot.png); }
+#menu_icon_decepticon  { background-image: url(/images/icon_decepticon.png); }
+#menu_icon_music  { background-image: url(/images/icon_music.png); }
+
+.mm-menu form {
+	padding: 10px 0;
+	text-align: center;
+}
+.mm-menu form input {
+	font-size: 0.9em;
+	padding: 5px;
+	border-radius: 4px;
+	margin-left: 5px;
+}
+
+#menu_botch {
+	text-align: center;
+	padding-top: 10px;
+	border-bottom: 0;
+}
+#menu_botch:after { border-bottom: 0; }
+
+
+// prevent hiding of main content when open
+
+.mm-wrapper_opened .mm-page {
+	min-height: 0;
+}
+
+.mm-wrapper_blocking {
+	overflow: inherit;
+}
+
+.mm-listitem.mm-listitem_selected {
+	background: rgba(0, 0, 0, 0.1);
+}

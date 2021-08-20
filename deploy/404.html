@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Botch the Crab - Page Not Found</title>
+
+  <meta name="viewport" content="width=device-width" />
+
+  <!-- Underscore -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+
+  <script type="text/javascript">
+
+    var params = {};
+    var queryString = location.search.substring(1);
+    if (queryString) {
+      var nameValuePairs = queryString.split('&');
+      _.each(nameValuePairs, function(nameValue) {
+        var split = nameValue.split('=');
+        params[split[0]] = split[1];
+      })
+    }
+    console.info('params ...');
+    console.info(params);
+
+    var path = location.pathname;
+    var lastCharacterIndex = path.length - 1;
+    if (path.charAt(lastCharacterIndex) === '/') {
+      path = path.substring(0, lastCharacterIndex);
+    }
+    console.info('path ...');
+    console.info(path);
+
+    var isBlog = path.indexOf('/replies') === 0;
+    var isArchive = path.indexOf('/archive') === 0;
+    var isGallery = path.indexOf('/gallery') === 0;
+    var isAbout = path.indexOf('/about') === 0;
+
+    console.info({
+      isBlog: isBlog,
+      isArchive: isArchive,
+      isGallery: isGallery,
+      isAbout: isAbout
+    });
+
+    if (isBlog) {
+      redirectBlogPost();
+    } else if (isArchive) {
+      redirectArchive();
+    } else if (isGallery) {
+      redirectGallery();
+    } else if (isAbout) {
+      redirectAbout();
+    } else {
+
+      if (path.indexOf('/searchNew') === 0) {
+        redirectHash('/postings?search=' + params.keywords);
+      }
+
+    }
+
+
+    // REDIRECT FUNCTIONS
+
+    function redirectBlogPost() {
+      redirectHash('/posting/' + params.index);
+    }
+
+    function redirectArchive() {
+
+      var isTeletran = path.indexOf('/teletran.asp') !== -1;
+      var isMicromaster = path.indexOf('/micromaster.asp') !== -1;
+      var isActionMasters = path.indexOf('/nucleon.asp') !== -1;
+      var isJapan = path.indexOf('/teletran2.asp') !== -1;
+      var isEurope = path.indexOf('/teletran3.asp') !== -1;
+      console.info({
+        isTeletran: isTeletran,
+        isMicromaster: isMicromaster,
+        isActionMasters: isActionMasters,
+        isJapan: isJapan,
+        isEurope: isEurope
+      });
+
+      if (isTeletran && params.coat && params.year) {
+        redirectHash('/archive/teletran/' + params.coat + '/' + params.year);
+
+      } else if (isMicromaster && params.team) {
+
+        // Initialize Firebase
+        var firebaseConfig = {
+          apiKey: "AIzaSyCWCpbe1wdg1v1uJqPZRGv0q6pT8QZiscE",
+          authDomain: "botch-the-crab.firebaseapp.com",
+          databaseURL: "https://botch-the-crab.firebaseio.com",
+          projectId: "botch-the-crab",
+          storageBucket: "botch-the-crab.appspot.com",
+          messagingSenderId: "957369815270",
+          appId: "1:957369815270:web:3ca19aaadf385f84632b27"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.database().ref('archive/transformers_usa').once('value').then(function(snapshot) {
+          var teamName = decodeURI(params.team);
+          var micromasterTeams = _.where(snapshot.val(), { areMicromasters: true });
+          var matchingTeam = _.findWhere(micromasterTeams, { name: teamName });
+          if (matchingTeam) {
+            redirectHash('/archive/teletran/' + pathWash(matchingTeam.faction) + '/' + pathWash(matchingTeam.year) + '/' + pathWash(teamName));
+          }
+        });
+
+      } else if (isActionMasters && params.coat) {
+        redirectHash('/archive/teletran/' + params.coat + '/action_masters');
+
+      } else if (isJapan && params.coat) {
+
+        if (params.coat === 'cybertron') {
+          redirectHash('/archive/teletran/autobot/japan');
+        }
+        if (params.coat === 'destron') {
+          redirectHash('/archive/teletran/decepticon/japan');
+        }
+
+      } else if (isEurope && params.coat) {
+        redirectHash('/archive/teletran/' + params.coat + '/europe');
+      }
+
+      switch(path) {
+        case '/archive':
+          redirectHash('/archive');
+          break;
+        case '/archive/autobot':
+          redirectHash('/archive/teletran/autobot');
+          break;
+        case '/archive/decepticon':
+          redirectHash('/archive/teletran/decepticon');
+          break;
+        case '/archive/techspecs':
+          redirectHash('/archive/techspecs');
+          break;
+        case '/archive/instructions':
+          redirectHash('/archive/instructions');
+          break;
+        case '/archive/reinforcements.asp':
+        case '/archive/history.asp':
+          redirectHash(deAsp(path));
+          break;
+      }
+
+    }
+
+    function redirectGallery() {
+
+      if (params.image) {
+        redirectHash('/gallery/galleryEntry/' + params.image);
+        return;
+      }
+
+      switch(params.gallery) {
+        case '2':
+          redirectHash('/archive/boxbattles');
+          break;
+        case '10':
+          redirectHash('/archive/catalogs');
+          break;
+        default:
+          redirectHash('/gallery/' + params.gallery)
+      }
+
+    }
+
+    function redirectAbout() {
+      switch(path) {
+        case '/about':
+          redirectHash('/about');
+          break;
+        case '/about/adam.asp':
+        case '/about/botch.asp':
+        case '/about/music.asp':
+          redirectHash(deAsp(path));
+          break;
+      }
+    }
+
+
+    // UTILITY FUNCTIONS
+
+    function pathWash(s) {
+      s = String(s);
+      s = s.replace(/[\s&\+]/g, '_');
+      s = s.toLowerCase();
+      return s;
+    }
+
+    function deAsp(path) {
+      return path.replace('.asp', '');
+    }
+
+    function redirectHash(hash) {
+      location.replace('/#' + hash);
+      // console.info('REDIRECT: ' + '/#' + hash);
+    }
+
+  </script>
+
+</head>
+<body>
+
+  <h1>Curses! This URL goes nowhere.</h1>
+
+</body>
+</html>

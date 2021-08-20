@@ -1,0 +1,78 @@
+/* ########################## */
+/*  fancyBox override styles  */
+/* ########################## */
+
+.fancybox-skin {
+	background-color: white;
+}
+
+.fancybox-title {
+	font-weight: 	bold;
+	font-variant: 	small-caps;
+	font-family: 	'Exo 2', Arial, Verdana, sans-serif;
+	font-size: 		2em;
+	letter-spacing:	1px;
+	margin:			10px 30px 0;
+	min-height:		40px;
+	color:			#333;
+}
+
+.fancybox-download {
+	position: 		absolute;
+	right:			-30px;
+	margin-right: 	5px;
+	opacity: 		0.8;
+}
+
+.fancybox-additional-links a {
+	display:		inline-block;
+	white-space:	nowrap;
+	text-transform:	lowercase;
+	font-variant: 	small-caps;
+	font-family: 	Tahoma;
+	font-size: 		0.7em;
+	letter-spacing:	1px;
+	margin:			0 20px;
+	color:			#5555FF;
+}
+
+.fancybox-nav  { width:  50px; }
+.fancybox-prev { left:  -47px; }
+.fancybox-next { right: -47px;}
+.fancybox-nav span { visibility: visible; }
+
+.fancybox-additional-links { margin-top: 20px; }
+
+.fancybox-additional-links a.open-boxart:before,
+.fancybox-additional-links a.open-techspecs:before,
+.fancybox-additional-links a.open-instructions:before {
+	display: inline-block;
+	margin-right: 7px;
+	font-family: Arial;
+}
+.fancybox-additional-links a.open-boxart:before {
+	content: '\25A1';
+	color: #222;
+}
+.fancybox-additional-links a.open-techspecs:before {
+	content: '\25A0';
+	color: RED;
+}
+.fancybox-additional-links a.open-instructions:before {
+	content: '\25BA';
+	font-size: 0.6em;
+	color: #222;
+}
+
+
+
+/*
+	Only display next/prev when mouse-hovering over the parent.
+	In a touch interface, no mouse-hover will be detected, so the
+	full fancybox outer area can be swiped!
+*/
+/*
+.fancybox-next, .fancybox-prev { display: none; }
+.fancybox-outer:hover .fancybox-next,
+.fancybox-outer:hover .fancybox-prev { display: block; }
+*/

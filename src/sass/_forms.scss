@@ -1,0 +1,35 @@
+/* ################# */
+/* FORM FIELD STYLES */
+/* ################# */
+
+input, button, select, textarea {
+	color: black;
+}
+
+
+input.button {
+	background:			url(/images/button_bground.gif) #5F7484 repeat-x;
+	color:				#333333;
+	font-weight:		bold;
+	padding:			3px 10px;
+	margin:				0px;
+	border:				1px solid #333333;
+	font-size:			1em;
+}
+
+input.text, select.text {
+	width:				200px;
+	font-family:		Verdana;
+	font-size:			1em;
+}
+
+select.text {
+	width:				204px;
+}
+
+textarea.textarea {
+	width:				300px;
+	height:				105px;
+	font-family:		Verdana;
+	font-size:			11px;
+}
