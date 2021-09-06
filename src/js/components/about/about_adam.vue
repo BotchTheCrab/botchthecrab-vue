@@ -7,6 +7,36 @@
     margin: 0 auto 50px;
     text-align: left;
 
+    #aboutHeader {
+      font-size: 3.5em;
+    }
+
+    #externalLinks {
+      ul {
+        display: flex;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0;
+
+        li {
+          position: relative;
+          display: inline-block;
+          flex-grow: 1;
+          text-align: center;
+
+          &:not(:first-of-type) {
+            padding-left: 5px;
+
+            &::before {
+              content: "•";
+              position: absolute;
+              left: 0;
+            }
+          }
+        }
+      }
+    }
+
     p {
       font-size: 0.9em;
       line-height: 1.5em;
@@ -18,9 +48,6 @@
       }
     }
 
-    #aboutHeader {
-      font-size: 3.5em;
-    }
   }
 
 </style>
@@ -31,7 +58,16 @@
 
     <div id="aboutHeader">Adam Alexander</div>
 
-    <p><img src="/images/about/adam/about_adam_dlg_2.jpg" class="postImageLeft" title="Performing with Die Like Gentlemen" />
+    <div id="externalLinks" class="aboutDesc">
+      <ul>
+        <li><a href="/images/about/adam/adam-alexander-resume-2021.pdf" target="resume">R&#0233;sum&#0233;</a></li>
+        <li><a href="https://github.com/BotchTheCrab" target="github">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/adam-alexander-7b99b7b0/" target="linkedin">LinkedIn</a></li>
+        <li><a href="https://twitter.com/BotchTheCrab" target="twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <p><img src="/images/about/adam/about_adam_dlg_4.jpg" class="postImageLeft" title="Performing with Die Like Gentlemen" />
 
     <p>My first lifelong love was Godzilla. As a little kid I would scan the TV guides on the weekends to make sure I didn't miss a single movie featuring Godzilla (or any other giant monster). I wanted to be Godzilla. I wanted to stomp on the world, make the bullies pay, then leave and be left alone.</p>
 

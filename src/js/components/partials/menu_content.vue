@@ -166,6 +166,14 @@
         {
           text: "Botch the Crab",
           link: '#/about/botch'
+        },
+        {
+          text: "Botch's Fellow Cassettes",
+          link: '#/about/trio'
+        },
+        {
+          text: "This Site",
+          link: '#/about/site'
         }
       ]
     },
