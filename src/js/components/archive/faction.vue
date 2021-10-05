@@ -10,7 +10,7 @@
 
     <teletran-header v-bind:faction="faction"></teletran-header>
 
-    <div id="teletranContainer" v-bind:class="containerClass" v-cloak>
+    <div id="teletran-container" v-bind:class="containerClass" v-cloak>
       <teletran-year-entry v-for="desination in destinations" v-bind:desination="desination" v-bind:key="desination.year"></teletran-year-entry>
     </div>
 

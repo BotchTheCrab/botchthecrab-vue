@@ -4,7 +4,7 @@
 
 <template>
 
-  <div class="teletranHeader">
+  <div class="teletran-header">
     <span v-bind:class="headerClass">{{ headerText }}</span>
   </div>
 
@@ -38,7 +38,7 @@
       },
 
       headerClass: function() {
-        return 'teletranHeader' + archiveService.toTitleCase(this.faction);
+        return 'teletran-header-' + this.faction.toLowerCase();
       }
 
     }

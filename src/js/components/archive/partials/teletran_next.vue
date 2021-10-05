@@ -4,11 +4,11 @@
 
 <template>
 
-  <div id="teletranNext">
-    <div id="teletranContinue">
+  <div id="teletran-next">
+    <div id="teletran-continue">
       <router-link v-bind:class="nextClass" v-bind:to="nextLink"><span>Continue to</span> <span>{{ nextText }} <span v-html="tail" /></span></router-link>
     </div>
-    <div id="teletranSwitch">
+    <div id="teletran-switch">
       <router-link v-bind:class="switchClass" v-bind:to="switchLink"><span>Switch to</span> <span>{{ switchText }} <span v-html="tail" /></span></router-link>
     </div>
   </div>
@@ -118,7 +118,7 @@
         var params = this.getParams();
         var faction = params.nextFaction;
 
-        return 'teletranNext' + archiveService.toTitleCase(faction);
+        return 'teletran-next-' + faction;
       },
 
       switchText: function() {
@@ -147,7 +147,7 @@
         var params = this.getParams();
         var faction = params.switchFaction;
 
-        return 'teletranNext' + archiveService.toTitleCase(faction);
+        return 'teletran-next-' + faction;
       }
 
     }

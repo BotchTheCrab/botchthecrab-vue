@@ -156,7 +156,7 @@
       link: '#/galleries'
     },
     {
-      text: "About",
+      text: "About ...",
       link: '#/about',
       children: [
         {

@@ -1,15 +1,16 @@
-<style>
+<style lang="scss">
 
   #sfx {
   	display: none;
   	float: left;
-  	width:	28px;
-  	height:	32px;
+  	width: 28px;
+  	height: 32px;
   	background: no-repeat center center;
-  	cursor:	pointer;
+  	cursor: pointer;
+
+    &.audio_on  { background-image: url(/images/footer/icon_audio_on.png); }
+    &.audio_off { background-image: url(/images/footer/icon_audio_off.png); }
   }
-  #sfx.audio_on  { background-image: url(/images/footer/icon_audio_on.png); }
-  #sfx.audio_off { background-image: url(/images/footer/icon_audio_off.png); }
 
 </style>
 

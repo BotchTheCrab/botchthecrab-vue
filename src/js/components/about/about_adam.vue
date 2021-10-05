@@ -1,13 +1,13 @@
 <style lang="scss">
 
-  #aboutAdam {
+  #about-adam {
     text-align: justify;
     width: 600px;
     max-width: 90%;
     margin: 0 auto 50px;
     text-align: left;
 
-    #aboutHeader {
+    .about-header {
       font-size: 3.5em;
     }
 
@@ -54,11 +54,11 @@
 
 <template>
 
-  <div id="aboutAdam">
+  <div id="about-adam">
 
-    <div id="aboutHeader">Adam Alexander</div>
+    <div class="about-header">Adam Alexander</div>
 
-    <div id="externalLinks" class="aboutDesc">
+    <div id="externalLinks" class="about-desc">
       <ul>
         <li><a href="/images/about/adam/adam-alexander-resume-2021.pdf" target="resume">R&#0233;sum&#0233;</a></li>
         <li><a href="https://github.com/BotchTheCrab" target="github">GitHub</a></li>
@@ -67,7 +67,7 @@
       </ul>
     </div>
 
-    <p><img src="/images/about/adam/about_adam_dlg_4.jpg" class="postImageLeft" title="Performing with Die Like Gentlemen" />
+    <p><img src="/images/about/adam/about_adam_dlg_4.jpg" class="post-image-left" title="Performing with Die Like Gentlemen" />
 
     <p>My first lifelong love was Godzilla. As a little kid I would scan the TV guides on the weekends to make sure I didn't miss a single movie featuring Godzilla (or any other giant monster). I wanted to be Godzilla. I wanted to stomp on the world, make the bullies pay, then leave and be left alone.</p>
 

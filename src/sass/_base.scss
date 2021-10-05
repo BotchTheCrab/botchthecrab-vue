@@ -22,9 +22,9 @@ html {
 }
 
 body {
-	text-align:			 center;
-	margin: 			0 0 50px;
-	font-size:			10pt;
+	text-align: center;
+	margin: 0 0 50px;
+	font-size: 10pt;
   @include background-gradient($color-background-start, $color-background-end-neutral);
 
 	&.autobot {
@@ -38,8 +38,8 @@ body {
 
 
 body, td {
-	font-family:		Verdana, sans-serif;
-	color:				$color-text-default;
+	font-family: Verdana, sans-serif;
+	color: $color-text-default;
 }
 
 section {
@@ -61,8 +61,8 @@ section {
 
 
 
-table { border-collapse:	collapse; }
-td { padding:	0px; }
+table { border-collapse: collapse; }
+td { padding: 0px; }
 
 form {
 	margin: 0px;
@@ -81,8 +81,8 @@ form {
 
 
 a {
-	text-decoration:	none;
-	color:				$color-link-default;
+	text-decoration: none;
+	color: $color-link-default;
 }
 a:link, a:active, a:visited, a:hover {
 	color: $color-link-default;
@@ -90,8 +90,8 @@ a:link, a:active, a:visited, a:hover {
 	outline: none;
 }
 a:hover {
-	text-decoration:	underline;
-	color:				$color-link-default;
+	text-decoration: underline;
+	color: $color-link-default;
 
 	// experimental
 	text-decoration-skip: ink;
@@ -100,14 +100,14 @@ a:hover {
 
 
 hr {
-	height:				1px;
-	color:				#444;
+	height: 1px;
+	color: #444;
 
-	margin:				50px auto;
+	margin: 50px auto;
 
-	clear:				both;
-	text-align:			left;
-	border-top:			1px solid #444;
+	clear: both;
+	text-align: left;
+	border-top: 1px solid #444;
 
 	&:after {
 		// content: url(/images/crab_black.gif);
@@ -124,20 +124,20 @@ hr {
 
 
 img, a img {
-	border-color:		BLACK;
+	border-color: BLACK;
 }
 
 img.shadow {
-	border:		1px solid BLACK;
+	border: 1px solid BLACK;
 	box-shadow: 3px 3px 1px #222;
 }
 
 
 
 
-#centerContent {
-	max-width:	600px;
-	margin:		0 auto;
+.center-content {
+	max-width: 600px;
+	margin: 0 auto;
 }
 
 #watermark {
@@ -145,52 +145,16 @@ img.shadow {
 	z-index: 0;
 	left: 25px;
 	top: 25px;
-}
-.mm-opened #watermark { display: none; }
-#watermark img {
-	width: 100%;
-	max-width: 200px;
+
+	.mm-opened & { display: none; }
+
+	img {
+		width: 100%;
+		max-width: 200px;
+	}
 }
 
 .container-fluid {
 	position: relative;
 	z-index: 0;
-}
-
-
-/** AUDIO/VIDEO **/
-
-.audio-container,
-.audio-playlist-container {
-	display: block;
-	background-color: rgba(255, 255, 255, 0.12);
-	font-family: Arial, sans-serif;
-	font-size: 0.9em;
-
-	& > audio,
-	& > object,
-	& > embed {
-		display: block;
-	}
-
-	.media-attribution, .media-playlist {
-		color: #eee;
-
-		.media-title {
-			&::before { content: '"'; }
-			&::after { content: '"'; }
-		}
-	}
-
-	&[align=right] {
-		float: right;
-		margin: 0 0 15px 15px;
-	}
-	&[align=left] {
-		float: left;
-		margin: 0 15px 15px 0;
-	}
-	&[align=center] {
-		margin: 0 auto 15px;
-	}
 }

@@ -1,10 +1,14 @@
-<style>
+<style lang="scss">
 
-  #catalogs .teletranName {
-    height: 70px;
-  }
-  #catalogs .teletranNameNote {
-    margin-top: 0.5em;
+  #catalogs {
+
+    .teletran-name {
+      height: 70px;
+    }
+    .teletran-name-note {
+      margin-top: 0.5em;
+    }
+
   }
 
 </style>
@@ -15,11 +19,11 @@
 
     <archive-header></archive-header>
 
-    <div class="teletranHeader">
-  		<span class="teletranHeaderNeutral">Catalogs</span>
+    <div class="teletran-header">
+  		<span class="teletran-header-neutral">Catalogs</span>
   	</div>
 
-    <div class="galleryDescription">
+    <div class="gallery-description">
       <p>
     		Man, I loved poring over these catalogs that came with boxed Tranformers back in the 1980's. I still do! I like checklists, I like Transformers, I love assigning numbers to things... What more can I ask for?
     	</p>
@@ -28,17 +32,17 @@
     	</p>
     </div>
 
-    <div id="teletranContainer" v-cloak>
+    <div id="teletran-container" v-cloak>
 
-      <div class="teletranEntry" v-for="catalog in catalogs">
-        <div class="teletranBox">
+      <div class="teletran-entry" v-for="catalog in catalogs">
+        <div class="teletran-box">
           <a class="fancybox-button-art" rel="fancybox-button" v-bind:title="catalog.displayTitle" v-bind:href="catalog.imagePath" target="_blank">
-            <img class="teletranThumb" v-bind:src="catalog.thumbnailPath" v-bind:title="catalog.displayName" />
+            <img class="teletran-thumbnail" v-bind:src="catalog.thumbnailPath" v-bind:title="catalog.displayName" />
           </a>
-          <div class="teletranName">
+          <div class="teletran-name">
             {{ catalog.displayName }}
-            <div class="teletranNameNote" v-if="catalog.version">{{ catalog.version }} Version</div>
-            <div class="teletranNameNote">Side {{ catalog.side }}</div>
+            <div class="teletran-name-note" v-if="catalog.version">{{ catalog.version }} Version</div>
+            <div class="teletran-name-note">Side {{ catalog.side }}</div>
           </div>
         </div>
       </div>

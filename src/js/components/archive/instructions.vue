@@ -8,11 +8,11 @@
 
     <archive-header></archive-header>
 
-    <div class="teletranHeader">
-  		<span class="teletranHeaderNeutral">Instructions</span>
+    <div class="teletran-header">
+  		<span class="teletran-header-neutral">Instructions</span>
   	</div>
 
-    <p class="PaperworkCredits">
+    <p class="archive-paperwork-credits">
   		This page offers Instruction scans for all Generation One (G1) Transformers released in America and Europe.<br />
   		Scans from Japan and other lines (G2, Beast Wars, etc) can be found <a href="http://tfwiki.net/~fortmax/" target="fortmax">here</a>.<br />
   		Eternal thanks to <b>James Wilson</b>, the original curator of the Transfomers G1 Instruction Scan Archive.
@@ -20,11 +20,11 @@
 
     <div class="col-sm-6">
 
-      <div class="PaperworkFaction_Autobot">Autobots</div>
+      <div class="archive-paperwork-autobot">Autobots</div>
 
-      <div class="PaperworkYear" v-for="year in yearsUsa" v-if="instructions.usa.autobots[year].length">
-        <div class="PaperworkYearHeader">{{ getDisplayYear(year) }}</div>
-        <div class="PaperworkYearContent">
+      <div class="archive-paperwork-year" v-for="year in yearsUsa" v-if="instructions.usa.autobots[year].length">
+        <div class="archive-paperwork-year-header">{{ getDisplayYear(year) }}</div>
+        <div class="archive-paperwork-year-content">
           <div v-for="entry in instructions.usa.autobots[year]">
             <a class="fancybox-button-instructions" rel="fancybox-button" v-bind:title="entry.name + ' - Instructions'" v-bind:href="entry.imgPath" target="_blank">{{ entry.name }}</a>
           </div>
@@ -35,11 +35,11 @@
 
     <div class="col-sm-6">
 
-      <div class="PaperworkFaction_Decepticon">Decepticons</div>
+      <div class="archive-paperwork-decepticon">Decepticons</div>
 
-      <div class="PaperworkYear" v-for="year in yearsUsa" v-if="instructions.usa.decepticons[year].length">
-        <div class="PaperworkYearHeader">{{ getDisplayYear(year) }}</div>
-        <div class="PaperworkYearContent">
+      <div class="archive-paperwork-year" v-for="year in yearsUsa" v-if="instructions.usa.decepticons[year].length">
+        <div class="archive-paperwork-year-header">{{ getDisplayYear(year) }}</div>
+        <div class="archive-paperwork-year-content">
           <div v-for="entry in instructions.usa.decepticons[year]">
             <a class="fancybox-button-instructions" rel="fancybox-button" v-bind:title="entry.name + ' - Instructions'" v-bind:href="entry.imgPath" target="_blank">{{ entry.name }}</a>
           </div>
@@ -52,11 +52,11 @@
 
     <div class="col-sm-6">
 
-			<div class="PaperworkFaction_Autobot">Autobots (European)</div>
+			<div class="archive-paperwork-autobot">Autobots (European)</div>
 
-      <div class="PaperworkYear" v-for="year in yearsEurope" v-if="instructions.europe.autobots[year].length">
-        <div class="PaperworkYearHeader">{{ getDisplayYear(year) }}</div>
-        <div class="PaperworkYearContent">
+      <div class="archive-paperwork-year" v-for="year in yearsEurope" v-if="instructions.europe.autobots[year].length">
+        <div class="archive-paperwork-year-header">{{ getDisplayYear(year) }}</div>
+        <div class="archive-paperwork-year-content">
           <div v-for="entry in instructions.europe.autobots[year]">
             <a class="fancybox-button-instructions" rel="fancybox-button" v-bind:title="entry.name + ' - Instructions'" v-bind:href="entry.imgPath" target="_blank">{{ entry.name }}</a>
           </div>
@@ -67,11 +67,11 @@
 
     <div class="col-sm-6">
 
-			<div class="PaperworkFaction_Decepticon">Decepticons (European)</div>
+			<div class="archive-paperwork-decepticon">Decepticons (European)</div>
 
-      <div class="PaperworkYear" v-for="year in yearsEurope" v-if="instructions.europe.decepticons[year].length">
-        <div class="PaperworkYearHeader">{{ getDisplayYear(year) }}</div>
-        <div class="PaperworkYearContent">
+      <div class="archive-paperwork-year" v-for="year in yearsEurope" v-if="instructions.europe.decepticons[year].length">
+        <div class="archive-paperwork-year-header">{{ getDisplayYear(year) }}</div>
+        <div class="archive-paperwork-year-content">
           <div v-for="entry in instructions.europe.decepticons[year]">
             <a class="fancybox-button-instructions" rel="fancybox-button" v-bind:title="entry.name + ' - Instructions'" v-bind:href="entry.imgPath" target="_blank">{{ entry.name }}</a>
           </div>

@@ -16,45 +16,40 @@ $footerHeight: 50px;
 	border-top: 1px solid #666;
 	/* ensure backwards compatibility */
 	display: block;
-}
-#footer.fancybox-margin {
-	padding-right:	27px;
-}
-@media (max-width: $bootstrap-xs-max) {
-	#footer {
+
+	&.fancybox-margin {
+		padding-right: 27px;
+	}
+
+	@media (max-width: $bootstrap-xs-max) {
 		position: absolute;
 		bottom: $footerHeight * -1;
-	}
-	#footer.fancybox-margin {
-		margin-right:	0;
-		padding-right:	0;
-	}
-}
 
-
-#footer .footer-item  {
-	display: inline-block;
-	margin-left: 15px;
-	height: 32px;
-	vertical-align: middle;
-}
-#footer .footer-item:first-of-type  {
-	margin-left: 0;
-}
-
-#footer-search-form {	
-	input {
-		margin-left: 5px;
-
-		@media (max-width: $bootstrap-xs-max) {
-			display: none;
+		&.fancybox-margin {
+			margin-right: 0;
+			padding-right: 0;
 		}
 	}
-}
 
+	.footer-item  {
+		display: inline-block;
+		margin-left: 15px;
+		height: 32px;
+		vertical-align: middle;
 
-#footer-paypal-form {
-	width:		62px;
-	height:		32px;
-	overflow:	hidden;
+		&:first-of-type  {
+			margin-left: 0;
+		}
+	}
+
+	#footer-search-form {
+		input {
+			margin-left: 5px;
+
+			@media (max-width: $bootstrap-xs-max) {
+				display: none;
+			}
+		}
+	}
+
 }

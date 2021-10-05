@@ -4,19 +4,19 @@
 
 <template>
 
-  <div class="teletranEntry">
-    <div class="teletranBox">
+  <div class="teletran-entry">
+    <div class="teletran-box">
       <a v-bind:class="imageClass" rel="fancybox-button" v-bind:title="entry.name" v-bind:data-character="entry.name" v-bind:data-techspecs="entry.hasTechSpec || 'false'" v-bind:data-instructions="entry.hasInstructions || 'false'" v-bind:href="imagePath" v-bind:target="imageTarget">
-        <img class="teletranThumb" v-bind:src="thumbnailPath" v-bind:title="entry.name + ' - Box Art'" />
+        <img class="teletran-thumbnail" v-bind:src="thumbnailPath" v-bind:title="entry.name + ' - Box Art'" />
       </a>
-      <div class="teletranIcons" v-if="!this.entry.transformerJapanId">
+      <div class="teletran-icons" v-if="!this.entry.transformerJapanId">
         <a v-if="entry.hasTechSpec" class="fancybox-button-techspecs" rel="fancybox-button" v-bind:title="entry.name + ' - Tech Specs'" v-bind:data-character="entry.name" data-art="true" v-bind:data-instructions="entry.hasInstructions || 'false'" v-bind:href="techSpecPath" target="_blank"><img src="/archive/images/icon_techspec.gif" v-bind:title="entry.name + ' - Tech Specs'" /></a>
         <a v-if="entry.hasInstructions" class="fancybox-button-instructions" rel="fancybox-button" v-bind:title="entry.name + ' - Instructions'" v-bind:data-character="entry.name" data-art="true" v-bind:data-techspecs="entry.hasTechSpec || 'false'" v-bind:href="instructionsPath" target="_blank"><img src="/archive/images/icon_instruction.gif" v-bind:title="entry.name + ' - Instructions'" /></a>
       </div>
-      <div class="teletranName">
+      <div class="teletran-name">
         {{ entry.name }}
-        <div class="teletranNameNote" v-if="entry.note">({{ entry.note }})</div>
-        <div class="teletranReleaseNumber" v-if="entry.releaseId">{{ entry.releaseId }}</div>
+        <div class="teletran-name-note" v-if="entry.note">({{ entry.note }})</div>
+        <div class="teletran-release-number" v-if="entry.releaseId">{{ entry.releaseId }}</div>
       </div>
     </div>
   </div>

@@ -1,22 +1,136 @@
-<style>
+<style lang="scss">
+
+  @import "../../sass/_variables.scss";
+
+  #gallery-entry {
+
+    #gallery-entry-name {
+    	font-family: Audiowide, Arial, Verdana, sans-serif;
+    	font-size: 2em;
+    	letter-spacing: 1px;
+    	font-weight: bold;
+
+    	padding: 5px 15px;
+    	text-align: center;
+    }
+
+    #gallery-entry-container {
+    	text-align: center;
+    	margin-top: 5px;
+    	margin-bottom: 15px;
+    	position: relative;
+
+      /*
+      	Only display next/prev when mouse-hovering over the parent.
+      	In a touch interface, no mouse-hover will be detected, so the
+      	full fancybox outer area can be swiped!
+      */
+      .prevLink,
+      .nextLink {
+      	display: none;
+      }
+      &:hover .prevLink,
+      &:hover .nextLink {
+      	display: block;
+      }
+
+      .prevLink a,
+      .nextLink a {
+      	position: absolute;
+      	width: 5%;
+      	min-width: 50px;
+      	height: 100%;
+      }
+      .prevLink a {
+      	left: 0px;
+      	text-align: left;
+      	padding-left: 10px;
+      }
+      .nextLink a {
+      	right: 0px;
+      	text-align: right;
+      	padding-right: 10px;
+      }
+      .prevLink img,
+      .nextLink img {
+      	/* display: none; */
+      	position: relative;
+      	top: 40%;
+      	width: 36px;
+      	height: 34px;
+      	background-image: url(/fancybox/source/fancybox_sprite.png);
+      	opacity: 0.3;
+      }
+      @media (max-width: $bootstrap-xs-max) {
+      	.prevLink img,
+      	.nextLink img {
+      		top: 70%;
+      		opacity: 0.6;
+      	}
+      }
+
+      .prevLink:hover img,
+      .nextLink:hover img {
+      	display: inline;
+      	opacity: 1;
+      }
+      .prevLink img {
+      	background-position: 0px -36px;
+      }
+      .nextLink img {
+      	background-position: 0px -72px;
+      }
+
+    }
+
+    #gallery-entry-image {
+    	border: 2px solid BLACK;
+    	max-width: 88%;
+    	max-height: 600px;
+    }
+
+    #gallery-entry-desc {
+    	width: 90%;
+    	background-color: #444;
+    	box-shadow: 2px 2px 3px #333;
+    	font-size: 1em;
+
+    	border-radius: 8px 8px 0 0;
+
+    	margin: 0 auto 10px;
+    	max-width: 600px;
+    	font-size: 1em;
+    	text-align: left;
+    	color: #eee;
+    	padding: 10px;
+
+    	&.gallery-entry-desc-short {
+    		text-align: center;
+    	}
+    }
+
+    .adjacent-posts {
+    	max-width: 600px;
+    }
+  }
+
 </style>
 
 <template>
 
-  <div class="container-fluid" id="galleryEntry">
+  <div class="container-fluid" id="gallery-entry">
 
     <botch-watermark></botch-watermark>
 
-
-    <div class="pageTitle" v-if="gallery.name">
+    <div class="page-title" v-if="gallery.name">
       <router-link v-bind:to="{ name: 'gallery', params: { galleryId: gallery.galleryId } }">
         {{ gallery.name }}
       </router-link>
     </div>
 
-    <div id="galleryEntryName" v-if="gallery.name && galleryEntry.name" v-html="galleryEntry.name"></div>
+    <div id="gallery-entry-name" v-if="gallery.name && galleryEntry.name" v-html="galleryEntry.name"></div>
 
-    <div id="galleryEntryContainer" v-if="galleryEntry.imageName">
+    <div id="gallery-entry-container" v-if="galleryEntry.imageName">
       <div class="prevLink" v-if="previousEntryId">
         <router-link v-bind:to="{ name: 'galleryEntry', params: { galleryEntryId: previousEntryId } }">
           <img src="/images/_.gif" />
@@ -28,12 +142,12 @@
         </router-link>
       </div>
 
-  		<a v-bind:href="'/gallery/' +  galleryEntry.imageName" target="galleryEntry"><img id="galleryEntryDisplay" v-bind:src="'/gallery/' +  galleryEntry.imageName"></a>
+  		<a v-bind:href="'/gallery/' +  galleryEntry.imageName" target="galleryEntry"><img id="gallery-entry-image" v-bind:src="'/gallery/' +  galleryEntry.imageName"></a>
   	</div>
 
-  	<div class="galleryEntryDesc" v-bind:class="{ 'galleryEntryDescShort' : galleryEntry.description.length < 60 }" v-html="galleryEntry.description"></div>
+  	<div id="gallery-entry-desc" v-bind:class="{ 'gallery-entry-desc-short' : galleryEntry.description.length < 60 }" v-html="galleryEntry.description"></div>
 
-   	<div class="adjacentPosts">
+   	<div class="adjacent-posts">
   		<span>
         <router-link v-if="previousEntryId" v-bind:to="{ name: 'galleryEntry', params: { galleryEntryId: previousEntryId } }">
           &#x25C4; <span>PREVIOUS</span>
@@ -85,7 +199,6 @@
     },
 
     mounted() {
-      // globalService.setOfficeDocumentTitle("More Galleries");
     },
 
     methods: {
@@ -155,10 +268,6 @@
 
         });
 
-      // },
-      //
-      // getThumbnailPath: function(entry) {
-      //   return '/gallery/Z_' + entry.imageName.replace(/&/, '_');
       }
 
     }

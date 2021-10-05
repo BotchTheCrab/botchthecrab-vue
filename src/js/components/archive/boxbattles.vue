@@ -1,11 +1,15 @@
-<style>
+<style lang="scss">
 
-  #boxbattles .teletranName {
-    height: 80px;
-  }
-  #boxbattles .teletranNameNote {
-    margin-top: 0.5em;
-    white-space: normal;
+  #boxbattles {
+
+    .teletran-name {
+      height: 80px;
+    }
+    .teletran-name-note {
+      margin-top: 0.5em;
+      white-space: normal;
+    }
+
   }
 
 </style>
@@ -16,25 +20,25 @@
 
     <archive-header></archive-header>
 
-    <div class="teletranHeader">
-  		<span class="teletranHeaderNeutral">Back of the Box Art</span>
+    <div class="teletran-header">
+  		<span class="teletran-header-neutral">Back of the Box Art</span>
   	</div>
 
-    <div class="galleryDescription">
+    <div class="gallery-description">
       <p>Due to popular demand, Botch's Transformers Box Art Archive presents what you saw when you flipped your box over and looked just above the tech spec: presenting the Back of the Box Art gallery. Of course, why there were multiples of each character, we never knew.</p>
       <p>If you think my years are wrong (and can show me why), please let me know. If you have one of the missing scans, or a better version of one I have here, please send it to <a href="mailto:Botch@BotchTheCrab.com">Botch@BotchTheCrab.com</a>.</p>
     </div>
 
-    <div id="teletranContainer" v-cloak>
+    <div id="teletran-container" v-cloak>
 
-      <div class="teletranEntry" v-for="battle in boxbattles">
-        <div class="teletranBox">
+      <div class="teletran-entry" v-for="battle in boxbattles">
+        <div class="teletran-box">
           <a class="fancybox-button-art" rel="fancybox-button" v-bind:title="battle.displayTitle" v-bind:href="battle.imagePath" target="_blank">
-            <img class="teletranThumb" v-bind:src="battle.thumbnailPath" v-bind:title="battle.displayName" />
+            <img class="teletran-thumbnail" v-bind:src="battle.thumbnailPath" v-bind:title="battle.displayName" />
           </a>
-          <div class="teletranName">
+          <div class="teletran-name">
             {{ battle.displayName }}
-            <div class="teletranNameNote" v-if="battle.description">{{ battle.description }}</div>
+            <div class="teletran-name-note" v-if="battle.description">{{ battle.description }}</div>
           </div>
         </div>
       </div>

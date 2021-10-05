@@ -4,10 +4,8 @@
 
 <template>
 
-  <div id="teletranNext">
-    <div id="teletranBack">
-      <router-link v-bind:class="backClass" v-bind:to="backLink">Back to {{ backText }} <span v-html="tail" /></router-link>
-    </div>
+  <div id="teletran-back">
+    <router-link v-bind:class="backClass" v-bind:to="backLink"><span>Back to</span> {{ backText }} <span v-html="tail" /></router-link>
   </div>
 
 </template>
@@ -31,10 +29,10 @@
         return this.year + ' ' + archiveService.toTitleCase(this.faction)+'s';
       },
       backLink: function() {
-        return '/archive/teletran/' + this.faction + '/' + this.year;
+        return '/archive/teletran/' + this.faction.toLowerCase() + '/' + this.year;
       },
       backClass: function() {
-        return 'teletranNext' + archiveService.toTitleCase(this.faction);
+        return 'teletran-next-' + this.faction.toLowerCase();
       }
 
     }

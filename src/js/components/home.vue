@@ -1,17 +1,78 @@
-<style>
-  /* */
+<style lang="scss">
+
+  @import "../../sass/_variables.scss";
+
+  #home {
+
+    & > header {
+      text-align: center;
+      font-style: normal;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      min-height: 4.25rem;
+      @media (max-width: $bootstrap-xxs-max) {
+        font-size: 2.25rem;
+      }
+    }
+
+    #home-portal {
+      min-height: 300px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+
+      #home-portal-botch {
+        margin-bottom: 20px;
+        padding-left: 0;
+        @media (max-width: $bootstrap-xxs-max) {
+          img {
+            height: 175px;
+          }
+        }
+      }
+
+      #home-portal-links {
+        padding: 10px 0 40px;
+        text-align: left;
+        color: #ccc;
+        font-size: 1em;
+        line-height: 1.8em;
+
+        a.standout {
+          font-family: 'Exo 2', Arial, Verdana, sans-serif;
+          font-size: 1.3em;
+          letter-spacing: 1px;
+        }
+
+        div {
+          margin-bottom: 25px;
+        }
+      }
+
+    }
+
+    #home-search-form {
+      font-size: 1.2em;
+
+      input[type="text"],
+      input[type="search"] {
+        width: 200px;
+      }
+    }
+
+  }
+
 </style>
 
 <template>
 
-  <div class="container-fluid" id="centerContent">
+  <div id="home" class="container-fluid center-content">
 
-    <header id="HomeHeader" class="btc-header btc-header-autobot"><span class="nowrap">Welcome to</span> <span class="nowrap">Botch's Office...</span></header>
+    <header class="btc-header btc-header-autobot"><span class="nowrap">Welcome to</span> <span class="nowrap">Botch's Office...</span></header>
 
-  	<div id="HomePortal">
-  		<div id="HomePortalBotch" class="col-sm-5"><a href="#/about/botch"><img src="/images/botch/botch_mascot_laurent.png" /></a></div>
+  	<div id="home-portal">
+  		<div id="home-portal-botch" class="col-sm-5"><a href="#/about/botch"><img src="/images/botch/botch_mascot_laurent.png" /></a></div>
 
-  		<div id="HomePortalLinks" class="col-sm-7">
+  		<div id="home-portal-links" class="col-sm-7">
   			<div>
   				<a href="#/archive" class="standout">Botch's Transformers Box Art Archive</a>  &#151; <span class="nowrap">the #1 online destination</span> for G1 Transformers package art since 1998 &#151; is why most humans visit this site.
   			</div>
@@ -31,21 +92,21 @@
 
 
     <!-- BLOG POSTS -->
-  	<div class="pageTitle" v-show="postings.length">Updates &amp; Blog Posts ...</div>
+  	<div class="page-title" v-show="postings.length">Updates &amp; Blog Posts ...</div>
 
-    <div class="postBlurb" v-for="posting in postings" v-bind:key="posting.postingId" v-bind:post-id="posting.postingId">
-      <div class="postFullTitle">
+    <div class="post-blurb" v-for="posting in postings" v-bind:key="posting.postingId" v-bind:post-id="posting.postingId">
+      <div class="post-title-full">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: posting.postingId } }">{{ posting.title }}</router-link>
       </div>
 
-      <div class="postFullBody" v-html="posting.blurb"></div>
+      <div class="post-body-full" v-html="posting.blurb"></div>
 
-      <p class="postBodyTrim" v-if="posting.blurb.length !== posting.content.length">
+      <p class="post-body-trimmed" v-if="posting.blurb.length !== posting.content.length">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: posting.postingId } }">Continue &#133;</router-link>
       </p>
     </div>
 
-    <div class="morePosts" v-show="postings.length">
+    <div class="more-posts" v-show="postings.length">
       <a v-on:click="loadMorePostings">Load More Posts</a>
   	</div>
 

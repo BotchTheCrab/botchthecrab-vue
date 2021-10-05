@@ -1,23 +1,25 @@
-<style>
+<style lang="scss">
 
   #taglist {
-    text-align:		left;
-    font-size: 		0.8em;
-    line-height: 	150%;
+    text-align: left;
+    font-size: 0.8em;
+    line-height: 150%;
 
-    -moz-column-width: 120px;
-    -webkit-column-width: 120px;
-    column-width: 120px;
+    $columnWidth: 120px;
+    -moz-column-width: $columnWidth;
+    -webkit-column-width: $columnWidth;
+    column-width: $columnWidth;
 
-    -moz-column-gap: 15px;
-    -webkit-column-gap: 15px;
-    column-gap: 15px;
+    $columnGap: 15px;
+    -moz-column-gap: $columnGap;
+    -webkit-column-gap: $columnGap;
+    column-gap: $columnGap;
 
-    margin-bottom:	50px;
-  }
+    margin-bottom: 50px;
 
-  #taglist div {
-    margin-bottom: 5px;
+    div {
+      margin-bottom: 5px;
+    }
   }
 
 </style>
@@ -26,7 +28,7 @@
 
   <div class="container-fluid">
 
-    <div class="pageTitle">Browse Tags</div>
+    <div class="page-title">Browse Tags</div>
 
     <div id="taglist">
       <div v-for="tag in tags">

@@ -1,22 +1,26 @@
-<style>
+<style lang="scss">
 
-  #main-search-form {
-    margin-bottom: 25px;
-  }
+  #postings {
 
-  #teletranContainer {
-    margin-bottom: 30px;
+    #main-search-form {
+      margin-bottom: 30px;
+    }
+
+    .teletran-container {
+      margin-bottom: 30px;
+    }
+
   }
 
 </style>
 
 <template>
 
-  <div class="container-fluid" id="centerContent">
+  <div class="container-fluid center-content" id="postings">
 
     <botch-watermark></botch-watermark>
 
-    <div class="pageTitle" v-if="pageTitle">{{ pageTitle }}</div>
+    <div class="page-title" v-if="pageTitle">{{ pageTitle }}</div>
 
     <form id="main-search-form" @submit.prevent="submitSearch" v-show="pageTitle">
 
@@ -36,40 +40,40 @@
 
     <!-- ARCHIVE RESULTS -->
 
-    <div class="pageSubHeader" v-if="query.search && pageReady">Transformers Box Art Results ...</div>
+    <div class="page-subheader" v-if="query.search && pageReady">Transformers Box Art Results ...</div>
 
     <div v-if="pageReady && query.search && transformers.length === 0">No matching Transformers</div>
 
-    <div id="teletranContainer" class="teletranContainerSearch" v-cloak>
+    <div class="teletran-container teletran-container-search" v-cloak>
       <teletran-entry v-for="entry in transformers" v-bind:entry="entry" v-bind:key="entry.transformerId"></teletran-entry>
-      <div class="teletranLoadMore" v-if="transformers.length < totalTransformers" v-on:click="loadAllTransformers">Load All Matching Transformers</div>
+      <div class="teletran-load-more" v-if="transformers.length < totalTransformers" v-on:click="loadAllTransformers">Load All Matching Transformers</div>
     </div>
 
 
 
     <!-- POSTINGS -->
 
-    <div class="pageSubHeader" v-if="query.search && pageReady">Postings ...</div>
+    <div class="page-subheader" v-if="query.search && pageReady">Postings ...</div>
 
     <div v-if="pageReady && query.search && postings.length === 0">No matching posts</div>
 
-    <div class="postBlurb" v-for="posting in postings" v-bind:key="posting.postingId" v-bind:post-id="posting.postingId">
-      <div class="postFullTitle">
+    <div class="post-blurb" v-for="posting in postings" v-bind:key="posting.postingId" v-bind:post-id="posting.postingId">
+      <div class="post-title-full">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: posting.postingId } }">{{ posting.title }}</router-link>
       </div>
 
-      <div class="postFullBody" v-html="posting.blurb"></div>
+      <div class="post-body-full" v-html="posting.blurb"></div>
 
-      <p class="postBodyTrim" v-if="posting.blurb.length !== posting.content.length">
+      <p class="post-body-trimmed" v-if="posting.blurb.length !== posting.content.length">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: posting.postingId } }">Continue &#133;</router-link>
       </p>
     </div>
 
-    <div class="morePosts" v-show="postings.length && postings.length < totalPostings">
+    <div class="more-posts" v-show="postings.length && postings.length < totalPostings">
       <a v-on:click="loadMorePostings">Load More Posts</a>
     </div>
 
-    <div class="noMorePosts" v-show="postings.length && postings.length === totalPostings">
+    <div class="no-more-posts" v-show="postings.length && postings.length === totalPostings">
       No more posts.
     </div>
 

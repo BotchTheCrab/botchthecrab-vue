@@ -7,18 +7,18 @@
 
     <botch-watermark></botch-watermark>
 
-    <div class="pageTitle">{{ gallery.name }}</div>
+    <div class="page-title">{{ gallery.name }}</div>
 
-    <div class="galleryDescription" v-html="gallery.description"></div>
+    <div class="gallery-description" v-html="gallery.description"></div>
 
-    <div id="teletranContainer" v-cloak>
+    <div id="teletran-container" v-cloak>
 
-      <div class="teletranEntry" v-for="galleryEntry in galleryEntries">
-        <div class="teletranBox">
+      <div class="teletran-entry" v-for="galleryEntry in galleryEntries">
+        <div class="teletran-box">
           <router-link v-bind:to="{ name: 'galleryEntry', params: { galleryEntryId: galleryEntry.entryId } }">
-            <img class="teletranThumb" v-bind:src="galleryEntry.thumbnailPath" />
+            <img class="teletran-thumbnail" v-bind:src="galleryEntry.thumbnailPath" />
           </router-link>
-          <div class="teletranName" v-html="galleryEntry.name"></div>
+          <div class="teletran-name" v-html="galleryEntry.name"></div>
         </div>
       </div>
 

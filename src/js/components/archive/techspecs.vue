@@ -1,5 +1,26 @@
-<style>
-  /* */
+<style lang="scss">
+
+  #BotchTechSpec {
+  	padding: 50px 0;
+  	margin: 0 auto;
+  	font-size: 0.9em;
+  	clear: both;
+
+  	& > div {
+  		margin-bottom: 10px;
+  	}
+
+  	img {
+  		width: 100%;
+  		max-width: 400px;
+  	}
+
+  	a {
+  		white-space: nowrap;
+  	}
+
+  }
+
 </style>
 
 <template>
@@ -8,21 +29,21 @@
 
     <archive-header></archive-header>
 
-    <div class="teletranHeader">
-  		<span class="teletranHeaderNeutral">Tech Specs</span>
+    <div class="teletran-header">
+  		<span class="teletran-header-neutral">Tech Specs</span>
   	</div>
 
-    <p class="PaperworkCredits">
+    <p class="archive-paperwork-credits">
   		Eternal thanks to <b>Jon and Karl Hartman</b>, the original curators of the Transfomers G1 Tech Spec Scan Archive.
   	</p>
 
     <div class="col-sm-6">
 
-      <div class="PaperworkFaction_Autobot">Autobots</div>
+      <div class="archive-paperwork-autobot">Autobots</div>
 
-      <div class="PaperworkYear" v-for="year in yearsUsa" v-if="techspecs.usa.autobots[year].length">
-        <div class="PaperworkYearHeader">{{ getDisplayYear(year) }}</div>
-        <div class="PaperworkYearContent">
+      <div class="archive-paperwork-year" v-for="year in yearsUsa" v-if="techspecs.usa.autobots[year].length">
+        <div class="archive-paperwork-year-header">{{ getDisplayYear(year) }}</div>
+        <div class="archive-paperwork-year-content">
           <div v-for="entry in techspecs.usa.autobots[year]">
             <a class="fancybox-button-techspecs" rel="fancybox-button" v-bind:title="entry.name + ' - Tech Specs'" v-bind:href="entry.imgPath" target="_blank">{{ entry.name }}</a>
           </div>
@@ -33,11 +54,11 @@
 
     <div class="col-sm-6">
 
-      <div class="PaperworkFaction_Decepticon">Decepticons</div>
+      <div class="archive-paperwork-decepticon">Decepticons</div>
 
-      <div class="PaperworkYear" v-for="year in yearsUsa" v-if="techspecs.usa.decepticons[year].length">
-        <div class="PaperworkYearHeader">{{ getDisplayYear(year) }}</div>
-        <div class="PaperworkYearContent">
+      <div class="archive-paperwork-year" v-for="year in yearsUsa" v-if="techspecs.usa.decepticons[year].length">
+        <div class="archive-paperwork-year-header">{{ getDisplayYear(year) }}</div>
+        <div class="archive-paperwork-year-content">
           <div v-for="entry in techspecs.usa.decepticons[year]">
             <a class="fancybox-button-techspecs" rel="fancybox-button" v-bind:title="entry.name + ' - Tech Specs'" v-bind:href="entry.imgPath" target="_blank">{{ entry.name }}</a>
           </div>
@@ -56,11 +77,11 @@
 
     <div class="col-sm-6">
 
-			<div class="PaperworkFaction_Autobot">Autobots (European)</div>
+			<div class="archive-paperwork-autobot">Autobots (European)</div>
 
-      <div class="PaperworkYear" v-for="year in yearsEurope" v-if="techspecs.europe.autobots[year].length">
-        <div class="PaperworkYearHeader">{{ getDisplayYear(year) }}</div>
-        <div class="PaperworkYearContent">
+      <div class="archive-paperwork-year" v-for="year in yearsEurope" v-if="techspecs.europe.autobots[year].length">
+        <div class="archive-paperwork-year-header">{{ getDisplayYear(year) }}</div>
+        <div class="archive-paperwork-year-content">
           <div v-for="entry in techspecs.europe.autobots[year]">
             <a class="fancybox-button-techspecs" rel="fancybox-button" v-bind:title="entry.name + ' - Tech Specs'" v-bind:href="entry.imgPath" target="_blank">{{ entry.name }}</a>
           </div>
@@ -71,11 +92,11 @@
 
     <div class="col-sm-6">
 
-			<div class="PaperworkFaction_Decepticon">Decepticons (European)</div>
+			<div class="archive-paperwork-decepticon">Decepticons (European)</div>
 
-      <div class="PaperworkYear" v-for="year in yearsEurope" v-if="techspecs.europe.decepticons[year].length">
-        <div class="PaperworkYearHeader">{{ getDisplayYear(year) }}</div>
-        <div class="PaperworkYearContent">
+      <div class="archive-paperwork-year" v-for="year in yearsEurope" v-if="techspecs.europe.decepticons[year].length">
+        <div class="archive-paperwork-year-header">{{ getDisplayYear(year) }}</div>
+        <div class="archive-paperwork-year-content">
           <div v-for="entry in techspecs.europe.decepticons[year]">
             <a class="fancybox-button-techspecs" rel="fancybox-button" v-bind:title="entry.name + ' - Tech Specs'" v-bind:href="entry.imgPath" target="_blank">{{ entry.name }}</a>
           </div>

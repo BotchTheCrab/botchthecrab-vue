@@ -2,7 +2,7 @@
 /* BOX ART ARCHIVE STYLES */
 /* ###################### */
 
-#archiveHomeLogo {
+#archive-home-logo {
 	margin: 0 auto 25px;
 	color: #aaa;
 	font-size: 0.8em;
@@ -16,7 +16,7 @@
 	}
 }
 
-#archiveLogo {
+#archive-logo {
 	margin: 0 auto 10px;
 
 	img {
@@ -27,45 +27,47 @@
 }
 
 .quicklink-container {
-	margin:	0 auto;
-}
+	margin: 0 auto;
 
-.quicklink {
-	margin: 0 auto 30px;
+	.quicklink {
+		margin: 0 auto 30px;
 
-	a {
-		font-family: 		'Exo 2', Arial, Verdana, sans-serif;
-		font-size:			1.0em;
-		letter-spacing: 	1px;
+		a {
+			font-family: 'Exo 2', Arial, Verdana, sans-serif;
+			font-size: 1.0em;
+			letter-spacing: 1px;
 
-		img:hover {
-			position:	relative;
-			top:		-1px;
-			left:		-1px;
+			img {
+				border: 0px;
+
+				&:hover {
+					position: relative;
+					top: -1px;
+					left: -1px;
+				}
+			}
+
 		}
 	}
+
 }
 
-
-.archiveQuickLink img {
-	border:			0px;
-}
 
 #archive-search-form {
 	input[type="text"],
 	input[type="search"] {
-		width:	190px;
+		width: 190px;
 		margin: 0 auto 5px;
 	}
 }
 
-.teletranHeader {
+.teletran-header {
 	display: block;
 	margin-bottom: 25px;
 
-	.teletranHeaderAutobot,
-	.teletranHeaderDecepticon,
-	.teletranHeaderNeutral {
+	.teletran-header-autobot,
+	.teletran-header-decepticon,
+	.teletran-header-neutral {
 		display: inline-block;
 		padding: 7px 25px 0;
 		min-height: 60px;
@@ -76,15 +78,15 @@
 	$page-title-autobot: url(/archive/images/page-title-autobot.jpg);
 	$page-title-decepticon: url(/archive/images/page-title-decepticon.jpg);
 
-	.teletranHeaderAutobot {
+	.teletran-header-autobot {
 		background-image: $page-title-autobot;
 		@extend .btc-header-autobot;;
 	}
-	.teletranHeaderDecepticon {
+	.teletran-header-decepticon {
 		background-image: $page-title-decepticon;
 		@extend .btc-header-decepticon;
 	}
-	.teletranHeaderNeutral {
+	.teletran-header-neutral {
 		padding: 0 35px;
 		@extend .btc-header-neutral;
 
@@ -117,10 +119,7 @@
 }
 
 
-// .bot, .bot A, A.bot { color: RED; }
-// .con, .con A, A.con { color: #E500E4; }
-
-#micromasterTeamName {
+#micromaster-team-name {
 	font-family: BTCHeader, Exo, "Arial Black", Arial, Verdana, sans-serif;
 	font-weight: bold;
 	font-size: 2em;
@@ -134,31 +133,31 @@
 
 /* THUMBNAILS */
 
-#teletranContainer,
-.teletranContainer {
+#teletran-container,
+.teletran-container {
 	@include flexbox;
 	@include justify-content(center);
 	@include flex-wrap(wrap);
 
-	.teletranEntry {
+	.teletran-entry {
 		$entrySideMargin: 15px;
 		margin-left: $entrySideMargin;
 		margin-right: $entrySideMargin;
 	}
 
-	&.teletranContainerCentered {
+	&.teletran-container-centered {
 		@include justify-content(center);
 	}
 }
 
 
-.teletranEntry {
+.teletran-entry {
 	margin: 0 0 25px;
 	min-width: 145px;
 	display: inline-block;
 }
 
-.teletranLoadMore {
+.teletran-load-more {
 	width: 127px;
 	height: 127px;
 	margin: 0 25px;
@@ -175,7 +174,7 @@
 	}
 }
 
-.teletranBox {
+.teletran-box {
 	margin: 0 auto;
 	width: 127px;
 	padding-top: 1px;
@@ -183,10 +182,10 @@
 	box-shadow: 3px 5px 25px #333;
 }
 
-.teletranThumb {
-	width:				125px;
-	height:				125px;
-	margin:				0 auto;
+.teletran-thumbnail {
+	width: 125px;
+	height: 125px;
+	margin: 0 auto;
 
 	&:hover {
 		position: relative;
@@ -196,15 +195,15 @@
 }
 
 
-.teletranIcons {
-	min-height:			25px;
-	padding:			5px 0 0;
-	margin:				0 auto;
-	text-align:			center;
+.teletran-icons {
+	min-height: 25px;
+	padding: 5px 0 0;
+	margin: 0 auto;
+	text-align: center;
 
 	img {
-		margin:		0px 5px;
-		border:		0px;
+		margin: 0px 5px;
+		border: 0px;
 
 		&:hover {
 			position: relative;
@@ -214,77 +213,81 @@
 	}
 }
 
-.teletranName {
-	height: 		55px;
-	padding:		7px 2px 0;
-	overflow:		hidden;
-	margin:			0 auto;
+.teletran-name {
+	height: 55px;
+	padding: 7px 2px 0;
+	overflow: hidden;
+	margin: 0 auto;
 
-	font-weight: 	bold;
-	font-variant: 	small-caps;
-	font-family: 	Tahoma;
+	font-weight: bold;
+	font-variant: small-caps;
+	font-family: Tahoma;
 	text-align: center;
 
-	font-size: 		1.2em;
-	letter-spacing:	1px;
-	line-height:	1.1em;
+	font-size: 1.2em;
+	letter-spacing: 1px;
+	line-height: 1.1em;
 
-	color:			#eee;
+	color: #eee;
 
-	.teletranContainerSearch &,
-	.teletranContainerJapan & {
-		height: 		70px;
+	.teletran-container-search &,
+	.teletran-container-japan & {
+		height: 70px;
 	}
 
-	.teletranNameYear {
-		font-size:		1.1em;
-		line-height:	175%;
-	}
+	// .teletran-nameYear {
+	// 	font-size: 1.1em;
+	// 	line-height: 175%;
+	// }
 }
 
 
 
-.teletranNameNote,
-.teletranReleaseNumber {
-	font-family:	Arial;
-	font-weight:	normal;
-	font-size:		0.7em;
-	white-space:	nowrap;
-	line-height:	1.2em;
+.teletran-name-note,
+.teletran-release-number {
+	font-family: Arial;
+	font-weight: normal;
+	font-size: 0.7em;
+	white-space: nowrap;
+	line-height: 1.2em;
 }
-.teletranReleaseNumber {
-	margin-top:		5px;
+.teletran-release-number {
+	margin-top: 5px;
 }
 
 
-#teletranNext {
+#teletran-next {
 	@media (min-width: $bootstrap-xs-max) {
 		min-width: 350px;
 		max-width: 350px;
 	}
 }
 
-#teletranContinue,
-#teletranSwitch,
-#teletranBack {
+#teletran-continue,
+#teletran-switch,
+#teletran-back {
 	margin-top: 40px;
 	white-space: nowrap;
 
 	a {
-		display:			inline-block;
-		height:				27px;
+		display: inline-block;
+		height: 27px;
 
-		color:				white;
-		text-shadow:		2px 2px 2px BLACK;
-		font-variant:		small-caps;
-		font-size:			1.3em;
+		color: white;
+		text-shadow: 2px 2px 2px BLACK;
+		font-variant: small-caps;
+		font-size: 1.3em;
 
-		font-weight:		bold;
+		font-weight: bold;
 	}
 }
 
-.teletranNextAutobot,
-.teletranNextDecepticon {
+#teletran-back {
+	margin: 40px auto 0;
+}
+
+.teletran-next-autobot,
+.teletran-next-decepticon {
 	white-space: normal;
 
 	& > span {
@@ -296,7 +299,7 @@
 				display: inline-block;
 				width: 24px;
 				height: 24px;
-				background-repeat: 	no-repeat;
+				background-repeat: no-repeat;
 				background-size: contain;
 				margin-right: 6px;
 				vertical-align: middle;
@@ -304,20 +307,20 @@
 		}
 	}
 }
-.teletranNextAutobot {
+.teletran-next-autobot {
 	& > span {
 		&:first-of-type {
 			&::before {
-				background-image:	url(/archive/images/teletranNextBot.png);
+				background-image: url(/archive/images/teletranNextBot.png);
 			}
 		}
 	}
 }
-.teletranNextDecepticon {
+.teletran-next-decepticon {
 	& > span {
 		&:first-of-type {
 			&::before {
-				background-image:	url(/archive/images/teletranNextCon.png);
+				background-image: url(/archive/images/teletranNextCon.png);
 			}
 		}
 	}
@@ -329,88 +332,65 @@
 /*** PAPERWORK (Tech Specs, Instructions) *****/
 /**********************************************/
 
-.PaperworkCredits {
-	font-size:	0.9em;
-	margin:		15px 15px 30px;
-	color:		#ddd;
+.archive-paperwork-credits {
+	font-size: 0.9em;
+	margin: 15px 15px 30px;
+	color: #ddd;
 }
 
-.PaperworkFaction_Autobot,
-.PaperworkFaction_Decepticon {
-	background-color:		#CA4735;
-	color:					BLACK;
-	padding:				3px 5px;
-	width:					97%;
-	margin-bottom:			5px;
-	border:					2px solid BLACK;
+.archive-paperwork-autobot,
+.archive-paperwork-decepticon {
+	background-color: #CA4735;
+	color: BLACK;
+	padding: 3px 5px;
+	width: 97%;
+	margin-bottom: 5px;
+	border: 2px solid BLACK;
 
-	background-color:		#C9321E;
+	background-color: #C9321E;
 
-	font-family:			Audiowide, Verdana, Arial, sans-serif;
-	font-size:				1.4em;
-	font-variant:			small-caps;
-	letter-spacing:			2px;
-	font-weight:			bold;
+	font-family: Audiowide, Verdana, Arial, sans-serif;
+	font-size: 1.4em;
+	font-variant: small-caps;
+	letter-spacing: 2px;
+	font-weight: bold;
+}
+.archive-paperwork-decepticon {
+	background-color: #803A99;
 }
 
-.PaperworkFaction_Decepticon {
-	background-color:		#803A99;
-}
+.archive-paperwork-year {
+	margin-top: 20px;
+	margin-bottom: 10px;
 
+	padding: 0 10px 20px;
 
-.PaperworkYear {
-	margin-top:			20px;
-	margin-bottom:		10px;
+	text-align: left;
+	border-bottom: 1px dotted #666666;
 
-	padding:			0 10px 20px;
+	.archive-paperwork-year-header {
+		font-size: 1.3em;
+		font-weight: bold;
+		margin-top: 2px;
+		margin-bottom: 3px;
+	}
 
-	text-align: 		left;
-	border-bottom:		1px dotted #666666;
-}
-.PaperworkYearHeader {
-	font-size:			1.3em;
-	font-weight:		bold;
-	margin-top:			2px;
-	margin-bottom:		3px;
-}
-.PaperworkYearContent {
-	column-width:		250px;
-	white-space:		nowrap;
+	.archive-paperwork-year-content {
+		column-width: 250px;
+		white-space: nowrap;
 
-	column-width:			150px;
-	-moz-column-width:		150px;
-	-webkit-column-width:	150px;
+		column-width: 150px;
+		-moz-column-width: 150px;
+		-webkit-column-width: 150px;
 
-	div {
-		max-width: 150px;
-		overflow: hidden;
-		text-overflow: ellipsis;
+		div {
+			max-width: 150px;
+			overflow: hidden;
+			text-overflow: ellipsis;
 
-		a {
-			// white-space:		normal;
-			// font-size:			1.1em;
-			line-height:		1.7em;
+			a {
+				line-height: 1.7em;
+			}
 		}
 	}
-}
-
-#BotchTechSpec {
-	padding: 50px 0;
-	margin: 0 auto;
-	font-size: 0.9em;
-	clear: both;
-
-	& > div {
-		margin-bottom: 10px;
-	}
-
-	img {
-		width: 100%;
-		max-width: 400px;
-	}
-
-	a {
-		white-space: nowrap;
-	}
-
 }

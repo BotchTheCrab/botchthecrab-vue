@@ -1,19 +1,28 @@
-<style>
+<style lang="scss">
 
-  .faq_Q, .faq_A { font-size: 1.2rem; line-height: 1.5em; }
-  .faq_Q { margin-bottom: 0px; font-weight: bold; }
-  .faq_A { margin-bottom: 2em; color: #BBBBBB; }
+  .faq_Q, .faq_A {
+    font-size: 1.2rem;
+    line-height: 1.5em;
+  }
+  .faq_Q {
+    margin-bottom: 0px;
+    font-weight: bold;
+  }
+  .faq_A {
+    margin-bottom: 2em;
+    color: #BBBBBB;
+  }
 
 </style>
 
 <template>
 
-  <div id="centerContent" class="container-fluid">
+  <div class="container-fluid center-content">
 
   	<!-- PAGE TITLE -->
-  	<div class="pageTitle">Frequently Asked Questions</div>
+  	<div class="page-title">Frequently Asked Questions</div>
 
-  	<div class="aboutDesc">
+  	<div class="about-desc">
       <div class="faq_Q">Can I use your images?</div>
       <div class="faq_A">Sure, it's not like they're really <i>mine</i>. If you were to put a link back to my site as a courtesy, that would be appreciated. Alternatively, you could <a href="/archive/help.asp">submit scans, edit scans or donate funds</a>!</div>
 
@@ -37,9 +46,9 @@
   	<br/>
 
   	<!-- PAGE TITLE -->
-  	<div class="pageTitle">Contact</div>
+  	<div class="page-title">Contact</div>
 
-  	<div class="aboutDesc" style="">
+  	<div class="about-desc" style="">
   		<p>For all other questions, comments, scorn or heapings of praise:</p>
   		<p><a href="mailto:Botch@BotchTheCrab.com"><b>Botch@BotchTheCrab.com</b></a></p>
   	</div>

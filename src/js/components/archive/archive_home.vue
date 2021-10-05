@@ -4,12 +4,12 @@
 
 <template>
 
-  <div class="container-fluid" id="centerContent">
+  <div class="container-fluid center-content">
 
     <botch-watermark></botch-watermark>
 
     <!-- Archive Large Logo -->
-  	<div id="archiveHomeLogo" class="text-center">
+  	<div id="archive-home-logo" class="text-center">
   		<img src="/archive/images/home/archive_logo_2014.jpg" alt="Botch's Transformers Box Art Archive" />
   		<div>Generation One Transformers Box Art, Instructions, Tech Specs and much more&#133;</div>
   	</div>
@@ -17,12 +17,12 @@
   	<!-- Quick Links -->
   	<div class="quicklink-container row text-center">
   		<div class="quicklink col-sm-6">
-  			<router-link v-bind:to="'/archive/teletran/autobot'" class="archiveQuickLink">
+  			<router-link v-bind:to="'/archive/teletran/autobot'">
   				<img src="/archive/images/home/quicklink_autobots_optimus_prime.jpg" alt="Autobot Box Art" />
   			</router-link>
   		</div>
   		<div class="quicklink col-sm-6">
-  			<router-link v-bind:to="'/archive/teletran/decepticon'" class="archiveQuickLink">
+  			<router-link v-bind:to="'/archive/teletran/decepticon'">
   				<img src="/archive/images/home/quicklink_decepticons_megatron.jpg" alt="Decepticon Box Art" />
   			</router-link>
   		</div>
@@ -32,18 +32,18 @@
 
   	<div class="quicklink-container row text-center">
   		<div class="quicklink col-sm-6">
-  			<a href="#/archive/techspecs" class="archiveQuickLink"><img src="/archive/images/home/quicklink_techspecs.jpg" alt="Transformers Tech Specs" /></a>
+  			<a href="#/archive/techspecs"><img src="/archive/images/home/quicklink_techspecs.jpg" alt="Transformers Tech Specs" /></a>
   		</div>
   		<div class="quicklink col-sm-6">
-  			<a href="#/archive/instructions" class="archiveQuickLink"><img src="/archive/images/home/quicklink_instructions.gif" alt="Transformers Instructions" /></a>
+  			<a href="#/archive/instructions"><img src="/archive/images/home/quicklink_instructions.gif" alt="Transformers Instructions" /></a>
   		</div>
   	</div>
   	<div class="quicklink-container row text-center">
   		<div class="quicklink col-sm-6">
-  			<a href="#/archive/catalogs" class="archiveQuickLink"><img src="/archive/images/home/quicklink_catalogs.jpg" alt="Transformers Catalogs" /></a>
+  			<a href="#/archive/catalogs"><img src="/archive/images/home/quicklink_catalogs.jpg" alt="Transformers Catalogs" /></a>
   		</div>
   		<div class="quicklink col-sm-6">
-  			<a href="#/archive/boxbattles" class="archiveQuickLink"><img src="/archive/images/home/quicklink_boxbattles.jpg" alt="Transformers Back of the Box Art" /></a>
+  			<a href="#/archive/boxbattles"><img src="/archive/images/home/quicklink_boxbattles.jpg" alt="Transformers Back of the Box Art" /></a>
   		</div>
   	</div>
 
@@ -66,21 +66,21 @@
 
 
     <!-- BLOG POSTS -->
-  	<div class="pageTitle" v-show="postings.length">Updates &amp; Blog Posts ...</div>
+  	<div class="page-title" v-show="postings.length">Updates &amp; Blog Posts ...</div>
 
-    <div class="postBlurb" v-for="posting in postings" v-bind:key="posting.postingId" v-bind:post-id="posting.postingId">
-      <div class="postFullTitle">
+    <div class="post-blurb" v-for="posting in postings" v-bind:key="posting.postingId" v-bind:post-id="posting.postingId">
+      <div class="post-title-full">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: posting.postingId } }">{{ posting.title }}</router-link>
       </div>
 
-      <div class="postFullBody" v-html="posting.blurb"></div>
+      <div class="post-body-full" v-html="posting.blurb"></div>
 
-      <p class="postBodyTrim" v-if="posting.blurb.length !== posting.content.length">
+      <p class="post-body-trimmed" v-if="posting.blurb.length !== posting.content.length">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: posting.postingId } }">Continue &#133;</router-link>
       </p>
     </div>
 
-    <div class="morePosts" v-show="postings.length">
+    <div class="more-posts" v-show="postings.length">
       <a v-on:click="loadMorePostings">Load More Posts</a>
   	</div>
 

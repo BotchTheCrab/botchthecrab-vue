@@ -1,40 +1,42 @@
-<style>
+<style lang="scss">
 
-  #historyImport {
+  #history-import {
     font-size: 1em;
-    text-align:	justify;
-    max-width:	800px;
-    margin:	0 auto 50px;
+    text-align: justify;
+    max-width: 800px;
+    margin: 0 auto 50px;
+
+    img {
+      max-width: 200px;
+    }
+    .thumbinner {
+      width: auto !important;
+    }
   }
 
   #toc,
   #TemplateUserinfo,
-  #historyImport CENTER,
-  #historyImport H4,
-  #historyImport H3,
+  #history-import center,
+  #history-import h4,
+  #history-import h3,
   .editsection,
   .magnify,
   .autonumber,
   .thumbcaption
   { display: none; }
 
-  #historyImport img {
-    max-width: 200px;
-  }
-  #historyImport .thumbinner {
-    width: auto !important;
-  }
-
   div.tleft {
     float: left;
     clear: left;
     margin: 0 10px 10px 0;
   }
+
   div.tright {
     float: right;
     clear: right;
     margin: 0 0 10px 10px;
   }
+
   div.thumbinner {
     background-color:#F9F9F9;
     border:1px solid #CCCCCC;
@@ -49,26 +51,28 @@
     padding:3px !important;
     text-align:left;
     font-size: 10px;
+
+    a { color: blue; }
   }
-  .thumbcaption A { color: blue; }
 
   .thumbimage {
     border:1px solid #CCCCCC;
   }
 
-  .HistoryCredits {
-    margin:		0 auto 15px;
-    max-width:	800px;
-    font-size:	0.8em;
+  .history-credits {
+    margin: 0 auto 15px;
+    max-width: 800px;
+    font-size: 0.8em;
     text-align: center;
-    color:		#ccc;
+    color: #ccc;
     background-color: #222;
     box-shadow: 2px 2px 3px #333;
-    padding:	10px;
-  }
-  .HistoryCredits div {
-    margin-bottom:	3px;
-    font-size:	1.2em;
+    padding: 10px;
+
+    div {
+      margin-bottom: 3px;
+      font-size: 1.2em;
+    }
   }
 
   .loading,
@@ -84,20 +88,20 @@
 
     <archive-header></archive-header>
 
-    <div class="teletranHeader">
-  		<span class="teletranHeaderNeutral">Box Art History</span>
+    <div class="teletran-header">
+  		<span class="teletran-header-neutral">Box Art History</span>
   	</div>
 
-    <div id="historyImport" v-html="parsedHistoryMarkup"></div>
+    <div id="history-import" v-html="parsedHistoryMarkup"></div>
 
-    <div class="HistoryCredits">
+    <div class="history-credits">
   		<div><b>What now?</b></div>
   		<div>&#0149; Start browsing Generation One box art with either the heroic <a href="#/archive/teletran/autobot"><b>Autobots</b></a> or the evil <a href="#/archive/teletran/decepticon"><b>Decepticons</b></a>!</div>
   		<div>&#0149; Continue reading about box art <i>after</i> Generation One by visiting the <a href="http://tfwiki.net/wiki/Package_art" target="tfwiki">Package Art</a> page of <a href="http://tfwiki.net/" target="tfwiki">TFWiki.net</a>.</div>
   	</div>
 
-  	<div class="HistoryCredits">
-  		The contents of this page are scraped in real time from the <a href="http://tfwiki.net/wiki/Package_art" target="tfwiki">Package Art</a> article of the incredible <a href="http://tfwiki.net/" target="tfwiki">TFWiki.net</a><br />
+  	<div class="history-credits">
+  		The contents of this page are scraped in real time from the <a href="http://tfwiki.net/wiki/Package_art" target="tfwiki">Package Art</a> article of the incredible <a href="http://tfwiki.net/" target="tfwiki">TFWiki.net</a>.<br />
   		Special thanks to <a href="http://deriksmith.livejournal.com/" target="derik"><b>Derik in Minnesota</b></a>, a web developer who blogs about content licensing, Transformers and other crazy stuff.<br />
   	</div>
 

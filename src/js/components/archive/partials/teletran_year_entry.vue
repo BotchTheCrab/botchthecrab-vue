@@ -4,12 +4,12 @@
 
 <template>
 
-  <div class="teletranEntry">
-    <div class="teletranBox">
+  <div class="teletran-entry">
+    <div class="teletran-box">
       <router-link v-bind:to="desinationLink">
-        <img class="teletranThumb" v-bind:src="thumbnailPath" />
+        <img class="teletran-thumbnail" v-bind:src="thumbnailPath" />
       </router-link>
-      <div class="teletranName">
+      <div class="teletran-name">
         {{ desinationName }}
       </div>
     </div>

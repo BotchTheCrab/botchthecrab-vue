@@ -1,20 +1,90 @@
-<style>
-  /* */
+<style lang="scss">
+
+  .replies {
+  	text-align: left;
+  	margin: 75px auto;
+  	max-width: 600px;
+
+    .reply-header {
+    	font-family: Audiowide, Arial, Verdana, sans-serif;
+    	font-size: 2.5em;
+    	letter-spacing: 1px;
+    	font-variant: small-caps;
+    	color: WHITE;
+
+    	border-bottom: 1px solid #666;
+    	padding-bottom: 2px;
+    	margin-bottom: 20px;
+    	clear: both;
+    }
+
+    .reply {
+    	margin-bottom: 30px;
+
+      .reply-body {
+      	font-size: 1.0em;
+      	line-height: 1.5em;
+      }
+
+      &.reply-wrapper-botch {
+      	background-image: url(/images/webmaster.png);
+      	background-repeat: no-repeat;
+
+        .reply-body {
+          padding-left: 60px;
+        }
+      }
+
+      .reply-footer {
+      	text-align: right;
+      	font-variant: small-caps;
+
+        .reply-time {
+        	font-size: 0.9em;
+        	letter-spacing: -1px;
+        	margin-right: 3px;
+        }
+      }
+
+      .reply-divider {
+      	border-bottom: 1px dashed #666;
+      	margin: 25px 0px;
+      }
+
+    }
+  }
+
+
+  /* .replies-closed {
+  	margin-top: 30px;
+  	margin-bottom: 20px;
+  	margin-left: 10%;
+  	margin-right: 10%;
+  	padding: 5px;
+  	background-color: #333;
+  	border: 1px solid #222;
+  	text-align: center;
+  	font-weight: bold;
+  	font-size: 10px;
+  } */
+
+
+
 </style>
 
 <template>
 
-  <div class="container-fluid" id="centerContent" v-if="posting.title">
+  <div class="container-fluid center-content" v-if="posting.title">
 
     <botch-watermark></botch-watermark>
 
-    <div class="postTitle">{{ posting.title }}</div>
+    <div class="post-title">{{ posting.title }}</div>
 
-    <div class="postFullBody" v-html="posting.content"></div>
+    <div class="post-body-full" v-html="posting.content"></div>
 
-    <div class="postFooter" v-if="posting.content.length">
+    <div class="post-footer" v-if="posting.content.length">
 
-    	<div class="postFooterItem">
+    	<div class="post-footer-item">
         <label>Tags:</label>
         <template v-for="(tag, index) in tags">
           <router-link v-bind:to="{ name: 'postings', query: { tagId: tag.tagId } }">{{ tag.text }}</router-link>
@@ -22,13 +92,13 @@
         </template>
       </div>
 
-      <div class="postFooterItem">
+      <div class="post-footer-item">
   			Posted: <span>{{ posting.posted }}</span>
   		</div>
 
 	  </div>
 
-    <div class="adjacentPosts">
+    <div class="adjacent-posts">
       <span v-if="previousPosting">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: previousPosting.postingId } }">&#x25C4; <span>Older</span></router-link>
       </span>
@@ -41,24 +111,24 @@
     </div>
 
     <div class="replies" v-if="replies.length">
-  		<div class="replyTitle">Comments</div>
+  		<div class="reply-header">Comments</div>
 
-      <div class="reply" v-bind:class="reply.isWebmaster ? 'replyWrapperBotch' : ''" v-for="(reply, index) in replies">
-        <div class="replyBody" v-html="reply.content"></div>
-        <div class="replyFooter">
+      <div class="reply" v-bind:class="reply.isWebmaster ? 'reply-wrapper-botch' : ''" v-for="(reply, index) in replies">
+        <div class="reply-body" v-html="reply.content"></div>
+        <div class="reply-footer">
           &raquo; Posted
-          <span class="replyTime">{{ reply.posted }}</span>
+          <span class="reply-time">{{ reply.posted }}</span>
           by <b>{{ reply.poster }}</b>
           <span v-if="reply.isWebmaster"> - WEBMASTER</span>
           <span v-if="!reply.isWebmaster && reply.website">[<a v-bind:href="reply.website" target="_blank">website</a>]</span>
         </div>
 
-        <div class="replyDivider" v-if="index < replies.length - 1"></div>
+        <div class="reply-divider" v-if="index < replies.length - 1"></div>
       </div>
 
     </div>
 
-    <div class="adjacentPosts" v-if="replies.length">
+    <div class="adjacent-posts" v-if="replies.length">
       <span v-if="previousPosting">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: previousPosting.postingId } }">&#x25C4; <span>Older</span></router-link>
       </span>
@@ -124,9 +194,6 @@
       $route(to, from) {
         this.updatePosting();
       }
-    },
-
-    mounted() {
     },
 
     methods: {

@@ -1,54 +1,55 @@
 <style lang="scss">
 
-  #AlbumCollection {
-    margin-bottom: 50px;
-  }
+  #about-music {
 
-  .album {
-    padding: 10px 20px;
-    background-color: black;
-    box-shadow: 3px 3px 3px #222;
-    font-size: 0.9em;
-    margin-bottom: 25px;
-    text-align: left;
-  }
+    .album {
+      padding: 10px 20px;
+      background-color: black;
+      box-shadow: 3px 3px 3px #222;
+      font-size: 0.9em;
+      margin-bottom: 25px;
+      text-align: left;
 
-  .album iframe {
-    float: left;
-    border: 0;
-    width: 100%;
-    height: 500px;
-    max-width: 350px;
-    margin-bottom: 20px;
-    margin-right: 20px;
-  }
+      iframe {
+        float: left;
+        border: 0;
+        width: 100%;
+        height: 500px;
+        max-width: 350px;
+        margin-bottom: 20px;
+        margin-right: 20px;
 
-  @media (max-width: 675px) {
-    .album iframe { float: none; }
-  }
+        @media (max-width: 675px) {
+          float: none;
+          height: 405px;
+        }
+      }
+    }
 
-  .albumBand, .albumTitle { text-shadow: 3px 3px 1px #444; }
+    .about-band, .album-title { text-shadow: 3px 3px 1px #444; }
 
-  .albumBand { font-size: 1.4em; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; }
-  .albumTitle { font-size: 1.2em; font-style: italic; margin-left: 0px; }
+    .about-band { font-size: 1.4em; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; }
+    .about-title { font-size: 1.2em; font-style: italic; margin-left: 0px; }
 
-  .albumBlurb { margin: 10px 0; line-height: 1.5em; color: #bbb; min-height: 90px; }
+    .album-blurb { margin: 10px 0; line-height: 1.5em; color: #bbb; min-height: 90px; }
 
-  .albumLinks {
-    text-align: center;
+    .album-links {
+      text-align: center;
 
-    a { margin: 0 15px; white-space: nowrap; }
+      a { margin: 0 15px; white-space: nowrap; }
+    }
+
   }
 
 </style>
 
 <template>
 
-  <div class="container-fluid">
+  <div class="container-fluid" id="about-music">
 
-    <div id="aboutHeader">Music by <span class="nowrap">Adam Alexander</span></div>
+    <div class="about-header">Music by <span class="nowrap">Adam Alexander</span></div>
 
-    <div class="aboutDesc">I've played in a number of projects over the years. My role often changes: composer, singer, guitarist, bassist, piano and/or keyboardist, and so on. I keep busy. Here are all the albums that I've recorded with different bands.</div>
+    <div class="about-desc">I've played in a number of projects over the years. My role often changes: composer, singer, guitarist, bassist, piano and/or keyboardist, and so on. I keep busy. Here are all the albums that I've recorded with different bands.</div>
 
 
     <div v-bind:class="albumClasses" v-for="album in albums">
@@ -56,14 +57,14 @@
         <a v-bind:name="album.albumId"></a>
 				<iframe v-bind:id="album.albumId" v-bind:src="getIframeSrc(album.bandcampIframeId)" seamless><a v-bind:href="album.bandcampUrl">{{ album.albumTitle }} by {{ album.bandName }}</a></iframe>
 
-				<div class="albumBand">{{ album.bandName }}</div>
-				<div class="albumTitle">{{ album.albumTitle }}</div>
+				<div class="about-band">{{ album.bandName }}</div>
+				<div class="album-title">{{ album.albumTitle }}</div>
 
-				<div class="albumBlurb" v-html="album.blurb"></div>
+				<div class="album-blurb" v-html="album.blurb"></div>
 
-				<div class="albumLinks">
+				<div class="album-links">
 					<a v-bind:href="album.bandcampUrl" target="bandcamp">Listen/Buy on Bandcamp</a>
-          <a v-bind:href="album.websiteUrl" v-bind:target="album.albumId" v-if="album.websiteUrl">DieLikeGentlemen.com</a>
+          <a v-bind:href="album.websiteUrl" v-if="album.websiteUrl">DieLikeGentlemen.com</a>
           <a v-bind:href="album.facebookUrl" target="facebook" v-if="album.facebookUrl">Follow us on Facebook</a>
 				</div>
 				<br class="clearLeft" />

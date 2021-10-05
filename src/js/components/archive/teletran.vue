@@ -10,7 +10,7 @@
 
     <teletran-header v-bind:faction="faction" v-bind:year="year"></teletran-header>
 
-    <div id="teletranContainer" v-bind:class="containerClass" v-cloak>
+    <div id="teletran-container" v-bind:class="containerClass" v-cloak>
       <teletran-entry v-for="entry in transformers" v-bind:entry="entry" v-bind:key="entry.transformerId" v-show="!loading"></teletran-entry>
       <teletran-next v-bind:faction="faction" v-bind:year="year" v-bind:key="$route.fullPath" v-show="!loading"></teletran-next>
     </div>
@@ -152,7 +152,7 @@
 
       containerClass: function() {
         if (this.year === 'japan') {
-          return 'teletranContainerJapan';
+          return 'teletran-container-japan';
         }
         return '';
       }

@@ -10,9 +10,9 @@
 
     <teletran-header v-bind:faction="currentFaction" v-bind:year="currentYear"></teletran-header>
 
-    <div id="micromasterTeamName">{{ teamName }}</div>
+    <div id="micromaster-team-name">{{ teamName }}</div>
 
-    <div id="teletranContainer" class="teletranContainerCentered" v-cloak>
+    <div id="teletran-container" class="teletran-container-centered" v-cloak>
       <teletran-entry v-bind:entry="teamEntry" v-if="teamEntry.transformerId"></teletran-entry>
       <teletran-entry v-for="entry in teammates" v-bind:entry="entry" v-bind:key="entry.micromasterId"></teletran-entry>
     </div>
