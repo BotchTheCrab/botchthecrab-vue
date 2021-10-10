@@ -2,7 +2,7 @@
 
   .replies {
   	text-align: left;
-  	margin: 75px auto;
+  	margin: 50px auto;
   	max-width: 600px;
 
     .reply-header {
@@ -39,9 +39,13 @@
       	text-align: right;
       	font-variant: small-caps;
 
+        & > span {
+          white-space: nowrap;
+        }
+
         .reply-time {
         	font-size: 0.9em;
-        	letter-spacing: -1px;
+        	// letter-spacing: -1px;
         	margin-right: 3px;
         }
       }
@@ -54,8 +58,72 @@
     }
   }
 
+  .new-reply {
+    text-align: left;
+  	margin: 50px auto;
+  	max-width: 600px;
 
-  /* .replies-closed {
+    .new-reply-header {
+      font-family: Audiowide, Arial, Verdana, sans-serif;
+    	font-size: 2.5em;
+    	letter-spacing: 1px;
+    	font-variant: small-caps;
+    	color: white;
+    	border-bottom: 1px solid #666;
+    	padding-bottom: 2px;
+    	margin-bottom: 20px;
+    	clear: both;
+    }
+
+    $inputWidth: 225px;
+    $labelWidth: 70px;
+    $labelRightMargin: 5px;
+    $inputRightMargin: 15px;
+
+    .new-reply-field {
+      padding: 0 0 15px 0;
+      text-align: center;
+
+      &.secret {
+        padding: 0;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+
+      label {
+        width: $labelWidth;
+        text-align: right;
+        margin-right: $labelRightMargin;
+        color: #ddd;
+      }
+
+      textarea {
+        width: 100%;
+      }
+
+      input[type="text"],
+      input[type="email"] {
+        width: $inputWidth;
+        font-size: 12px;
+        margin-right: $inputRightMargin;
+      }
+
+    }
+
+    .new-reply-submit {
+      text-align: center;
+
+      button {
+        width: $inputWidth;
+        margin-left: $labelWidth + $labelRightMargin;
+        margin-right: $inputRightMargin;
+      }
+    }
+
+  }
+
+  .replies-closed {
   	margin-top: 30px;
   	margin-bottom: 20px;
   	margin-left: 10%;
@@ -66,9 +134,7 @@
   	text-align: center;
   	font-weight: bold;
   	font-size: 10px;
-  } */
-
-
+  }
 
 </style>
 
@@ -113,17 +179,57 @@
     <div class="replies" v-if="replies.length">
   		<div class="reply-header">Comments</div>
 
-      <div class="reply" v-bind:class="reply.isWebmaster ? 'reply-wrapper-botch' : ''" v-for="(reply, index) in replies">
+      <div v-bind:id="'replyId' + reply.replyId" class="reply" v-bind:class="reply.isWebmaster ? 'reply-wrapper-botch' : ''" v-for="(reply, index) in replies">
         <div class="reply-body" v-html="reply.content"></div>
         <div class="reply-footer">
-          &raquo; Posted
-          <span class="reply-time">{{ reply.posted }}</span>
-          by <b>{{ reply.poster }}</b>
-          <span v-if="reply.isWebmaster"> - WEBMASTER</span>
-          <span v-if="!reply.isWebmaster && reply.website">[<a v-bind:href="reply.website" target="_blank">website</a>]</span>
+          <span>
+            &raquo; Posted
+            <span class="reply-time">{{ reply.posted }}</span>
+          </span>
+          <span>
+            by <b>{{ reply.poster }}</b>
+            <span v-if="reply.isWebmaster"> - WEBMASTER</span>
+            <span v-if="!reply.isWebmaster && reply.website">[<a v-bind:href="reply.website" target="_blank">website</a>]</span>
+          </span>
         </div>
 
         <div class="reply-divider" v-if="index < replies.length - 1"></div>
+      </div>
+
+    </div>
+
+    <div class="replies-closed" v-if="!posting.allowReplies">Comments are {{ replies.length ? "closed" : "disabled" }} for this post.</div>
+
+    <div class="new-reply" v-if="posting.allowReplies">
+      <div class="new-reply-header">Leave a Comment</div>
+
+      <div class="new-reply-field">
+        <textarea name="content" rows="4" cols="10" v-model="reply.content" v-bind:disabled="savingReply" placeholder="Enter your comments here"></textarea>
+      </div>
+
+      <div class="new-reply-field">
+        <label>Name:</label>
+        <input type="text" name="poster" v-model="reply.poster" v-bind:disabled="savingReply" />
+      </div>
+
+      <div class="new-reply-field">
+        <label>Email:</label>
+        <input type="email" name="email" v-model="reply.email" v-bind:disabled="savingReply" placeholder="Email will not be displayed/shared" />
+      </div>
+
+      <div class="new-reply-field">
+        <label>Website:</label>
+        <input type="text" name="website" v-model="reply.website" v-bind:disabled="savingReply" />
+      </div>
+
+      <!-- honeypot -->
+      <div class="new-reply-field secret">
+        <label>URL:</label>
+        <input type="text" name="url" v-model="reply.honeypot" v-bind:disabled="savingReply" />
+      </div>
+
+      <div class="new-reply-submit">
+        <button v-on:click="handleNewReply" v-bind:disabled="savingReply">{{ savingReply ? "Submitting ..." : "Submit" }}</button>
       </div>
 
     </div>
@@ -148,6 +254,7 @@
 
   // GLOBAL COMPONENTS
   var globalService = require('services/global_service');
+  var cookiesService = require('services/cookies_service');
 
   // BLOG COMPONENTS
   var blogService = require('services/blog_service');
@@ -176,8 +283,17 @@
         replies: [],
 
         previousPosting: null,
-        nextPosting: null
+        nextPosting: null,
 
+        reply: {
+          content: '',
+          poster: '',
+          email: '',
+          website: '',
+          honeypot: ''
+        },
+
+        savingReply: false
       }
     },
 
@@ -214,27 +330,52 @@
           vm.previousPosting = postingIndex > 0 ? postingsStore[postingIndex - 1] : null;
           vm.nextPosting = postingIndex < postingsStore.length - 1 ? postingsStore[postingIndex + 1] : null;
 
-          blogService.getAllTags().then(function(response) {
-            tagsStore = response.val();
+          vm.updateTags();
+          vm.updateReplies();
 
-            vm.tags = _.map(vm.posting.tagIds, function(tagId) {
-              return _.findWhere(tagsStore, { tagId: tagId });
-            });
-          });
-
-          blogService.getAllReplies().then(function(response) {
-            repliesStore = response.val();
-            vm.replies = _.chain(repliesStore)
-              .where({ postingId: vm.posting.postingId })
-              .each(function(reply) {
-                reply.isWebmaster = reply.email === 'Botch@BotchTheCrab.com';
-              })
-              .sortBy('posted')
-              .value();
-          });
-
+          var userInfo = cookiesService.readCookie('userInfo');
+          if (userInfo) {
+            try {
+              userInfo = JSON.parse(userInfo);
+              _.each(['poster', 'email', 'website'], function(userProperty) {
+                if (userInfo[userProperty]) {
+                  vm.reply[userProperty] = userInfo[userProperty];
+                }
+              });
+            } catch(error) {
+              console.error(error);
+            }
+          }
         });
 
+      },
+
+      updateTags: function() {
+        blogService.getAllTags().then(function(response) {
+          tagsStore = response.val();
+
+          vm.tags = _.map(vm.posting.tagIds, function(tagId) {
+            return _.findWhere(tagsStore, { tagId: tagId });
+          });
+        });
+      },
+
+      updateReplies: function(refresh) {
+        refresh = refresh || false;
+
+        return blogService.getAllReplies(refresh).then(function(response) {
+          repliesStore = response.val();
+          vm.replies = _.chain(repliesStore)
+            .where({ postingId: vm.posting.postingId })
+            .each(function(reply) {
+              reply.isWebmaster = reply.poster === 'Botch the Crab';
+            })
+            .sortBy('posted')
+            .value();
+          console.info({
+            "vm.replies": vm.replies
+          });
+        });
       },
 
       updateTitle: function() {
@@ -266,6 +407,52 @@
 
       scrollTop: function() {
         globalService.scrollTop();
+      },
+
+      handleNewReply: function() {
+        if (vm.reply.honeypot) {
+          return;
+        }
+
+        vm.reply.content = vm.reply.content.trim();
+        vm.reply.poster = vm.reply.poster.trim();
+
+        if (vm.reply.website) {
+          if (vm.reply.website.indexOf('http') === -1) {
+            vm.reply.website = 'https://' + vm.reply.website;
+          }
+        }
+
+        if (vm.reply.content && vm.reply.poster) {
+          vm.savingReply = true;
+
+          blogService.createPostReply(vm.posting, vm.reply).then(function(replyData) {
+            vm.reply.content = "";
+
+            vm.updateReplies(true).then(function() {
+
+              window.setTimeout(function() {
+                var $newReply = $('#replyId' + replyData.replyId);
+                if ($newReply.length) {
+                  $('html, body').animate({
+                    scrollTop: $newReply.offset().top
+                  }, 100);
+                }
+              }, 250);
+
+            });
+
+            vm.saveUserDetails(vm.reply);
+            vm.savingReply = false;
+          }, function(error) {
+            vm.savingReply = false;
+          });
+        }
+      },
+
+      saveUserDetails: function(replyData) {
+        var userInfo = _.pick(replyData, 'poster', 'email', 'website');
+        cookiesService.setCookie('userInfo', JSON.stringify(userInfo));
       }
 
     }

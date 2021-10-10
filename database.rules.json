@@ -5,8 +5,56 @@
       ".write": false
     },
     "blog": {
-      ".read": true,
-      ".write": false
+      "categories": {
+        ".read": true,
+        ".write": false
+      },
+      "postings": {
+        ".read": true,
+        ".write": false
+      },
+      "replies": {
+        ".read": true,
+        ".write": false,
+        "$replyId": {
+          ".write": "data.val() === null",
+          ".validate": "newData.hasChildren(['replyId', 'postingId', 'posted', 'poster', 'content', 'address'])",
+          "replyId": {
+            ".validate": "newData.isNumber()"
+          },
+          "postingId": {
+            ".validate": "newData.isNumber()"
+          },
+          "posted": {
+            ".validate": "newData.val().matches(/^\\d{4}\\-\\d{2}\\-\\d{2} \\d{2}:\\d{2}:\\d{2}$/)"
+          },
+          "poster": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "content": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "address": {
+            ".validate": "newData.val().matches(/^([0-9]{1,3}\\.){3}[0-9]{1,3}$/)"
+          },
+          "notify": {
+            ".validate": "newData.isBoolean()"
+          },
+          "email": {
+            ".validate": "newData.isString()"
+          },
+          "website": {
+            ".validate": "newData.isString()"
+          },
+          "$other": {
+            ".validate": false
+          }
+        }
+      },
+      "tags": {
+        ".read": true,
+        ".write": false
+      }
     },
     "galleries": {
       ".read": true,

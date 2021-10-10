@@ -14335,8 +14335,114 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"services/cookies_service":47,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],41:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 3, stdin */\n.replies {\n  text-align: left;\n  margin: 75px auto;\n  max-width: 600px; }\n  /* line 8, stdin */\n  .replies .reply-header {\n    font-family: Audiowide, Arial, Verdana, sans-serif;\n    font-size: 2.5em;\n    letter-spacing: 1px;\n    font-variant: small-caps;\n    color: WHITE;\n    border-bottom: 1px solid #666;\n    padding-bottom: 2px;\n    margin-bottom: 20px;\n    clear: both; }\n  /* line 21, stdin */\n  .replies .reply {\n    margin-bottom: 30px; }\n    /* line 24, stdin */\n    .replies .reply .reply-body {\n      font-size: 1.0em;\n      line-height: 1.5em; }\n    /* line 29, stdin */\n    .replies .reply.reply-wrapper-botch {\n      background-image: url(/images/webmaster.png);\n      background-repeat: no-repeat; }\n      /* line 33, stdin */\n      .replies .reply.reply-wrapper-botch .reply-body {\n        padding-left: 60px; }\n    /* line 38, stdin */\n    .replies .reply .reply-footer {\n      text-align: right;\n      font-variant: small-caps; }\n      /* line 42, stdin */\n      .replies .reply .reply-footer .reply-time {\n        font-size: 0.9em;\n        letter-spacing: -1px;\n        margin-right: 3px; }\n    /* line 49, stdin */\n    .replies .reply .reply-divider {\n      border-bottom: 1px dashed #666;\n      margin: 25px 0px; }\n\n/* .replies-closed {\n\tmargin-top: 30px;\n\tmargin-bottom: 20px;\n\tmargin-left: 10%;\n\tmargin-right: 10%;\n\tpadding: 5px;\n\tbackground-color: #333;\n\tborder: 1px solid #222;\n\ttext-align: center;\n\tfont-weight: bold;\n\tfont-size: 10px;\n} */")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 3, stdin */\n.replies {\n  text-align: left;\n  margin: 50px auto;\n  max-width: 600px; }\n  /* line 8, stdin */\n  .replies .reply-header {\n    font-family: Audiowide, Arial, Verdana, sans-serif;\n    font-size: 2.5em;\n    letter-spacing: 1px;\n    font-variant: small-caps;\n    color: WHITE;\n    border-bottom: 1px solid #666;\n    padding-bottom: 2px;\n    margin-bottom: 20px;\n    clear: both; }\n  /* line 21, stdin */\n  .replies .reply {\n    margin-bottom: 30px; }\n    /* line 24, stdin */\n    .replies .reply .reply-body {\n      font-size: 1.0em;\n      line-height: 1.5em; }\n    /* line 29, stdin */\n    .replies .reply.reply-wrapper-botch {\n      background-image: url(/images/webmaster.png);\n      background-repeat: no-repeat; }\n      /* line 33, stdin */\n      .replies .reply.reply-wrapper-botch .reply-body {\n        padding-left: 60px; }\n    /* line 38, stdin */\n    .replies .reply .reply-footer {\n      text-align: right;\n      font-variant: small-caps; }\n      /* line 42, stdin */\n      .replies .reply .reply-footer > span {\n        white-space: nowrap; }\n      /* line 46, stdin */\n      .replies .reply .reply-footer .reply-time {\n        font-size: 0.9em;\n        margin-right: 3px; }\n    /* line 53, stdin */\n    .replies .reply .reply-divider {\n      border-bottom: 1px dashed #666;\n      margin: 25px 0px; }\n\n/* line 61, stdin */\n.new-reply {\n  text-align: left;\n  margin: 50px auto;\n  max-width: 600px; }\n  /* line 66, stdin */\n  .new-reply .new-reply-header {\n    font-family: Audiowide, Arial, Verdana, sans-serif;\n    font-size: 2.5em;\n    letter-spacing: 1px;\n    font-variant: small-caps;\n    color: white;\n    border-bottom: 1px solid #666;\n    padding-bottom: 2px;\n    margin-bottom: 20px;\n    clear: both; }\n  /* line 83, stdin */\n  .new-reply .new-reply-field {\n    padding: 0 0 15px 0;\n    text-align: center; }\n    /* line 87, stdin */\n    .new-reply .new-reply-field.secret {\n      padding: 0;\n      width: 0;\n      height: 0;\n      overflow: hidden; }\n    /* line 94, stdin */\n    .new-reply .new-reply-field label {\n      width: 70px;\n      text-align: right;\n      margin-right: 5px;\n      color: #ddd; }\n    /* line 101, stdin */\n    .new-reply .new-reply-field textarea {\n      width: 100%; }\n    /* line 105, stdin */\n    .new-reply .new-reply-field input[type=\"text\"],\n    .new-reply .new-reply-field input[type=\"email\"] {\n      width: 225px;\n      font-size: 12px;\n      margin-right: 15px; }\n  /* line 114, stdin */\n  .new-reply .new-reply-submit {\n    text-align: center; }\n    /* line 117, stdin */\n    .new-reply .new-reply-submit button {\n      width: 225px;\n      margin-left: 75px;\n      margin-right: 15px; }\n\n/* line 126, stdin */\n.replies-closed {\n  margin-top: 30px;\n  margin-bottom: 20px;\n  margin-left: 10%;\n  margin-right: 10%;\n  padding: 5px;\n  background-color: #333;\n  border: 1px solid #222;\n  text-align: center;\n  font-weight: bold;\n  font-size: 10px; }")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14487,6 +14593,7 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 
 
 // GLOBAL COMPONENTS
 var globalService = require('services/global_service');
+var cookiesService = require('services/cookies_service');
 
 // BLOG COMPONENTS
 var blogService = require('services/blog_service');
@@ -14515,8 +14622,17 @@ module.exports = {
       replies: [],
 
       previousPosting: null,
-      nextPosting: null
+      nextPosting: null,
 
+      reply: {
+        content: '',
+        poster: '',
+        email: '',
+        website: '',
+        honeypot: ''
+      },
+
+      savingReply: false
     }
   },
 
@@ -14553,27 +14669,52 @@ module.exports = {
         vm.previousPosting = postingIndex > 0 ? postingsStore[postingIndex - 1] : null;
         vm.nextPosting = postingIndex < postingsStore.length - 1 ? postingsStore[postingIndex + 1] : null;
 
-        blogService.getAllTags().then(function(response) {
-          tagsStore = response.val();
+        vm.updateTags();
+        vm.updateReplies();
 
-          vm.tags = _.map(vm.posting.tagIds, function(tagId) {
-            return _.findWhere(tagsStore, { tagId: tagId });
-          });
-        });
-
-        blogService.getAllReplies().then(function(response) {
-          repliesStore = response.val();
-          vm.replies = _.chain(repliesStore)
-            .where({ postingId: vm.posting.postingId })
-            .each(function(reply) {
-              reply.isWebmaster = reply.email === 'Botch@BotchTheCrab.com';
-            })
-            .sortBy('posted')
-            .value();
-        });
-
+        var userInfo = cookiesService.readCookie('userInfo');
+        if (userInfo) {
+          try {
+            userInfo = JSON.parse(userInfo);
+            _.each(['poster', 'email', 'website'], function(userProperty) {
+              if (userInfo[userProperty]) {
+                vm.reply[userProperty] = userInfo[userProperty];
+              }
+            });
+          } catch(error) {
+            console.error(error);
+          }
+        }
       });
 
+    },
+
+    updateTags: function() {
+      blogService.getAllTags().then(function(response) {
+        tagsStore = response.val();
+
+        vm.tags = _.map(vm.posting.tagIds, function(tagId) {
+          return _.findWhere(tagsStore, { tagId: tagId });
+        });
+      });
+    },
+
+    updateReplies: function(refresh) {
+      refresh = refresh || false;
+
+      return blogService.getAllReplies(refresh).then(function(response) {
+        repliesStore = response.val();
+        vm.replies = _.chain(repliesStore)
+          .where({ postingId: vm.posting.postingId })
+          .each(function(reply) {
+            reply.isWebmaster = reply.poster === 'Botch the Crab';
+          })
+          .sortBy('posted')
+          .value();
+        console.info({
+          "vm.replies": vm.replies
+        });
+      });
     },
 
     updateTitle: function() {
@@ -14605,6 +14746,52 @@ module.exports = {
 
     scrollTop: function() {
       globalService.scrollTop();
+    },
+
+    handleNewReply: function() {
+      if (vm.reply.honeypot) {
+        return;
+      }
+
+      vm.reply.content = vm.reply.content.trim();
+      vm.reply.poster = vm.reply.poster.trim();
+
+      if (vm.reply.website) {
+        if (vm.reply.website.indexOf('http') === -1) {
+          vm.reply.website = 'https://' + vm.reply.website;
+        }
+      }
+
+      if (vm.reply.content && vm.reply.poster) {
+        vm.savingReply = true;
+
+        blogService.createPostReply(vm.posting, vm.reply).then(function(replyData) {
+          vm.reply.content = "";
+
+          vm.updateReplies(true).then(function() {
+
+            window.setTimeout(function() {
+              var $newReply = $('#replyId' + replyData.replyId);
+              if ($newReply.length) {
+                $('html, body').animate({
+                  scrollTop: $newReply.offset().top
+                }, 100);
+              }
+            }, 250);
+
+          });
+
+          vm.saveUserDetails(vm.reply);
+          vm.savingReply = false;
+        }, function(error) {
+          vm.savingReply = false;
+        });
+      }
+    },
+
+    saveUserDetails: function(replyData) {
+      var userInfo = _.pick(replyData, 'poster', 'email', 'website');
+      cookiesService.setCookie('userInfo', JSON.stringify(userInfo));
     }
 
   }
@@ -14616,7 +14803,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.posting.title)?_c('div',{staticClass:"container-fluid center-content"},[_c('botch-watermark'),_vm._v(" "),_c('div',{staticClass:"post-title"},[_vm._v(_vm._s(_vm.posting.title))]),_vm._v(" "),_c('div',{staticClass:"post-body-full",domProps:{"innerHTML":_vm._s(_vm.posting.content)}}),_vm._v(" "),(_vm.posting.content.length)?_c('div',{staticClass:"post-footer"},[_c('div',{staticClass:"post-footer-item"},[_c('label',[_vm._v("Tags:")]),_vm._v(" "),_vm._l((_vm.tags),function(tag,index){return [_c('router-link',{attrs:{"to":{ name: 'postings', query: { tagId: tag.tagId } }}},[_vm._v(_vm._s(tag.text))]),_vm._v(" "),(index < _vm.tags.length - 1)?[_vm._v(" • ")]:_vm._e()]})],2),_vm._v(" "),_c('div',{staticClass:"post-footer-item"},[_vm._v("\n  \t\t\tPosted: "),_c('span',[_vm._v(_vm._s(_vm.posting.posted))])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),_c('span',[_c('a',{on:{"click":_vm.scrollTop}},[_vm._v("▲ Top")])]),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"replies"},[_c('div',{staticClass:"reply-header"},[_vm._v("Comments")]),_vm._v(" "),_vm._l((_vm.replies),function(reply,index){return _c('div',{staticClass:"reply",class:reply.isWebmaster ? 'reply-wrapper-botch' : ''},[_c('div',{staticClass:"reply-body",domProps:{"innerHTML":_vm._s(reply.content)}}),_vm._v(" "),_c('div',{staticClass:"reply-footer"},[_vm._v("\n          » Posted\n          "),_c('span',{staticClass:"reply-time"},[_vm._v(_vm._s(reply.posted))]),_vm._v("\n          by "),_c('b',[_vm._v(_vm._s(reply.poster))]),_vm._v(" "),(reply.isWebmaster)?_c('span',[_vm._v(" - WEBMASTER")]):_vm._e(),_vm._v(" "),(!reply.isWebmaster && reply.website)?_c('span',[_vm._v("["),_c('a',{attrs:{"href":reply.website,"target":"_blank"}},[_vm._v("website")]),_vm._v("]")]):_vm._e()]),_vm._v(" "),(index < _vm.replies.length - 1)?_c('div',{staticClass:"reply-divider"}):_vm._e()])})],2):_vm._e(),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),_c('span',[_c('a',{on:{"click":_vm.scrollTop}},[_vm._v("▲ Top")])]),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]):_vm._e()],1):_vm._e()}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.posting.title)?_c('div',{staticClass:"container-fluid center-content"},[_c('botch-watermark'),_vm._v(" "),_c('div',{staticClass:"post-title"},[_vm._v(_vm._s(_vm.posting.title))]),_vm._v(" "),_c('div',{staticClass:"post-body-full",domProps:{"innerHTML":_vm._s(_vm.posting.content)}}),_vm._v(" "),(_vm.posting.content.length)?_c('div',{staticClass:"post-footer"},[_c('div',{staticClass:"post-footer-item"},[_c('label',[_vm._v("Tags:")]),_vm._v(" "),_vm._l((_vm.tags),function(tag,index){return [_c('router-link',{attrs:{"to":{ name: 'postings', query: { tagId: tag.tagId } }}},[_vm._v(_vm._s(tag.text))]),_vm._v(" "),(index < _vm.tags.length - 1)?[_vm._v(" • ")]:_vm._e()]})],2),_vm._v(" "),_c('div',{staticClass:"post-footer-item"},[_vm._v("\n  \t\t\tPosted: "),_c('span',[_vm._v(_vm._s(_vm.posting.posted))])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),_c('span',[_c('a',{on:{"click":_vm.scrollTop}},[_vm._v("▲ Top")])]),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"replies"},[_c('div',{staticClass:"reply-header"},[_vm._v("Comments")]),_vm._v(" "),_vm._l((_vm.replies),function(reply,index){return _c('div',{staticClass:"reply",class:reply.isWebmaster ? 'reply-wrapper-botch' : '',attrs:{"id":'replyId' + reply.replyId}},[_c('div',{staticClass:"reply-body",domProps:{"innerHTML":_vm._s(reply.content)}}),_vm._v(" "),_c('div',{staticClass:"reply-footer"},[_c('span',[_vm._v("\n            » Posted\n            "),_c('span',{staticClass:"reply-time"},[_vm._v(_vm._s(reply.posted))])]),_vm._v(" "),_c('span',[_vm._v("\n            by "),_c('b',[_vm._v(_vm._s(reply.poster))]),_vm._v(" "),(reply.isWebmaster)?_c('span',[_vm._v(" - WEBMASTER")]):_vm._e(),_vm._v(" "),(!reply.isWebmaster && reply.website)?_c('span',[_vm._v("["),_c('a',{attrs:{"href":reply.website,"target":"_blank"}},[_vm._v("website")]),_vm._v("]")]):_vm._e()])]),_vm._v(" "),(index < _vm.replies.length - 1)?_c('div',{staticClass:"reply-divider"}):_vm._e()])})],2):_vm._e(),_vm._v(" "),(!_vm.posting.allowReplies)?_c('div',{staticClass:"replies-closed"},[_vm._v("Comments are "+_vm._s(_vm.replies.length ? "closed" : "disabled")+" for this post.")]):_vm._e(),_vm._v(" "),(_vm.posting.allowReplies)?_c('div',{staticClass:"new-reply"},[_c('div',{staticClass:"new-reply-header"},[_vm._v("Leave a Comment")]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.content),expression:"reply.content"}],attrs:{"name":"content","rows":"4","cols":"10","disabled":_vm.savingReply,"placeholder":"Enter your comments here"},domProps:{"value":(_vm.reply.content)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "content", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Name:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.poster),expression:"reply.poster"}],attrs:{"type":"text","name":"poster","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.poster)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "poster", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Email:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.email),expression:"reply.email"}],attrs:{"type":"email","name":"email","disabled":_vm.savingReply,"placeholder":"Email will not be displayed/shared"},domProps:{"value":(_vm.reply.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "email", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Website:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.website),expression:"reply.website"}],attrs:{"type":"text","name":"website","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.website)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "website", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field secret"},[_c('label',[_vm._v("URL:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.honeypot),expression:"reply.honeypot"}],attrs:{"type":"text","name":"url","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.honeypot)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "honeypot", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-submit"},[_c('button',{attrs:{"disabled":_vm.savingReply},on:{"click":_vm.handleNewReply}},[_vm._v(_vm._s(_vm.savingReply ? "Submitting ..." : "Submit"))])])]):_vm._e(),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),_c('span',[_c('a',{on:{"click":_vm.scrollTop}},[_vm._v("▲ Top")])]),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]):_vm._e()],1):_vm._e()}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -14629,7 +14816,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.rerender("data-v-7add63b4", __vue__options__)
   }
 })()}
-},{"services/archive_service":45,"services/blog_service":46,"services/global_service":49,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],42:[function(require,module,exports){
+},{"services/archive_service":45,"services/blog_service":46,"services/cookies_service":47,"services/global_service":49,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],42:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 5, stdin */\n#postings #main-search-form {\n  margin-bottom: 30px; }\n\n/* line 9, stdin */\n#postings .teletran-container {\n  margin-bottom: 30px; }")
 ;(function(){
 //
@@ -15481,7 +15668,8 @@ module.exports = {
   getAllPostings: getAllPostings,
   getAllTags: getAllTags,
   getAllReplies: getAllReplies,
-  setPostingBlurbs: setPostingBlurbs
+  setPostingBlurbs: setPostingBlurbs,
+  createPostReply: createPostReply
 };
 
 ////////////
@@ -15524,10 +15712,10 @@ function getAllTags() {
   return deferred.promise();
 }
 
-function getAllReplies() {
+function getAllReplies(refresh) {
   var deferred = $.Deferred();
 
-  if (allRepliesSnapshot) {
+  if (allRepliesSnapshot && !refresh) {
     // console.info('return allRepliesSnapshot from CACHE');
     deferred.resolve(allRepliesSnapshot);
   } else {
@@ -15554,18 +15742,68 @@ function setPostingBlurbs(postings) {
     } else {
       posting.blurb = posting.content;
     }
-
-    if (!matches) {
-      console.info({
-        title: posting.title,
-        content: posting.content,
-        blurb: posting.blurb,
-        matches: matches
-      });
-    }
   });
 
   return postings;
+}
+
+function createPostReply(posting, replyData) {
+
+  var getCurrentReplyIndex = getAllReplies(true).then(function(response) {
+    var repliesStore = response.val();
+    return repliesStore.length;
+  });
+
+  var getTrace = $.get('https://www.cloudflare.com/cdn-cgi/trace').then(function(response) {
+    var ipRegex = /[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
+    return response.match(ipRegex)[0];
+  });
+
+  return $.when(getCurrentReplyIndex, getTrace).done(function(newReplyIndex, ipAddress) {
+
+    var newReply = {
+      replyId: newReplyIndex + 1,
+      postingId: posting.postingId,
+      posted: getNewPostTime(),
+      poster: replyData.poster,
+      content: replyData.content,
+      address: ipAddress,
+      notify: false
+    };
+    if (replyData.email) {
+      newReply.email = replyData.email;
+    }
+    if (replyData.website) {
+      newReply.website = replyData.website;
+    }
+
+    var replyUpdate = {};
+    replyUpdate['blog/replies/' + newReplyIndex] = newReply;
+
+    return firebase.database().ref().update(replyUpdate).then(function(response) {
+      return newReply;
+    }, function(error) {
+      console.error(error);
+      window.alert("There was an error attempting to submit your reply.");
+      return error;
+    });
+  });
+
+}
+
+function getNewPostTime() {
+  var now = new Date();
+  var postYear = now.getFullYear();
+  var postMonth = zeroPad(now.getMonth() + 1);
+  var postDate = zeroPad(now.getDate());
+  var postHour = zeroPad(now.getHours());
+  var postMinutes = zeroPad(now.getMinutes());
+  var postSeconds = zeroPad(now.getSeconds());
+  return postYear + '-' + postMonth + '-' + postDate + ' ' + postHour + ':' + postMinutes + ':' + postSeconds;
+}
+
+function zeroPad(n) {
+  return (n < 10) ? '0' + n : n;
 }
 
 },{}],47:[function(require,module,exports){
