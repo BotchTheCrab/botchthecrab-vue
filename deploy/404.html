@@ -60,6 +60,9 @@
       if (path.indexOf('/searchNew') === 0) {
         redirectHash('/postings?search=' + params.keywords);
       }
+      if (path.indexOf('/taglist') === 0) {
+        redirectHash('/tags');
+      }
 
     }
 

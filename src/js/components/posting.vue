@@ -338,7 +338,7 @@
         var postingId = Number(this.$route.params.postingId);
 
         blogService.getAllPostings().then(function(response) {
-          postingsStore = response.val();
+          postingsStore = _.sortBy(response.val(), 'posted');
 
           vm.posting = _.findWhere(postingsStore, { postingId: postingId });
 
@@ -346,7 +346,7 @@
           vm.updateOpenGraphImageMetaTag();
 
           var postingIndex = _.indexOf(postingsStore, vm.posting);
-          postingsStore = _.sortBy(response.val(), 'posted');
+
           vm.previousPosting = postingIndex > 0 ? postingsStore[postingIndex - 1] : null;
           vm.nextPosting = postingIndex < postingsStore.length - 1 ? postingsStore[postingIndex + 1] : null;
 
@@ -389,7 +389,7 @@
             .where({ postingId: vm.posting.postingId })
             .each(function(reply) {
               reply.content = reply.content.replace(/\n/g, '<br/>');
-              reply.isWebmaster = (reply.email.toLowerCase() === 'botch@botchthecrab.com');
+              reply.isWebmaster = (reply.email && reply.email.toLowerCase() === 'botch@botchthecrab.com');
             })
             .sortBy('posted')
             .value();
