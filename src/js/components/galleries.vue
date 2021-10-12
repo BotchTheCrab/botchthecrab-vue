@@ -54,24 +54,13 @@
 
         firebase.database().ref('galleries/descriptions').once('value').then(function(galleriesSnapshot) {
           var galleries = galleriesSnapshot.val();
-          console.info({
-            galleries
-          });
 
           firebase.database().ref('galleries/entries').once('value').then(function(entriesSnapshot) {
             var galleryEntries = entriesSnapshot.val();
-            console.info({
-              galleryEntries
-            });
 
             _.each(galleries, gallery => {
               var matchingEntries = _.chain(galleryEntries).where({ galleryId: gallery.galleryId }).sortBy('entryId').value();
-              console.info({
-                matchingEntries
-              });
-
               gallery.thumbnailPath = vm.getThumbnailPath(matchingEntries[0]);
-
             });
 
             vm.galleries = _.sortBy(galleries, 'galleryId').reverse();

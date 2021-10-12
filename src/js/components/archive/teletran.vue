@@ -69,8 +69,6 @@
     methods: {
 
       updateState: function() {
-        console.info('updateState: START');
-
         var vm = this;
 
         vm.loading = true;
@@ -134,7 +132,6 @@
           });
 
           vm.loading = false;
-          console.info('updateState: END');
 
         }, function(error) {
           console.error(error);

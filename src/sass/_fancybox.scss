@@ -2,6 +2,10 @@
 /*  fancyBox override styles  */
 /* ########################## */
 
+body {
+	touch-action: manipulation;
+}
+
 .fancybox-skin {
 	background-color: white;
 }

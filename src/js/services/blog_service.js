@@ -19,13 +19,11 @@ function getAllPostings() {
   var deferred = $.Deferred();
 
   if (allPostingsSnapshot) {
-    // console.info('return allPostingsSnapshot from CACHE');
     deferred.resolve(allPostingsSnapshot);
   } else {
 
     firebase.database().ref('blog/postings').once('value').then(function(snapshot) {
       allPostingsSnapshot = snapshot;
-      // console.info('return allPostingsSnapshot from FETCH');
       deferred.resolve(allPostingsSnapshot);
     });
 
@@ -38,13 +36,11 @@ function getAllTags() {
   var deferred = $.Deferred();
 
   if (allTagsSnapshot) {
-    // console.info('return allTagsSnapshot from CACHE');
     deferred.resolve(allTagsSnapshot);
   } else {
 
     firebase.database().ref('blog/tags').once('value').then(function(snapshot) {
       allTagsSnapshot = snapshot;
-      // console.info('return allTagsSnapshot from FETCH');
       deferred.resolve(allTagsSnapshot);
     });
 
@@ -57,13 +53,11 @@ function getAllReplies(refresh) {
   var deferred = $.Deferred();
 
   if (allRepliesSnapshot && !refresh) {
-    // console.info('return allRepliesSnapshot from CACHE');
     deferred.resolve(allRepliesSnapshot);
   } else {
 
     firebase.database().ref('blog/replies').once('value').then(function(snapshot) {
       allRepliesSnapshot = snapshot;
-      // console.info('return allRepliesSnapshot from FETCH');
       deferred.resolve(allRepliesSnapshot);
     });
 
@@ -90,9 +84,8 @@ function setPostingBlurbs(postings) {
 
 function createPostReply(posting, replyData) {
 
-  var getCurrentReplyIndex = getAllReplies(true).then(function(response) {
-    var repliesStore = response.val();
-    return repliesStore.length;
+  var getCurrentReplies = getAllReplies(true).then(function(response) {
+    return response.val();
   });
 
   var getTrace = $.get('https://www.cloudflare.com/cdn-cgi/trace').then(function(response) {
@@ -100,7 +93,9 @@ function createPostReply(posting, replyData) {
     return response.match(ipRegex)[0];
   });
 
-  return $.when(getCurrentReplyIndex, getTrace).done(function(newReplyIndex, ipAddress) {
+  return $.when(getCurrentReplies, getTrace).done(function(repliesStore, ipAddress) {
+
+    var newReplyIndex = repliesStore.length;
 
     var newReply = {
       replyId: newReplyIndex + 1,
@@ -109,7 +104,7 @@ function createPostReply(posting, replyData) {
       poster: replyData.poster,
       content: replyData.content,
       address: ipAddress,
-      notify: false
+      notify: replyData.notify || false
     };
     if (replyData.email) {
       newReply.email = replyData.email;
@@ -122,7 +117,73 @@ function createPostReply(posting, replyData) {
     replyUpdate['blog/replies/' + newReplyIndex] = newReply;
 
     return firebase.database().ref().update(replyUpdate).then(function(response) {
-      return newReply;
+
+      // get list of every commenter who requested reply notifications
+      var notificationRecipients = _.chain(repliesStore)
+        .where({ postingId: posting.postingId, notify: true })
+        .filter(function(reply) {
+          var email = reply.email.toLowerCase();
+          return email !== 'botch@botchthecrab.com' && email !== replyData.email;
+        })
+        .map(function(reply) {
+          return reply.email.toLowerCase();
+        })
+        .unique()
+        .value();
+      notificationRecipients.unshift('botch@botchthecrab.com');
+
+      var notificationEmailRequests = [];
+
+      _.each(notificationRecipients, function(recipient) {
+
+        var newMailDocument = {
+          to: recipient,
+          message: {
+            subject: 'New Comment for "' + posting.title +  '" [BotchTheCrab.com]',
+            html: '<p>' +
+                    '<b>' + replyData.poster + '</b> ' +
+                    (replyData.website ? '[<a href="' + replyData.website + '">' + replyData.website + '</a>] ' : '') +
+                    'wrote the following on ' + newReply.posted + ':<br />' +
+                  '</p>' +
+                  '<p>' + newReply.content.replace(/\n/g, '<br/>') + '</p>' +
+                  '<hr style="margin: 2em 0 1em" />' +
+                  '<p>' +
+                    '<i>To unsubscribe to comments from this post, reply back with the word "Unsubscribe" and Botch will adjust your notification settings.</i>' +
+                  '</p>'
+          },
+          fromBTC: true
+        };
+
+        var newMailRequest = firebase.firestore().collection('mail').add(newMailDocument)
+          .then(function (docRef) {
+            console.log("Document written with ID: ", docRef.id);
+
+            // delete this document
+            /*
+            window.setTimeout(function() {
+
+              firebase.firestore().collection('mail').doc(docRef.id).delete().then(function(response) {
+                console.log("Document " + docRef.id + " deleted");
+              })
+              .catch(function(error) {
+                console.log("Could not delete new document");
+              });
+
+            }, 2000);
+            */
+
+            return newReply;
+          })
+          .catch(function (error) {
+            console.error("Error adding document: ", error);
+            return error;
+          });
+
+        notificationEmailRequests.push(newMailRequest);
+      });
+
+      return $.when(notificationEmailRequests);
+
     }, function(error) {
       console.error(error);
       window.alert("There was an error attempting to submit your reply.");

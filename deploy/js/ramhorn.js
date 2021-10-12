@@ -11004,8 +11004,8 @@ module.exports = {
           vm.parsedHistoryMarkup = historyMarkup;
         },
         error: function(xhr, status) {
-          console.info('FAILURE!');
-          console.info({
+          console.log('FAILURE!');
+          console.log({
             xhr: xhr,
             status: status
           });
@@ -12524,8 +12524,6 @@ module.exports = {
   methods: {
 
     updateState: function() {
-      console.info('updateState: START');
-
       var vm = this;
 
       vm.loading = true;
@@ -12589,7 +12587,6 @@ module.exports = {
         });
 
         vm.loading = false;
-        console.info('updateState: END');
 
       }, function(error) {
         console.error(error);
@@ -12961,24 +12958,13 @@ module.exports = {
 
       firebase.database().ref('galleries/descriptions').once('value').then(function(galleriesSnapshot) {
         var galleries = galleriesSnapshot.val();
-        console.info({
-          galleries
-        });
 
         firebase.database().ref('galleries/entries').once('value').then(function(entriesSnapshot) {
           var galleryEntries = entriesSnapshot.val();
-          console.info({
-            galleryEntries
-          });
 
           _.each(galleries, gallery => {
             var matchingEntries = _.chain(galleryEntries).where({ galleryId: gallery.galleryId }).sortBy('entryId').value();
-            console.info({
-              matchingEntries
-            });
-
             gallery.thumbnailPath = vm.getThumbnailPath(matchingEntries[0]);
-
           });
 
           vm.galleries = _.sortBy(galleries, 'galleryId').reverse();
@@ -13073,22 +13059,13 @@ module.exports = {
 
       firebase.database().ref('galleries/descriptions').once('value').then(function(galleriesSnapshot) {
         var galleries = galleriesSnapshot.val();
-        console.info({
-          galleries
-        });
 
         vm.gallery = _.findWhere(galleries, { galleryId: galleryId });
-        console.info({
-          "vm.gallery": vm.gallery
-        });
 
         globalService.setOfficeDocumentTitle(vm.gallery.name);
 
         firebase.database().ref('galleries/entries').once('value').then(function(entriesSnapshot) {
           var galleryEntries = entriesSnapshot.val();
-          console.info({
-            galleryEntries
-          });
 
           let matchingEntries = _.where(galleryEntries, { galleryId: vm.gallery.galleryId });
           switch (vm.gallery.sort) {
@@ -13105,18 +13082,11 @@ module.exports = {
               matchingEntries = _.sortBy(matchingEntries, 'entryId');
           }
 
-          console.info({
-            matchingEntries
-          });
-
           _.each(matchingEntries, galleryEntry => {
             galleryEntry.thumbnailPath = vm.getThumbnailPath(galleryEntry);
           })
 
           vm.galleryEntries = matchingEntries;
-          console.info({
-            "vm.galleryEntries": vm.galleryEntries
-          });
         });
 
       });
@@ -13358,36 +13328,18 @@ module.exports = {
   methods: {
 
     getGalleryEntryData: function() {
-      console.info('getGalleryEntryData ...');
-
-      // var vm = this;
 
       var galleryEntryId = Number(this.$route.params.galleryEntryId);
-      console.info({
-        galleryEntryId
-      });
 
       firebase.database().ref('galleries/entries').once('value').then(function(entriesSnapshot) {
         let galleryEntries = entriesSnapshot.val();
-        console.info({
-          galleryEntries
-        });
 
         vm.galleryEntry = _.findWhere(galleryEntries, { entryId: galleryEntryId });
-        console.info({
-          "vm.galleryEntry": vm.galleryEntry
-        });
 
         firebase.database().ref('galleries/descriptions').once('value').then(function(galleriesSnapshot) {
           var galleries = galleriesSnapshot.val();
-          console.info({
-            galleries
-          });
 
           vm.gallery = _.findWhere(galleries, { galleryId: vm.galleryEntry.galleryId });
-          console.info({
-            "vm.gallery": vm.gallery
-          });
 
           globalService.setOfficeDocumentTitle(vm.gallery.name + " - " + vm.galleryEntry.name);
 
@@ -13407,17 +13359,9 @@ module.exports = {
           }
 
           const galleryEntryIndex = _.indexOf(galleryEntries, vm.galleryEntry);
-          console.info({
-            galleryEntryIndex
-          });
 
           vm.previousEntryId = galleryEntryIndex > 0 ? galleryEntries[galleryEntryIndex - 1].entryId : null;
           vm.nextEntryId = galleryEntryIndex < galleryEntries.length - 1 ? galleryEntries[galleryEntryIndex + 1].entryId : null;
-          console.info({
-            "vm.previousEntryId": vm.previousEntryId,
-            "vm.nextEntryId": vm.nextEntryId
-          });
-
         });
 
       });
@@ -14335,8 +14279,27 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"services/cookies_service":47,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],41:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 3, stdin */\n.replies {\n  text-align: left;\n  margin: 50px auto;\n  max-width: 600px; }\n  /* line 8, stdin */\n  .replies .reply-header {\n    font-family: Audiowide, Arial, Verdana, sans-serif;\n    font-size: 2.5em;\n    letter-spacing: 1px;\n    font-variant: small-caps;\n    color: WHITE;\n    border-bottom: 1px solid #666;\n    padding-bottom: 2px;\n    margin-bottom: 20px;\n    clear: both; }\n  /* line 21, stdin */\n  .replies .reply {\n    margin-bottom: 30px; }\n    /* line 24, stdin */\n    .replies .reply .reply-body {\n      font-size: 1.0em;\n      line-height: 1.5em; }\n    /* line 29, stdin */\n    .replies .reply.reply-wrapper-botch {\n      background-image: url(/images/webmaster.png);\n      background-repeat: no-repeat; }\n      /* line 33, stdin */\n      .replies .reply.reply-wrapper-botch .reply-body {\n        padding-left: 60px; }\n    /* line 38, stdin */\n    .replies .reply .reply-footer {\n      text-align: right;\n      font-variant: small-caps; }\n      /* line 42, stdin */\n      .replies .reply .reply-footer > span {\n        white-space: nowrap; }\n      /* line 46, stdin */\n      .replies .reply .reply-footer .reply-time {\n        font-size: 0.9em;\n        margin-right: 3px; }\n    /* line 53, stdin */\n    .replies .reply .reply-divider {\n      border-bottom: 1px dashed #666;\n      margin: 25px 0px; }\n\n/* line 61, stdin */\n.new-reply {\n  text-align: left;\n  margin: 50px auto;\n  max-width: 600px; }\n  /* line 66, stdin */\n  .new-reply .new-reply-header {\n    font-family: Audiowide, Arial, Verdana, sans-serif;\n    font-size: 2.5em;\n    letter-spacing: 1px;\n    font-variant: small-caps;\n    color: white;\n    border-bottom: 1px solid #666;\n    padding-bottom: 2px;\n    margin-bottom: 20px;\n    clear: both; }\n  /* line 83, stdin */\n  .new-reply .new-reply-field {\n    padding: 0 0 15px 0;\n    text-align: center; }\n    /* line 87, stdin */\n    .new-reply .new-reply-field.secret {\n      padding: 0;\n      width: 0;\n      height: 0;\n      overflow: hidden; }\n    /* line 94, stdin */\n    .new-reply .new-reply-field label {\n      width: 70px;\n      text-align: right;\n      margin-right: 5px;\n      color: #ddd; }\n    /* line 101, stdin */\n    .new-reply .new-reply-field textarea {\n      width: 100%; }\n    /* line 105, stdin */\n    .new-reply .new-reply-field input[type=\"text\"],\n    .new-reply .new-reply-field input[type=\"email\"] {\n      width: 225px;\n      font-size: 12px;\n      margin-right: 15px; }\n  /* line 114, stdin */\n  .new-reply .new-reply-submit {\n    text-align: center; }\n    /* line 117, stdin */\n    .new-reply .new-reply-submit button {\n      width: 225px;\n      margin-left: 75px;\n      margin-right: 15px; }\n\n/* line 126, stdin */\n.replies-closed {\n  margin-top: 30px;\n  margin-bottom: 20px;\n  margin-left: 10%;\n  margin-right: 10%;\n  padding: 5px;\n  background-color: #333;\n  border: 1px solid #222;\n  text-align: center;\n  font-weight: bold;\n  font-size: 10px; }")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 3, stdin */\n.replies {\n  text-align: left;\n  margin: 50px auto;\n  max-width: 600px; }\n  /* line 8, stdin */\n  .replies .reply-header {\n    font-family: Audiowide, Arial, Verdana, sans-serif;\n    font-size: 2.5em;\n    letter-spacing: 1px;\n    font-variant: small-caps;\n    color: WHITE;\n    border-bottom: 1px solid #666;\n    padding-bottom: 2px;\n    margin-bottom: 20px;\n    clear: both; }\n  /* line 21, stdin */\n  .replies .reply {\n    margin-bottom: 30px; }\n    /* line 24, stdin */\n    .replies .reply .reply-body {\n      font-size: 1.0em;\n      line-height: 1.5em; }\n    /* line 29, stdin */\n    .replies .reply.reply-wrapper-botch {\n      background-image: url(/images/webmaster.png);\n      background-repeat: no-repeat; }\n      /* line 33, stdin */\n      .replies .reply.reply-wrapper-botch .reply-body {\n        padding-left: 60px; }\n    /* line 38, stdin */\n    .replies .reply .reply-footer {\n      text-align: right;\n      font-variant: small-caps; }\n      /* line 42, stdin */\n      .replies .reply .reply-footer > span {\n        white-space: nowrap; }\n      /* line 46, stdin */\n      .replies .reply .reply-footer .reply-time {\n        font-size: 0.9em;\n        margin-right: 3px; }\n    /* line 53, stdin */\n    .replies .reply .reply-divider {\n      border-bottom: 1px dashed #666;\n      margin: 25px 0px; }\n\n/* line 61, stdin */\n.new-reply {\n  text-align: left;\n  margin: 50px auto;\n  max-width: 600px; }\n  /* line 66, stdin */\n  .new-reply .new-reply-header {\n    font-family: Audiowide, Arial, Verdana, sans-serif;\n    font-size: 2.5em;\n    letter-spacing: 1px;\n    font-variant: small-caps;\n    color: white;\n    border-bottom: 1px solid #666;\n    padding-bottom: 2px;\n    margin-bottom: 20px;\n    clear: both; }\n  /* line 84, stdin */\n  .new-reply .new-reply-field {\n    padding: 0 0 15px 0;\n    text-align: center; }\n    /* line 88, stdin */\n    .new-reply .new-reply-field.secret {\n      padding: 0;\n      width: 0;\n      height: 0;\n      overflow: hidden; }\n    /* line 95, stdin */\n    .new-reply .new-reply-field label {\n      width: 70px;\n      text-align: right;\n      margin-right: 5px;\n      color: #ddd; }\n    /* line 102, stdin */\n    .new-reply .new-reply-field textarea {\n      width: 100%; }\n    /* line 106, stdin */\n    .new-reply .new-reply-field input[type=\"text\"],\n    .new-reply .new-reply-field input[type=\"email\"] {\n      width: 225px;\n      font-size: 12px;\n      margin-right: 15px; }\n  /* line 115, stdin */\n  .new-reply .new-reply-notify {\n    width: 300px;\n    margin: 0 auto;\n    padding-left: 77px;\n    padding-bottom: 15px; }\n    /* line 121, stdin */\n    .new-reply .new-reply-notify label {\n      margin: 0;\n      vertical-align: text-top;\n      font-weight: normal;\n      font-size: 10px; }\n  /* line 129, stdin */\n  .new-reply .new-reply-submit {\n    text-align: center; }\n    /* line 132, stdin */\n    .new-reply .new-reply-submit button {\n      width: 225px;\n      margin-left: 75px;\n      margin-right: 15px; }\n\n/* line 141, stdin */\n.replies-closed {\n  margin-top: 30px;\n  margin-bottom: 20px;\n  margin-left: 10%;\n  margin-right: 10%;\n  padding: 5px;\n  background-color: #333;\n  border: 1px solid #222;\n  text-align: center;\n  font-weight: bold;\n  font-size: 10px; }")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14629,7 +14592,8 @@ module.exports = {
         poster: '',
         email: '',
         website: '',
-        honeypot: ''
+        honeypot: '',
+        notify: false
       },
 
       savingReply: false
@@ -14676,7 +14640,7 @@ module.exports = {
         if (userInfo) {
           try {
             userInfo = JSON.parse(userInfo);
-            _.each(['poster', 'email', 'website'], function(userProperty) {
+            _.each(['poster', 'email', 'website', 'notify'], function(userProperty) {
               if (userInfo[userProperty]) {
                 vm.reply[userProperty] = userInfo[userProperty];
               }
@@ -14707,13 +14671,11 @@ module.exports = {
         vm.replies = _.chain(repliesStore)
           .where({ postingId: vm.posting.postingId })
           .each(function(reply) {
-            reply.isWebmaster = reply.poster === 'Botch the Crab';
+            reply.content = reply.content.replace(/\n/g, '<br/>');
+            reply.isWebmaster = (reply.email.toLowerCase() === 'botch@botchthecrab.com');
           })
           .sortBy('posted')
           .value();
-        console.info({
-          "vm.replies": vm.replies
-        });
       });
     },
 
@@ -14721,7 +14683,7 @@ module.exports = {
       globalService.setOfficeDocumentTitle(this.posting.title);
     },
 
-    updateOpenGraphImageMetaTag() {
+    updateOpenGraphImageMetaTag: function() {
       if (!$openGraphMetaTag.length) { return; }
 
       const postingContent = vm.posting.content;
@@ -14790,7 +14752,7 @@ module.exports = {
     },
 
     saveUserDetails: function(replyData) {
-      var userInfo = _.pick(replyData, 'poster', 'email', 'website');
+      var userInfo = _.pick(replyData, 'poster', 'email', 'website', 'notify');
       cookiesService.setCookie('userInfo', JSON.stringify(userInfo));
     }
 
@@ -14803,7 +14765,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.posting.title)?_c('div',{staticClass:"container-fluid center-content"},[_c('botch-watermark'),_vm._v(" "),_c('div',{staticClass:"post-title"},[_vm._v(_vm._s(_vm.posting.title))]),_vm._v(" "),_c('div',{staticClass:"post-body-full",domProps:{"innerHTML":_vm._s(_vm.posting.content)}}),_vm._v(" "),(_vm.posting.content.length)?_c('div',{staticClass:"post-footer"},[_c('div',{staticClass:"post-footer-item"},[_c('label',[_vm._v("Tags:")]),_vm._v(" "),_vm._l((_vm.tags),function(tag,index){return [_c('router-link',{attrs:{"to":{ name: 'postings', query: { tagId: tag.tagId } }}},[_vm._v(_vm._s(tag.text))]),_vm._v(" "),(index < _vm.tags.length - 1)?[_vm._v(" • ")]:_vm._e()]})],2),_vm._v(" "),_c('div',{staticClass:"post-footer-item"},[_vm._v("\n  \t\t\tPosted: "),_c('span',[_vm._v(_vm._s(_vm.posting.posted))])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),_c('span',[_c('a',{on:{"click":_vm.scrollTop}},[_vm._v("▲ Top")])]),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"replies"},[_c('div',{staticClass:"reply-header"},[_vm._v("Comments")]),_vm._v(" "),_vm._l((_vm.replies),function(reply,index){return _c('div',{staticClass:"reply",class:reply.isWebmaster ? 'reply-wrapper-botch' : '',attrs:{"id":'replyId' + reply.replyId}},[_c('div',{staticClass:"reply-body",domProps:{"innerHTML":_vm._s(reply.content)}}),_vm._v(" "),_c('div',{staticClass:"reply-footer"},[_c('span',[_vm._v("\n            » Posted\n            "),_c('span',{staticClass:"reply-time"},[_vm._v(_vm._s(reply.posted))])]),_vm._v(" "),_c('span',[_vm._v("\n            by "),_c('b',[_vm._v(_vm._s(reply.poster))]),_vm._v(" "),(reply.isWebmaster)?_c('span',[_vm._v(" - WEBMASTER")]):_vm._e(),_vm._v(" "),(!reply.isWebmaster && reply.website)?_c('span',[_vm._v("["),_c('a',{attrs:{"href":reply.website,"target":"_blank"}},[_vm._v("website")]),_vm._v("]")]):_vm._e()])]),_vm._v(" "),(index < _vm.replies.length - 1)?_c('div',{staticClass:"reply-divider"}):_vm._e()])})],2):_vm._e(),_vm._v(" "),(!_vm.posting.allowReplies)?_c('div',{staticClass:"replies-closed"},[_vm._v("Comments are "+_vm._s(_vm.replies.length ? "closed" : "disabled")+" for this post.")]):_vm._e(),_vm._v(" "),(_vm.posting.allowReplies)?_c('div',{staticClass:"new-reply"},[_c('div',{staticClass:"new-reply-header"},[_vm._v("Leave a Comment")]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.content),expression:"reply.content"}],attrs:{"name":"content","rows":"4","cols":"10","disabled":_vm.savingReply,"placeholder":"Enter your comments here"},domProps:{"value":(_vm.reply.content)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "content", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Name:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.poster),expression:"reply.poster"}],attrs:{"type":"text","name":"poster","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.poster)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "poster", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Email:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.email),expression:"reply.email"}],attrs:{"type":"email","name":"email","disabled":_vm.savingReply,"placeholder":"Email will not be displayed/shared"},domProps:{"value":(_vm.reply.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "email", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Website:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.website),expression:"reply.website"}],attrs:{"type":"text","name":"website","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.website)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "website", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field secret"},[_c('label',[_vm._v("URL:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.honeypot),expression:"reply.honeypot"}],attrs:{"type":"text","name":"url","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.honeypot)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "honeypot", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-submit"},[_c('button',{attrs:{"disabled":_vm.savingReply},on:{"click":_vm.handleNewReply}},[_vm._v(_vm._s(_vm.savingReply ? "Submitting ..." : "Submit"))])])]):_vm._e(),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),_c('span',[_c('a',{on:{"click":_vm.scrollTop}},[_vm._v("▲ Top")])]),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]):_vm._e()],1):_vm._e()}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.posting.title)?_c('div',{staticClass:"container-fluid center-content"},[_c('botch-watermark'),_vm._v(" "),_c('div',{staticClass:"post-title"},[_vm._v(_vm._s(_vm.posting.title))]),_vm._v(" "),_c('div',{staticClass:"post-body-full",domProps:{"innerHTML":_vm._s(_vm.posting.content)}}),_vm._v(" "),(_vm.posting.content.length)?_c('div',{staticClass:"post-footer"},[_c('div',{staticClass:"post-footer-item"},[_c('label',[_vm._v("Tags:")]),_vm._v(" "),_vm._l((_vm.tags),function(tag,index){return [_c('router-link',{attrs:{"to":{ name: 'postings', query: { tagId: tag.tagId } }}},[_vm._v(_vm._s(tag.text))]),_vm._v(" "),(index < _vm.tags.length - 1)?[_vm._v(" • ")]:_vm._e()]})],2),_vm._v(" "),_c('div',{staticClass:"post-footer-item"},[_vm._v("\n  \t\t\tPosted: "),_c('span',[_vm._v(_vm._s(_vm.posting.posted))])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),_c('span',[_c('a',{on:{"click":_vm.scrollTop}},[_vm._v("▲ Top")])]),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"replies"},[_c('div',{staticClass:"reply-header"},[_vm._v("Comments")]),_vm._v(" "),_vm._l((_vm.replies),function(reply,index){return _c('div',{staticClass:"reply",class:reply.isWebmaster ? 'reply-wrapper-botch' : '',attrs:{"id":'replyId' + reply.replyId}},[_c('div',{staticClass:"reply-body",domProps:{"innerHTML":_vm._s(reply.content)}}),_vm._v(" "),_c('div',{staticClass:"reply-footer"},[_c('span',[_vm._v("\n            » Posted\n            "),_c('span',{staticClass:"reply-time"},[_vm._v(_vm._s(reply.posted))])]),_vm._v(" "),_c('span',[_vm._v("\n            by "),_c('b',[_vm._v(_vm._s(reply.poster))]),_vm._v(" "),(reply.isWebmaster)?_c('span',[_vm._v(" - WEBMASTER")]):_vm._e(),_vm._v(" "),(!reply.isWebmaster && reply.website)?_c('span',[_vm._v("["),_c('a',{attrs:{"href":reply.website,"target":"_blank"}},[_vm._v("website")]),_vm._v("]")]):_vm._e()])]),_vm._v(" "),(index < _vm.replies.length - 1)?_c('div',{staticClass:"reply-divider"}):_vm._e()])})],2):_vm._e(),_vm._v(" "),(!_vm.posting.allowReplies)?_c('div',{staticClass:"replies-closed"},[_vm._v("Comments are "+_vm._s(_vm.replies.length ? "closed" : "disabled")+" for this post.")]):_vm._e(),_vm._v(" "),(_vm.posting.allowReplies)?_c('div',{staticClass:"new-reply"},[_c('div',{staticClass:"new-reply-header"},[_vm._v("Leave a Comment")]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.content),expression:"reply.content"}],attrs:{"name":"content","rows":"4","cols":"10","disabled":_vm.savingReply,"placeholder":"Enter your comments here"},domProps:{"value":(_vm.reply.content)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "content", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Name:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.poster),expression:"reply.poster"}],attrs:{"type":"text","name":"poster","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.poster)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "poster", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Website:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.website),expression:"reply.website"}],attrs:{"type":"text","name":"website","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.website)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "website", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field secret"},[_c('label',[_vm._v("URL:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.honeypot),expression:"reply.honeypot"}],attrs:{"type":"text","name":"url","disabled":_vm.savingReply,"tabindex":"-1"},domProps:{"value":(_vm.reply.honeypot)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "honeypot", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Email:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.email),expression:"reply.email"}],attrs:{"type":"email","name":"email","disabled":_vm.savingReply,"placeholder":"Email will not be displayed/shared"},domProps:{"value":(_vm.reply.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "email", $event.target.value)}}})]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.reply.email),expression:"reply.email"}],staticClass:"new-reply-notify"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.notify),expression:"reply.notify"}],attrs:{"type":"checkbox","id":"new-reply-notify","name":"notify","disabled":_vm.savingReply},domProps:{"checked":Array.isArray(_vm.reply.notify)?_vm._i(_vm.reply.notify,null)>-1:(_vm.reply.notify)},on:{"change":function($event){var $$a=_vm.reply.notify,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.reply, "notify", $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.reply, "notify", $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.reply, "notify", $$c)}}}}),_vm._v(" "),_c('label',{attrs:{"for":"new-reply-notify"}},[_vm._v("Notify me of new comments")])]),_vm._v(" "),_c('div',{staticClass:"new-reply-submit"},[_c('button',{attrs:{"disabled":_vm.savingReply},on:{"click":_vm.handleNewReply}},[_vm._v(_vm._s(_vm.savingReply ? "Submitting ..." : "Submit"))])])]):_vm._e(),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),_c('span',[_c('a',{on:{"click":_vm.scrollTop}},[_vm._v("▲ Top")])]),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]):_vm._e()],1):_vm._e()}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -14813,7 +14775,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-7add63b4", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-7add63b4", __vue__options__)
+    hotAPI.reload("data-v-7add63b4", __vue__options__)
   }
 })()}
 },{"services/archive_service":45,"services/blog_service":46,"services/cookies_service":47,"services/global_service":49,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],42:[function(require,module,exports){
@@ -15613,14 +15575,6 @@ function pathUnwash(s) {
 
 /* load a box art entry from a posting (legacy function) */
 function tf(tfName, tfFaction, tfSub, tfTeam) {
-  console.info('tf ...');
-  console.info({
-    tfName,
-    tfFaction,
-    tfSub,
-    tfTeam
-  });
-
   if (tfFaction === "Cybertron") {
     tfFaction = "Autobot";
   }
@@ -15630,7 +15584,6 @@ function tf(tfName, tfFaction, tfSub, tfTeam) {
 
   var imgSrc = null
   if (tfSub === 'Japan' || tfSub === 'Europe') {
-    console.info('japan/europe');
 
     // Japanese or European
     imgSrc = pathWash('/archive/' + tfFaction + '/' + tfSub + '/' + tfName + '.jpg');
@@ -15646,9 +15599,6 @@ function tf(tfName, tfFaction, tfSub, tfTeam) {
     // US
     imgSrc = pathWash('/archive/' + tfFaction + '/' + tfSub + '/' + tfName + '.jpg');
   }
-  console.info({
-    imgSrc
-  });
 
   if (imgSrc) {
     fancyboxService.openImage(imgSrc, tfName);
@@ -15678,13 +15628,11 @@ function getAllPostings() {
   var deferred = $.Deferred();
 
   if (allPostingsSnapshot) {
-    // console.info('return allPostingsSnapshot from CACHE');
     deferred.resolve(allPostingsSnapshot);
   } else {
 
     firebase.database().ref('blog/postings').once('value').then(function(snapshot) {
       allPostingsSnapshot = snapshot;
-      // console.info('return allPostingsSnapshot from FETCH');
       deferred.resolve(allPostingsSnapshot);
     });
 
@@ -15697,13 +15645,11 @@ function getAllTags() {
   var deferred = $.Deferred();
 
   if (allTagsSnapshot) {
-    // console.info('return allTagsSnapshot from CACHE');
     deferred.resolve(allTagsSnapshot);
   } else {
 
     firebase.database().ref('blog/tags').once('value').then(function(snapshot) {
       allTagsSnapshot = snapshot;
-      // console.info('return allTagsSnapshot from FETCH');
       deferred.resolve(allTagsSnapshot);
     });
 
@@ -15716,13 +15662,11 @@ function getAllReplies(refresh) {
   var deferred = $.Deferred();
 
   if (allRepliesSnapshot && !refresh) {
-    // console.info('return allRepliesSnapshot from CACHE');
     deferred.resolve(allRepliesSnapshot);
   } else {
 
     firebase.database().ref('blog/replies').once('value').then(function(snapshot) {
       allRepliesSnapshot = snapshot;
-      // console.info('return allRepliesSnapshot from FETCH');
       deferred.resolve(allRepliesSnapshot);
     });
 
@@ -15749,9 +15693,8 @@ function setPostingBlurbs(postings) {
 
 function createPostReply(posting, replyData) {
 
-  var getCurrentReplyIndex = getAllReplies(true).then(function(response) {
-    var repliesStore = response.val();
-    return repliesStore.length;
+  var getCurrentReplies = getAllReplies(true).then(function(response) {
+    return response.val();
   });
 
   var getTrace = $.get('https://www.cloudflare.com/cdn-cgi/trace').then(function(response) {
@@ -15759,7 +15702,9 @@ function createPostReply(posting, replyData) {
     return response.match(ipRegex)[0];
   });
 
-  return $.when(getCurrentReplyIndex, getTrace).done(function(newReplyIndex, ipAddress) {
+  return $.when(getCurrentReplies, getTrace).done(function(repliesStore, ipAddress) {
+
+    var newReplyIndex = repliesStore.length;
 
     var newReply = {
       replyId: newReplyIndex + 1,
@@ -15768,7 +15713,7 @@ function createPostReply(posting, replyData) {
       poster: replyData.poster,
       content: replyData.content,
       address: ipAddress,
-      notify: false
+      notify: replyData.notify || false
     };
     if (replyData.email) {
       newReply.email = replyData.email;
@@ -15781,7 +15726,73 @@ function createPostReply(posting, replyData) {
     replyUpdate['blog/replies/' + newReplyIndex] = newReply;
 
     return firebase.database().ref().update(replyUpdate).then(function(response) {
-      return newReply;
+
+      // get list of every commenter who requested reply notifications
+      var notificationRecipients = _.chain(repliesStore)
+        .where({ postingId: posting.postingId, notify: true })
+        .filter(function(reply) {
+          var email = reply.email.toLowerCase();
+          return email !== 'botch@botchthecrab.com' && email !== replyData.email;
+        })
+        .map(function(reply) {
+          return reply.email.toLowerCase();
+        })
+        .unique()
+        .value();
+      notificationRecipients.unshift('botch@botchthecrab.com');
+
+      var notificationEmailRequests = [];
+
+      _.each(notificationRecipients, function(recipient) {
+
+        var newMailDocument = {
+          to: recipient,
+          message: {
+            subject: 'New Comment for "' + posting.title +  '" [BotchTheCrab.com]',
+            html: '<p>' +
+                    '<b>' + replyData.poster + '</b> ' +
+                    (replyData.website ? '[<a href="' + replyData.website + '">' + replyData.website + '</a>] ' : '') +
+                    'wrote the following on ' + newReply.posted + ':<br />' +
+                  '</p>' +
+                  '<p>' + newReply.content.replace(/\n/g, '<br/>') + '</p>' +
+                  '<hr style="margin: 2em 0 1em" />' +
+                  '<p>' +
+                    '<i>To unsubscribe to comments from this post, reply back with the word "Unsubscribe" and Botch will adjust your notification settings.</i>' +
+                  '</p>'
+          },
+          fromBTC: true
+        };
+
+        var newMailRequest = firebase.firestore().collection('mail').add(newMailDocument)
+          .then(function (docRef) {
+            console.log("Document written with ID: ", docRef.id);
+
+            // delete this document
+            /*
+            window.setTimeout(function() {
+
+              firebase.firestore().collection('mail').doc(docRef.id).delete().then(function(response) {
+                console.log("Document " + docRef.id + " deleted");
+              })
+              .catch(function(error) {
+                console.log("Could not delete new document");
+              });
+
+            }, 2000);
+            */
+
+            return newReply;
+          })
+          .catch(function (error) {
+            console.error("Error adding document: ", error);
+            return error;
+          });
+
+        notificationEmailRequests.push(newMailRequest);
+      });
+
+      return $.when(notificationEmailRequests);
+
     }, function(error) {
       console.error(error);
       window.alert("There was an error attempting to submit your reply.");
@@ -15893,8 +15904,6 @@ module.exports = {
 ////////////
 
 function initFancyBoxSwipe() {
-  console.info('initFancyBoxSwipe ...');
-
   if (!fancyBoxSwipeInitialized) {
 
     fancyBoxSwipeInitialized = true;
@@ -15910,7 +15919,6 @@ function initFancyBoxSwipe() {
     });
 
   }
-
 }
 
 function buildFancyboxPopIcon(href) {

@@ -204,36 +204,18 @@
     methods: {
 
       getGalleryEntryData: function() {
-        console.info('getGalleryEntryData ...');
-
-        // var vm = this;
 
         var galleryEntryId = Number(this.$route.params.galleryEntryId);
-        console.info({
-          galleryEntryId
-        });
 
         firebase.database().ref('galleries/entries').once('value').then(function(entriesSnapshot) {
           let galleryEntries = entriesSnapshot.val();
-          console.info({
-            galleryEntries
-          });
 
           vm.galleryEntry = _.findWhere(galleryEntries, { entryId: galleryEntryId });
-          console.info({
-            "vm.galleryEntry": vm.galleryEntry
-          });
 
           firebase.database().ref('galleries/descriptions').once('value').then(function(galleriesSnapshot) {
             var galleries = galleriesSnapshot.val();
-            console.info({
-              galleries
-            });
 
             vm.gallery = _.findWhere(galleries, { galleryId: vm.galleryEntry.galleryId });
-            console.info({
-              "vm.gallery": vm.gallery
-            });
 
             globalService.setOfficeDocumentTitle(vm.gallery.name + " - " + vm.galleryEntry.name);
 
@@ -253,17 +235,9 @@
             }
 
             const galleryEntryIndex = _.indexOf(galleryEntries, vm.galleryEntry);
-            console.info({
-              galleryEntryIndex
-            });
 
             vm.previousEntryId = galleryEntryIndex > 0 ? galleryEntries[galleryEntryIndex - 1].entryId : null;
             vm.nextEntryId = galleryEntryIndex < galleryEntries.length - 1 ? galleryEntries[galleryEntryIndex + 1].entryId : null;
-            console.info({
-              "vm.previousEntryId": vm.previousEntryId,
-              "vm.nextEntryId": vm.nextEntryId
-            });
-
           });
 
         });

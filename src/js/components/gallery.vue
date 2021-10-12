@@ -55,22 +55,13 @@
 
         firebase.database().ref('galleries/descriptions').once('value').then(function(galleriesSnapshot) {
           var galleries = galleriesSnapshot.val();
-          console.info({
-            galleries
-          });
 
           vm.gallery = _.findWhere(galleries, { galleryId: galleryId });
-          console.info({
-            "vm.gallery": vm.gallery
-          });
 
           globalService.setOfficeDocumentTitle(vm.gallery.name);
 
           firebase.database().ref('galleries/entries').once('value').then(function(entriesSnapshot) {
             var galleryEntries = entriesSnapshot.val();
-            console.info({
-              galleryEntries
-            });
 
             let matchingEntries = _.where(galleryEntries, { galleryId: vm.gallery.galleryId });
             switch (vm.gallery.sort) {
@@ -87,18 +78,11 @@
                 matchingEntries = _.sortBy(matchingEntries, 'entryId');
             }
 
-            console.info({
-              matchingEntries
-            });
-
             _.each(matchingEntries, galleryEntry => {
               galleryEntry.thumbnailPath = vm.getThumbnailPath(galleryEntry);
             })
 
             vm.galleryEntries = matchingEntries;
-            console.info({
-              "vm.galleryEntries": vm.galleryEntries
-            });
           });
 
         });

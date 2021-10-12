@@ -29,8 +29,6 @@ module.exports = {
 ////////////
 
 function initFancyBoxSwipe() {
-  console.info('initFancyBoxSwipe ...');
-
   if (!fancyBoxSwipeInitialized) {
 
     fancyBoxSwipeInitialized = true;
@@ -46,7 +44,6 @@ function initFancyBoxSwipe() {
     });
 
   }
-
 }
 
 function buildFancyboxPopIcon(href) {

@@ -200,8 +200,8 @@
             vm.parsedHistoryMarkup = historyMarkup;
           },
           error: function(xhr, status) {
-            console.info('FAILURE!');
-            console.info({
+            console.log('FAILURE!');
+            console.log({
               xhr: xhr,
               status: status
             });

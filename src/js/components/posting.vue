@@ -79,9 +79,10 @@
     $labelWidth: 70px;
     $labelRightMargin: 5px;
     $inputRightMargin: 15px;
+    $fieldPaddingBottom: 15px;
 
     .new-reply-field {
-      padding: 0 0 15px 0;
+      padding: 0 0 $fieldPaddingBottom 0;
       text-align: center;
 
       &.secret {
@@ -109,6 +110,20 @@
         margin-right: $inputRightMargin;
       }
 
+    }
+
+    .new-reply-notify {
+      width: $inputWidth + $labelWidth + $labelRightMargin;
+      margin: 0 auto;
+      padding-left: $labelWidth + $labelRightMargin + 2px;
+      padding-bottom: $fieldPaddingBottom;
+
+      label {
+        margin: 0;
+        vertical-align: text-top;
+        font-weight: normal;
+        font-size: 10px;
+      }
     }
 
     .new-reply-submit {
@@ -213,11 +228,6 @@
       </div>
 
       <div class="new-reply-field">
-        <label>Email:</label>
-        <input type="email" name="email" v-model="reply.email" v-bind:disabled="savingReply" placeholder="Email will not be displayed/shared" />
-      </div>
-
-      <div class="new-reply-field">
         <label>Website:</label>
         <input type="text" name="website" v-model="reply.website" v-bind:disabled="savingReply" />
       </div>
@@ -225,7 +235,16 @@
       <!-- honeypot -->
       <div class="new-reply-field secret">
         <label>URL:</label>
-        <input type="text" name="url" v-model="reply.honeypot" v-bind:disabled="savingReply" />
+        <input type="text" name="url" v-model="reply.honeypot" v-bind:disabled="savingReply" tabindex="-1" />
+      </div>
+
+      <div class="new-reply-field">
+        <label>Email:</label>
+        <input type="email" name="email" v-model="reply.email" v-bind:disabled="savingReply" placeholder="Email will not be displayed/shared" />
+      </div>
+
+      <div class="new-reply-notify" v-show="reply.email">
+        <input type="checkbox" id="new-reply-notify" name="notify" v-model="reply.notify" v-bind:disabled="savingReply" /> <label for="new-reply-notify">Notify me of new comments</label>
       </div>
 
       <div class="new-reply-submit">
@@ -290,7 +309,8 @@
           poster: '',
           email: '',
           website: '',
-          honeypot: ''
+          honeypot: '',
+          notify: false
         },
 
         savingReply: false
@@ -337,7 +357,7 @@
           if (userInfo) {
             try {
               userInfo = JSON.parse(userInfo);
-              _.each(['poster', 'email', 'website'], function(userProperty) {
+              _.each(['poster', 'email', 'website', 'notify'], function(userProperty) {
                 if (userInfo[userProperty]) {
                   vm.reply[userProperty] = userInfo[userProperty];
                 }
@@ -368,13 +388,11 @@
           vm.replies = _.chain(repliesStore)
             .where({ postingId: vm.posting.postingId })
             .each(function(reply) {
-              reply.isWebmaster = reply.poster === 'Botch the Crab';
+              reply.content = reply.content.replace(/\n/g, '<br/>');
+              reply.isWebmaster = (reply.email.toLowerCase() === 'botch@botchthecrab.com');
             })
             .sortBy('posted')
             .value();
-          console.info({
-            "vm.replies": vm.replies
-          });
         });
       },
 
@@ -382,7 +400,7 @@
         globalService.setOfficeDocumentTitle(this.posting.title);
       },
 
-      updateOpenGraphImageMetaTag() {
+      updateOpenGraphImageMetaTag: function() {
         if (!$openGraphMetaTag.length) { return; }
 
         const postingContent = vm.posting.content;
@@ -451,7 +469,7 @@
       },
 
       saveUserDetails: function(replyData) {
-        var userInfo = _.pick(replyData, 'poster', 'email', 'website');
+        var userInfo = _.pick(replyData, 'poster', 'email', 'website', 'notify');
         cookiesService.setCookie('userInfo', JSON.stringify(userInfo));
       }
 

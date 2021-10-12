@@ -62,14 +62,6 @@ function pathUnwash(s) {
 
 /* load a box art entry from a posting (legacy function) */
 function tf(tfName, tfFaction, tfSub, tfTeam) {
-  console.info('tf ...');
-  console.info({
-    tfName,
-    tfFaction,
-    tfSub,
-    tfTeam
-  });
-
   if (tfFaction === "Cybertron") {
     tfFaction = "Autobot";
   }
@@ -79,7 +71,6 @@ function tf(tfName, tfFaction, tfSub, tfTeam) {
 
   var imgSrc = null
   if (tfSub === 'Japan' || tfSub === 'Europe') {
-    console.info('japan/europe');
 
     // Japanese or European
     imgSrc = pathWash('/archive/' + tfFaction + '/' + tfSub + '/' + tfName + '.jpg');
@@ -95,9 +86,6 @@ function tf(tfName, tfFaction, tfSub, tfTeam) {
     // US
     imgSrc = pathWash('/archive/' + tfFaction + '/' + tfSub + '/' + tfName + '.jpg');
   }
-  console.info({
-    imgSrc
-  });
 
   if (imgSrc) {
     fancyboxService.openImage(imgSrc, tfName);
