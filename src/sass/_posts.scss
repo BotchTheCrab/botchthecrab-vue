@@ -139,7 +139,7 @@
 		font-weight: bold;
 	}
 
-	a, span {
+	& > a, & > span {
 		font-weight: normal;
 		white-space: nowrap;
 		letter-spacing: 0px;
