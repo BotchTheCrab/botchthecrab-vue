@@ -174,7 +174,7 @@
       </div>
 
       <div class="post-footer-item">
-  			Posted: <span>{{ posting.posted }}</span>
+        Posted: <span>{{ formatPosted(posting.posted) }}</span>
   		</div>
 
 	  </div>
@@ -199,7 +199,7 @@
         <div class="reply-footer">
           <span>
             &raquo; Posted
-            <span class="reply-time">{{ reply.posted }}</span>
+            <span class="reply-time">{{ formatPosted(reply.posted) }}</span>
           </span>
           <span>
             by <b>{{ reply.poster }}</b>
@@ -421,6 +421,10 @@
 
       clearOpenGraphImageMetaTag: function() {
         $openGraphMetaTag.attr('content', '');
+      },
+
+      formatPosted: function(posted) {
+        return globalService.formatPosted(posted);
       },
 
       scrollTop: function() {
