@@ -183,8 +183,8 @@
       <span v-if="previousPosting">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: previousPosting.postingId } }">&#x25C4; <span>Older</span></router-link>
       </span>
-      <span>
-        <a v-on:click="scrollTop">&#x25B2; Top</a>
+      <span v-if="randomPosting">
+        <router-link v-bind:to="{ name: 'posting', params: { postingId: randomPosting.postingId } }">? <span>Random</span></router-link>
       </span>
       <span v-if="nextPosting">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: nextPosting.postingId } }"><span>Newer</span> &#x25BA;</router-link>
@@ -257,8 +257,8 @@
       <span v-if="previousPosting">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: previousPosting.postingId } }">&#x25C4; <span>Older</span></router-link>
       </span>
-      <span>
-        <a v-on:click="scrollTop">&#x25B2; Top</a>
+      <span v-if="randomPosting">
+        <router-link v-bind:to="{ name: 'posting', params: { postingId: randomPosting.postingId } }">? <span>Random</span></router-link>
       </span>
       <span v-if="nextPosting">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: nextPosting.postingId } }"><span>Newer</span> &#x25BA;</router-link>
@@ -319,7 +319,8 @@
 
     beforeMount() {
       vm = this;
-      this.updatePosting();
+      vm.updatePosting();
+      vm.populateUserInfo();
     },
 
     beforeDestroy() {
@@ -329,6 +330,9 @@
     watch: {
       $route(to, from) {
         this.updatePosting();
+
+        // remove focus from any links clicked in adjacent posts section
+        $('.adjacent-posts a:focus').blur();
       }
     },
 
@@ -350,22 +354,11 @@
           vm.previousPosting = postingIndex > 0 ? postingsStore[postingIndex - 1] : null;
           vm.nextPosting = postingIndex < postingsStore.length - 1 ? postingsStore[postingIndex + 1] : null;
 
+          var randomPostingIndex = Math.floor(Math.random() * postingsStore.length);
+          vm.randomPosting = postingsStore[randomPostingIndex];
+
           vm.updateTags();
           vm.updateReplies();
-
-          var userInfo = cookiesService.readCookie('userInfo');
-          if (userInfo) {
-            try {
-              userInfo = JSON.parse(userInfo);
-              _.each(['poster', 'email', 'website', 'notify'], function(userProperty) {
-                if (userInfo[userProperty]) {
-                  vm.reply[userProperty] = userInfo[userProperty];
-                }
-              });
-            } catch(error) {
-              console.error(error);
-            }
-          }
         });
 
       },
@@ -427,8 +420,20 @@
         return globalService.formatPosted(posted);
       },
 
-      scrollTop: function() {
-        globalService.scrollTop();
+      populateUserInfo: function() {
+        var userInfo = cookiesService.readCookie('userInfo');
+        if (userInfo) {
+          try {
+            userInfo = JSON.parse(userInfo);
+            _.each(['poster', 'email', 'website', 'notify'], function(userProperty) {
+              if (userInfo[userProperty]) {
+                vm.reply[userProperty] = userInfo[userProperty];
+              }
+            });
+          } catch(error) {
+            console.error(error);
+          }
+        }
       },
 
       handleNewReply: function() {

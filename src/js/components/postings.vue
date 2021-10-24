@@ -4,6 +4,16 @@
 
     #main-search-form {
       margin-bottom: 30px;
+
+      #main-search-input {
+        input, select {
+          margin: 0 5px 10px;
+
+          &[type="submit"] {
+            width: 100px;
+          }
+        }
+      }
     }
 
     .teletran-container {
@@ -148,6 +158,8 @@
 
       init: function() {
         vm.totalTransformers = null;
+        vm.transformersReady = false;
+        vm.postingsReady = false;
 
         vm.parseQuery().then(() => {
           vm.setPageTitle();

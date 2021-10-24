@@ -11704,9 +11704,6 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* */")
 //
 
 
-// GLOBAL COMPONENTS
-// var globalService = require('services/global_service');
-
 // ARCHIVE COMPONENTS
 var archiveService = require('services/archive_service');
 
@@ -14634,7 +14631,8 @@ module.exports = {
 
   beforeMount() {
     vm = this;
-    this.updatePosting();
+    vm.updatePosting();
+    vm.populateUserInfo();
   },
 
   beforeDestroy() {
@@ -14644,6 +14642,9 @@ module.exports = {
   watch: {
     $route(to, from) {
       this.updatePosting();
+
+      // remove focus from any links clicked in adjacent posts section
+      $('.adjacent-posts a:focus').blur();
     }
   },
 
@@ -14665,22 +14666,11 @@ module.exports = {
         vm.previousPosting = postingIndex > 0 ? postingsStore[postingIndex - 1] : null;
         vm.nextPosting = postingIndex < postingsStore.length - 1 ? postingsStore[postingIndex + 1] : null;
 
+        var randomPostingIndex = Math.floor(Math.random() * postingsStore.length);
+        vm.randomPosting = postingsStore[randomPostingIndex];
+
         vm.updateTags();
         vm.updateReplies();
-
-        var userInfo = cookiesService.readCookie('userInfo');
-        if (userInfo) {
-          try {
-            userInfo = JSON.parse(userInfo);
-            _.each(['poster', 'email', 'website', 'notify'], function(userProperty) {
-              if (userInfo[userProperty]) {
-                vm.reply[userProperty] = userInfo[userProperty];
-              }
-            });
-          } catch(error) {
-            console.error(error);
-          }
-        }
       });
 
     },
@@ -14742,8 +14732,20 @@ module.exports = {
       return globalService.formatPosted(posted);
     },
 
-    scrollTop: function() {
-      globalService.scrollTop();
+    populateUserInfo: function() {
+      var userInfo = cookiesService.readCookie('userInfo');
+      if (userInfo) {
+        try {
+          userInfo = JSON.parse(userInfo);
+          _.each(['poster', 'email', 'website', 'notify'], function(userProperty) {
+            if (userInfo[userProperty]) {
+              vm.reply[userProperty] = userInfo[userProperty];
+            }
+          });
+        } catch(error) {
+          console.error(error);
+        }
+      }
     },
 
     handleNewReply: function() {
@@ -14801,7 +14803,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.posting.title)?_c('div',{staticClass:"container-fluid center-content"},[_c('botch-watermark'),_vm._v(" "),_c('div',{staticClass:"post-title"},[_vm._v(_vm._s(_vm.posting.title))]),_vm._v(" "),_c('div',{staticClass:"post-body-full",domProps:{"innerHTML":_vm._s(_vm.posting.content)}}),_vm._v(" "),(_vm.posting.content.length)?_c('div',{staticClass:"post-footer"},[_c('div',{staticClass:"post-footer-item"},[_c('label',[_vm._v("Tags:")]),_vm._v(" "),_vm._l((_vm.tags),function(tag,index){return [_c('router-link',{attrs:{"to":{ name: 'postings', query: { tagId: tag.tagId } }}},[_vm._v(_vm._s(tag.text))]),_vm._v(" "),(index < _vm.tags.length - 1)?[_vm._v(" • ")]:_vm._e()]})],2),_vm._v(" "),_c('div',{staticClass:"post-footer-item"},[_vm._v("\n        Posted: "),_c('span',[_vm._v(_vm._s(_vm.formatPosted(_vm.posting.posted)))])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),_c('span',[_c('a',{on:{"click":_vm.scrollTop}},[_vm._v("▲ Top")])]),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"replies"},[_c('div',{staticClass:"reply-header"},[_vm._v("Comments")]),_vm._v(" "),_vm._l((_vm.replies),function(reply,index){return _c('div',{staticClass:"reply",class:reply.isWebmaster ? 'reply-wrapper-botch' : '',attrs:{"id":'replyId' + reply.replyId}},[_c('div',{staticClass:"reply-body",domProps:{"innerHTML":_vm._s(reply.content)}}),_vm._v(" "),_c('div',{staticClass:"reply-footer"},[_c('span',[_vm._v("\n            » Posted\n            "),_c('span',{staticClass:"reply-time"},[_vm._v(_vm._s(_vm.formatPosted(reply.posted)))])]),_vm._v(" "),_c('span',[_vm._v("\n            by "),_c('b',[_vm._v(_vm._s(reply.poster))]),_vm._v(" "),(reply.isWebmaster)?_c('span',[_vm._v(" - WEBMASTER")]):_vm._e(),_vm._v(" "),(!reply.isWebmaster && reply.website)?_c('span',[_vm._v("["),_c('a',{attrs:{"href":reply.website,"target":"_blank"}},[_vm._v("website")]),_vm._v("]")]):_vm._e()])]),_vm._v(" "),(index < _vm.replies.length - 1)?_c('div',{staticClass:"reply-divider"}):_vm._e()])})],2):_vm._e(),_vm._v(" "),(!_vm.posting.allowReplies)?_c('div',{staticClass:"replies-closed"},[_vm._v("Comments are "+_vm._s(_vm.replies.length ? "closed" : "disabled")+" for this post.")]):_vm._e(),_vm._v(" "),(_vm.posting.allowReplies)?_c('div',{staticClass:"new-reply"},[_c('div',{staticClass:"new-reply-header"},[_vm._v("Leave a Comment")]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.content),expression:"reply.content"}],attrs:{"name":"content","rows":"4","cols":"10","disabled":_vm.savingReply,"placeholder":"Enter your comments here"},domProps:{"value":(_vm.reply.content)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "content", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Name:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.poster),expression:"reply.poster"}],attrs:{"type":"text","name":"poster","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.poster)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "poster", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Website:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.website),expression:"reply.website"}],attrs:{"type":"text","name":"website","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.website)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "website", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field secret"},[_c('label',[_vm._v("URL:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.honeypot),expression:"reply.honeypot"}],attrs:{"type":"text","name":"url","disabled":_vm.savingReply,"tabindex":"-1"},domProps:{"value":(_vm.reply.honeypot)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "honeypot", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Email:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.email),expression:"reply.email"}],attrs:{"type":"email","name":"email","disabled":_vm.savingReply,"placeholder":"Email will not be displayed/shared"},domProps:{"value":(_vm.reply.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "email", $event.target.value)}}})]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.reply.email),expression:"reply.email"}],staticClass:"new-reply-notify"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.notify),expression:"reply.notify"}],attrs:{"type":"checkbox","id":"new-reply-notify","name":"notify","disabled":_vm.savingReply},domProps:{"checked":Array.isArray(_vm.reply.notify)?_vm._i(_vm.reply.notify,null)>-1:(_vm.reply.notify)},on:{"change":function($event){var $$a=_vm.reply.notify,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.reply, "notify", $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.reply, "notify", $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.reply, "notify", $$c)}}}}),_vm._v(" "),_c('label',{attrs:{"for":"new-reply-notify"}},[_vm._v("Notify me of new comments")])]),_vm._v(" "),_c('div',{staticClass:"new-reply-submit"},[_c('button',{attrs:{"disabled":_vm.savingReply},on:{"click":_vm.handleNewReply}},[_vm._v(_vm._s(_vm.savingReply ? "Submitting ..." : "Submit"))])])]):_vm._e(),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),_c('span',[_c('a',{on:{"click":_vm.scrollTop}},[_vm._v("▲ Top")])]),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]):_vm._e()],1):_vm._e()}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.posting.title)?_c('div',{staticClass:"container-fluid center-content"},[_c('botch-watermark'),_vm._v(" "),_c('div',{staticClass:"post-title"},[_vm._v(_vm._s(_vm.posting.title))]),_vm._v(" "),_c('div',{staticClass:"post-body-full",domProps:{"innerHTML":_vm._s(_vm.posting.content)}}),_vm._v(" "),(_vm.posting.content.length)?_c('div',{staticClass:"post-footer"},[_c('div',{staticClass:"post-footer-item"},[_c('label',[_vm._v("Tags:")]),_vm._v(" "),_vm._l((_vm.tags),function(tag,index){return [_c('router-link',{attrs:{"to":{ name: 'postings', query: { tagId: tag.tagId } }}},[_vm._v(_vm._s(tag.text))]),_vm._v(" "),(index < _vm.tags.length - 1)?[_vm._v(" • ")]:_vm._e()]})],2),_vm._v(" "),_c('div',{staticClass:"post-footer-item"},[_vm._v("\n        Posted: "),_c('span',[_vm._v(_vm._s(_vm.formatPosted(_vm.posting.posted)))])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),(_vm.randomPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.randomPosting.postingId } }}},[_vm._v("? "),_c('span',[_vm._v("Random")])])],1):_vm._e(),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"replies"},[_c('div',{staticClass:"reply-header"},[_vm._v("Comments")]),_vm._v(" "),_vm._l((_vm.replies),function(reply,index){return _c('div',{staticClass:"reply",class:reply.isWebmaster ? 'reply-wrapper-botch' : '',attrs:{"id":'replyId' + reply.replyId}},[_c('div',{staticClass:"reply-body",domProps:{"innerHTML":_vm._s(reply.content)}}),_vm._v(" "),_c('div',{staticClass:"reply-footer"},[_c('span',[_vm._v("\n            » Posted\n            "),_c('span',{staticClass:"reply-time"},[_vm._v(_vm._s(_vm.formatPosted(reply.posted)))])]),_vm._v(" "),_c('span',[_vm._v("\n            by "),_c('b',[_vm._v(_vm._s(reply.poster))]),_vm._v(" "),(reply.isWebmaster)?_c('span',[_vm._v(" - WEBMASTER")]):_vm._e(),_vm._v(" "),(!reply.isWebmaster && reply.website)?_c('span',[_vm._v("["),_c('a',{attrs:{"href":reply.website,"target":"_blank"}},[_vm._v("website")]),_vm._v("]")]):_vm._e()])]),_vm._v(" "),(index < _vm.replies.length - 1)?_c('div',{staticClass:"reply-divider"}):_vm._e()])})],2):_vm._e(),_vm._v(" "),(!_vm.posting.allowReplies)?_c('div',{staticClass:"replies-closed"},[_vm._v("Comments are "+_vm._s(_vm.replies.length ? "closed" : "disabled")+" for this post.")]):_vm._e(),_vm._v(" "),(_vm.posting.allowReplies)?_c('div',{staticClass:"new-reply"},[_c('div',{staticClass:"new-reply-header"},[_vm._v("Leave a Comment")]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.content),expression:"reply.content"}],attrs:{"name":"content","rows":"4","cols":"10","disabled":_vm.savingReply,"placeholder":"Enter your comments here"},domProps:{"value":(_vm.reply.content)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "content", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Name:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.poster),expression:"reply.poster"}],attrs:{"type":"text","name":"poster","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.poster)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "poster", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Website:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.website),expression:"reply.website"}],attrs:{"type":"text","name":"website","disabled":_vm.savingReply},domProps:{"value":(_vm.reply.website)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "website", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field secret"},[_c('label',[_vm._v("URL:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.honeypot),expression:"reply.honeypot"}],attrs:{"type":"text","name":"url","disabled":_vm.savingReply,"tabindex":"-1"},domProps:{"value":(_vm.reply.honeypot)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "honeypot", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"new-reply-field"},[_c('label',[_vm._v("Email:")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.email),expression:"reply.email"}],attrs:{"type":"email","name":"email","disabled":_vm.savingReply,"placeholder":"Email will not be displayed/shared"},domProps:{"value":(_vm.reply.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.reply, "email", $event.target.value)}}})]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.reply.email),expression:"reply.email"}],staticClass:"new-reply-notify"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.reply.notify),expression:"reply.notify"}],attrs:{"type":"checkbox","id":"new-reply-notify","name":"notify","disabled":_vm.savingReply},domProps:{"checked":Array.isArray(_vm.reply.notify)?_vm._i(_vm.reply.notify,null)>-1:(_vm.reply.notify)},on:{"change":function($event){var $$a=_vm.reply.notify,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.reply, "notify", $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.reply, "notify", $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.reply, "notify", $$c)}}}}),_vm._v(" "),_c('label',{attrs:{"for":"new-reply-notify"}},[_vm._v("Notify me of new comments")])]),_vm._v(" "),_c('div',{staticClass:"new-reply-submit"},[_c('button',{attrs:{"disabled":_vm.savingReply},on:{"click":_vm.handleNewReply}},[_vm._v(_vm._s(_vm.savingReply ? "Submitting ..." : "Submit"))])])]):_vm._e(),_vm._v(" "),(_vm.replies.length)?_c('div',{staticClass:"adjacent-posts"},[(_vm.previousPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.previousPosting.postingId } }}},[_vm._v("◄ "),_c('span',[_vm._v("Older")])])],1):_vm._e(),_vm._v(" "),(_vm.randomPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.randomPosting.postingId } }}},[_vm._v("? "),_c('span',[_vm._v("Random")])])],1):_vm._e(),_vm._v(" "),(_vm.nextPosting)?_c('span',[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: _vm.nextPosting.postingId } }}},[_c('span',[_vm._v("Newer")]),_vm._v(" ►")])],1):_vm._e()]):_vm._e()],1):_vm._e()}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -14815,8 +14817,18 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"services/archive_service":45,"services/blog_service":46,"services/cookies_service":47,"services/global_service":49,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],42:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 5, stdin */\n#postings #main-search-form {\n  margin-bottom: 30px; }\n\n/* line 9, stdin */\n#postings .teletran-container {\n  margin-bottom: 30px; }")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 5, stdin */\n#postings #main-search-form {\n  margin-bottom: 30px; }\n  /* line 9, stdin */\n  #postings #main-search-form #main-search-input input, #postings #main-search-form #main-search-input select {\n    margin: 0 5px 10px; }\n    /* line 12, stdin */\n    #postings #main-search-form #main-search-input input[type=\"submit\"], #postings #main-search-form #main-search-input select[type=\"submit\"] {\n      width: 100px; }\n\n/* line 19, stdin */\n#postings .teletran-container {\n  margin-bottom: 30px; }")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14967,6 +14979,8 @@ module.exports = {
 
     init: function() {
       vm.totalTransformers = null;
+      vm.transformersReady = false;
+      vm.postingsReady = false;
 
       vm.parseQuery().then(() => {
         vm.setPageTitle();
@@ -15311,7 +15325,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-370a9822", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-370a9822", __vue__options__)
+    hotAPI.reload("data-v-370a9822", __vue__options__)
   }
 })()}
 },{"components/archive/partials/teletran_entry":22,"services/archive_service":45,"services/blog_service":46,"services/global_service":49,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],43:[function(require,module,exports){

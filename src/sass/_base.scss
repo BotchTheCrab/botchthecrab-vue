@@ -24,7 +24,7 @@ html {
 body {
 	text-align: center;
 	margin: 0 0 50px;
-	font-size: 10pt;
+	font-size: 11pt;
   @include background-gradient($color-background-start, $color-background-end-neutral);
 
 	&.autobot {
@@ -93,9 +93,9 @@ a:hover {
 	text-decoration: underline;
 	color: $color-link-default;
 
-	// experimental
-	text-decoration-skip: ink;
-	-webkit-text-decoration-skip: skip;
+	@media (hover: none) {
+		text-decoration:: none;
+	}
 }
 
 
