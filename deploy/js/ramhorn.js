@@ -10948,20 +10948,13 @@ module.exports = {
     getBoxArtHistory: function() {
 
       var boxArtUrl = "https://tfwiki.net/w2/index.php?title=Package_art&action=render";
-
-      // https://medium.com/bridgedxyz/cors-anywhere-for-everyone-free-reliable-cors-proxy-service-73507192714e
-      var corsProxy = "https://cors.bridged.cc/";
+      var corsProxy = "https://api.allorigins.win/get?url=";
 
       var vm = this;
 
-      $.ajax({
-        type: 'get',
-        url: corsProxy + boxArtUrl,
-        beforeSend: function(request) {
-          request.setRequestHeader("Origin", 'bridged.xyz');
-        },
-        dataType: 'html',
-        success: function(markup) {
+      $.getJSON(corsProxy + encodeURIComponent(boxArtUrl), function (data) {
+          var markup = data && data.contents;
+
           var startingIndexMarker = '</center>';
           var startingIndex = markup.indexOf(startingIndexMarker) + startingIndexMarker.length;
           var endingIndexMarker = '<h3> <span class="mw-headline" id="Generation_2">Generation 2</span></h3>';
@@ -11002,16 +10995,14 @@ module.exports = {
           );
 
           vm.parsedHistoryMarkup = historyMarkup;
-        },
-        error: function(xhr, status) {
-          console.log('FAILURE!');
-          console.log({
-            xhr: xhr,
-            status: status
-          });
+      })
+      .fail(function(error) {
+        console.log('FAILURE!');
+        console.log({
+          error: error
+        });
 
-          vm.parsedHistoryMarkup = '<div class="load-error">There was an error loading box art history.</div>';
-        }
+        vm.parsedHistoryMarkup = '<div class="load-error">There was an error loading box art history.</div>';
       });
 
     }
@@ -11025,7 +11016,7 @@ if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
 __vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid",attrs:{"id":"Reinforcements"}},[_c('archive-header'),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('div',{attrs:{"id":"history-import"},domProps:{"innerHTML":_vm._s(_vm.parsedHistoryMarkup)}}),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._m(2)],1)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"teletran-header"},[_c('span',{staticClass:"teletran-header-neutral"},[_vm._v("Box Art History")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"history-credits"},[_c('div',[_c('b',[_vm._v("What now?")])]),_vm._v(" "),_c('div',[_vm._v("• Start browsing Generation One box art with either the heroic "),_c('a',{attrs:{"href":"#/archive/teletran/autobot"}},[_c('b',[_vm._v("Autobots")])]),_vm._v(" or the evil "),_c('a',{attrs:{"href":"#/archive/teletran/decepticon"}},[_c('b',[_vm._v("Decepticons")])]),_vm._v("!")]),_vm._v(" "),_c('div',[_vm._v("• Continue reading about box art "),_c('i',[_vm._v("after")]),_vm._v(" Generation One by visiting the "),_c('a',{attrs:{"href":"http://tfwiki.net/wiki/Package_art","target":"tfwiki"}},[_vm._v("Package Art")]),_vm._v(" page of "),_c('a',{attrs:{"href":"http://tfwiki.net/","target":"tfwiki"}},[_vm._v("TFWiki.net")]),_vm._v(".")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"history-credits"},[_vm._v("\n\t\tThe contents of this page are scraped in real time from the "),_c('a',{attrs:{"href":"http://tfwiki.net/wiki/Package_art","target":"tfwiki"}},[_vm._v("Package Art")]),_vm._v(" article of the incredible "),_c('a',{attrs:{"href":"http://tfwiki.net/","target":"tfwiki"}},[_vm._v("TFWiki.net")]),_vm._v("."),_c('br'),_vm._v("\n\t\tSpecial thanks to "),_c('a',{attrs:{"href":"http://deriksmith.livejournal.com/","target":"derik"}},[_c('b',[_vm._v("Derik in Minnesota")])]),_vm._v(", a web developer who blogs about content licensing, Transformers and other crazy stuff."),_c('br')])}]
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"teletran-header"},[_c('span',{staticClass:"teletran-header-neutral"},[_vm._v("Box Art History")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"history-credits"},[_c('div',[_c('b',[_vm._v("What now?")])]),_vm._v(" "),_c('div',[_vm._v("• Start browsing Generation One box art with either the heroic "),_c('a',{attrs:{"href":"#/archive/teletran/autobot"}},[_c('b',[_vm._v("Autobots")])]),_vm._v(" or the evil "),_c('a',{attrs:{"href":"#/archive/teletran/decepticon"}},[_c('b',[_vm._v("Decepticons")])]),_vm._v("!")]),_vm._v(" "),_c('div',[_vm._v("• Continue reading about box art "),_c('i',[_vm._v("after")]),_vm._v(" Generation One by visiting the "),_c('a',{attrs:{"href":"http://tfwiki.net/wiki/Package_art","target":"tfwiki"}},[_vm._v("Package Art")]),_vm._v(" page of "),_c('a',{attrs:{"href":"http://tfwiki.net/","target":"tfwiki"}},[_vm._v("TFWiki.net")]),_vm._v(".")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"history-credits"},[_vm._v("\n\t\tThe contents of this page are scraped in real time from the "),_c('a',{attrs:{"href":"http://tfwiki.net/wiki/Package_art","target":"tfwiki"}},[_vm._v("Package Art")]),_vm._v(" article of the incredible "),_c('a',{attrs:{"href":"http://tfwiki.net/","target":"tfwiki"}},[_vm._v("TFWiki.net")]),_vm._v(" via "),_c('a',{attrs:{"href":"https://allorigins.win/","target":"allorigins"}},[_vm._v("allorigins.win")]),_vm._v("."),_c('br'),_vm._v("\n\t\tSpecial thanks to "),_c('a',{attrs:{"href":"http://deriksmith.livejournal.com/","target":"derik"}},[_c('b',[_vm._v("Derik in Minnesota")])]),_vm._v(", a web developer who blogs about content licensing, Transformers and other crazy stuff."),_c('br')])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -11034,7 +11025,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-30b74439", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-30b74439", __vue__options__)
+    hotAPI.reload("data-v-30b74439", __vue__options__)
   }
 })()}
 },{"components/archive/partials/archive_header":20,"components/archive/partials/teletran_entry":22,"services/global_service":49,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],19:[function(require,module,exports){
@@ -15325,7 +15316,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-370a9822", __vue__options__)
   } else {
-    hotAPI.reload("data-v-370a9822", __vue__options__)
+    hotAPI.rerender("data-v-370a9822", __vue__options__)
   }
 })()}
 },{"components/archive/partials/teletran_entry":22,"services/archive_service":45,"services/blog_service":46,"services/global_service":49,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],43:[function(require,module,exports){
