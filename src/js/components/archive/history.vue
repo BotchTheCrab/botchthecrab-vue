@@ -101,7 +101,7 @@
   	</div>
 
   	<div class="history-credits">
-  		The contents of this page are scraped in real time from the <a href="http://tfwiki.net/wiki/Package_art" target="tfwiki">Package Art</a> article of the incredible <a href="http://tfwiki.net/" target="tfwiki">TFWiki.net</a>.<br />
+  		The contents of this page are scraped in real time from the <a href="http://tfwiki.net/wiki/Package_art" target="tfwiki">Package Art</a> article of the incredible <a href="http://tfwiki.net/" target="tfwiki">TFWiki.net</a> via <a href="https://allorigins.win/" target="allorigins">allorigins.win</a>.<br />
   		Special thanks to <a href="http://deriksmith.livejournal.com/" target="derik"><b>Derik in Minnesota</b></a>, a web developer who blogs about content licensing, Transformers and other crazy stuff.<br />
   	</div>
 
@@ -144,20 +144,13 @@
       getBoxArtHistory: function() {
 
         var boxArtUrl = "https://tfwiki.net/w2/index.php?title=Package_art&action=render";
-
-        // https://medium.com/bridgedxyz/cors-anywhere-for-everyone-free-reliable-cors-proxy-service-73507192714e
-        var corsProxy = "https://cors.bridged.cc/";
+        var corsProxy = "https://api.allorigins.win/get?url=";
 
         var vm = this;
 
-        $.ajax({
-          type: 'get',
-          url: corsProxy + boxArtUrl,
-          beforeSend: function(request) {
-            request.setRequestHeader("Origin", 'bridged.xyz');
-          },
-          dataType: 'html',
-          success: function(markup) {
+        $.getJSON(corsProxy + encodeURIComponent(boxArtUrl), function (data) {
+            var markup = data && data.contents;
+
             var startingIndexMarker = '</center>';
             var startingIndex = markup.indexOf(startingIndexMarker) + startingIndexMarker.length;
             var endingIndexMarker = '<h3> <span class="mw-headline" id="Generation_2">Generation 2</span></h3>';
@@ -198,16 +191,14 @@
             );
 
             vm.parsedHistoryMarkup = historyMarkup;
-          },
-          error: function(xhr, status) {
-            console.log('FAILURE!');
-            console.log({
-              xhr: xhr,
-              status: status
-            });
+        })
+        .fail(function(error) {
+          console.log('FAILURE!');
+          console.log({
+            error: error
+          });
 
-            vm.parsedHistoryMarkup = '<div class="load-error">There was an error loading box art history.</div>';
-          }
+          vm.parsedHistoryMarkup = '<div class="load-error">There was an error loading box art history.</div>';
         });
 
       }

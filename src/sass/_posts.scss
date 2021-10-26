@@ -36,6 +36,32 @@
 	text-shadow: 1px 1px 1px #000;
 }
 
+.post-details {
+	margin-bottom: 8px;
+	text-align: left;
+
+	color: #999;
+	font-size: 0.9em;
+
+	font-variant: small-caps;
+	letter-spacing: 1px;
+
+	label {
+		font-weight: bold;
+	}
+
+	.post-reply-count {
+		a {
+			color: inherit;
+		}
+
+		&::before {
+			content: '•';
+			margin: 0 10px;
+		}
+	}
+}
+
 .post-body-full {
 	clear: both;
 	margin-bottom: 15px;
@@ -94,14 +120,26 @@
 .post-image-left,
 .post-image-right {
 	margin-bottom: 10px;
+
+	.post-body-full & {
+		max-width: 45%;
+	}
 }
 .post-image-left {
 	float: left;
 	margin-right: 25px;
+
+	@media (max-width: $bootstrap-xxs-max) {
+		margin-right: 10px;
+	}
 }
 .post-image-right {
 	float: right;
 	margin-left: 25px;
+
+		@media (max-width: $bootstrap-xxs-max) {
+			margin-left: 10px;
+		}
 }
 
 

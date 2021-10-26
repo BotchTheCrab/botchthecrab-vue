@@ -99,6 +99,10 @@
         // <router-link v-bind:to="{ name: 'posting', params: { postingId: posting.postingId } }">{{ posting.title }}</router-link>
       </div>
 
+      <div class="post-details">
+        <span class="post-timestamp"><label>Posted:</label> {{ formatPosted(posting.posted) }}</span><span class="post-reply-count" v-if="posting.replyCount > 0"><router-link v-bind:to="{ name: 'posting', params: { postingId: posting.postingId, scrollTo: 'replies' } }">{{ posting.replyCount }} {{ posting.replyCount === 1 ? "Reply" : "Replies" }}</router-link></span>
+      </div>
+
       <div class="post-body-full" v-html="posting.blurb"></div>
 
       <p class="post-body-trimmed" v-if="posting.blurb.length !== posting.content.length">
@@ -139,7 +143,7 @@
 
     beforeMount() {
       vm = this;
-      this.getPostingsStore();
+      this.initHome();
     },
 
     mounted() {
@@ -148,11 +152,35 @@
 
     methods: {
 
-      getPostingsStore: function() {
-        blogService.getAllPostings().then(function(response) {
-          postingsStore = _.sortBy(response.val(), 'posted').reverse();
+      initHome: function() {
+
+        var postingsRequest = $.Deferred(function(deferred) {
+          blogService.getAllPostings().then(function(postingsSnapshot) {
+            deferred.resolve(postingsSnapshot.val());
+          });
+        }).promise();
+
+        var repliesRequest = $.Deferred(function(deferred) {
+          blogService.getAllReplies().then(function(repliesSnapshot) {
+            deferred.resolve(repliesSnapshot.val());
+          });
+        }).promise();
+
+        $.when(postingsRequest, repliesRequest).done(function(postingsResponse, repliesResponse) {
+          postingsStore = _.sortBy(postingsResponse, 'posted').reverse();
+
+          repliesStore = _.groupBy(repliesResponse, 'postingId');
+
+          _.each(repliesStore, function(reply, postingId) {
+            var matchingPosting = _.findWhere(postingsStore, { postingId: Number(postingId) });
+            if (matchingPosting) {
+              matchingPosting.replyCount = reply.length;
+            }
+          });
+
           vm.loadInitialPostings();
         });
+
       },
 
       loadInitialPostings: function() {
@@ -178,6 +206,10 @@
           vm.postings.push(posting);
         });
         numPostingsDisplayed = newPostingTally;
+      },
+
+      formatPosted: function(posted) {
+        return globalService.formatPosted(posted);
       },
 
       submitSearch: function() {

@@ -3,6 +3,7 @@ module.exports = {
   setBodyClass: setBodyClass,
   setOfficeDocumentTitle: setOfficeDocumentTitle,
   setArchiveDocumentTitle: setArchiveDocumentTitle,
+  formatPosted: formatPosted,
 	scrollTop: scrollTop
 };
 
@@ -27,6 +28,19 @@ function setOfficeDocumentTitle(pageTitle) {
 
 function setArchiveDocumentTitle(pageTitle) {
   document.title = "Botch's Transformers Box Art Archive" + (pageTitle ? " - " + pageTitle : "");
+}
+
+function formatPosted(posted) {
+  var timestampParts = posted.split(' ');
+  var datePart = timestampParts[0];
+  var timePart = timestampParts[1]
+  if (timePart === '00:00:00') {
+    timePart = '';
+  } else {
+    timePart = timePart.substring(0,5);
+  }
+
+  return datePart + ' ' + timePart;
 }
 
 /* animated scroll to the top */

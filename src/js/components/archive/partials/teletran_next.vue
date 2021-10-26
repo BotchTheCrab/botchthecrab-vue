@@ -17,9 +17,6 @@
 
 <script>
 
-  // GLOBAL COMPONENTS
-  // var globalService = require('services/global_service');
-
   // ARCHIVE COMPONENTS
   var archiveService = require('services/archive_service');
 

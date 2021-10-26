@@ -4,6 +4,16 @@
 
     #main-search-form {
       margin-bottom: 30px;
+
+      #main-search-input {
+        input, select {
+          margin: 0 5px 10px;
+
+          &[type="submit"] {
+            width: 100px;
+          }
+        }
+      }
     }
 
     .teletran-container {
@@ -35,31 +45,37 @@
 
   	</form>
 
-    <div v-if="!pageReady">Loading ...</div>
-
 
     <!-- ARCHIVE RESULTS -->
 
-    <div class="page-subheader" v-if="query.search && pageReady">Transformers Box Art Results ...</div>
+    <div class="page-subheader" v-if="query.search">Transformers Box Art Results ...</div>
 
-    <div v-if="pageReady && query.search && transformers.length === 0">No matching Transformers</div>
+    <div v-if="!transformersReady">Loading ...</div>
+
+    <div v-if="transformersReady && query.search && transformers.length === 0">No matching Transformers</div>
 
     <div class="teletran-container teletran-container-search" v-cloak>
       <teletran-entry v-for="entry in transformers" v-bind:entry="entry" v-bind:key="entry.transformerId"></teletran-entry>
-      <div class="teletran-load-more" v-if="transformers.length < totalTransformers" v-on:click="loadAllTransformers">Load All Matching Transformers</div>
+      <div class="teletran-load-more" v-if="totalTransformers && transformers.length < totalTransformers" v-on:click="loadAllTransformers">Load All Matching Transformers</div>
     </div>
 
 
 
     <!-- POSTINGS -->
 
-    <div class="page-subheader" v-if="query.search && pageReady">Postings ...</div>
+    <div class="page-subheader" v-if="query.search">Postings ...</div>
 
-    <div v-if="pageReady && query.search && postings.length === 0">No matching posts</div>
+    <div v-if="!postingsReady">Loading ...</div>
+
+    <div v-if="postingsReady && query.search && postings.length === 0">No matching posts</div>
 
     <div class="post-blurb" v-for="posting in postings" v-bind:key="posting.postingId" v-bind:post-id="posting.postingId">
       <div class="post-title-full">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: posting.postingId } }">{{ posting.title }}</router-link>
+      </div>
+
+      <div class="post-details">
+        <span class="post-timestamp"><label>Posted:</label> {{ formatPosted(posting.posted) }}</span><span class="post-reply-count" v-if="posting.replyCount > 0"><router-link v-bind:to="{ name: 'posting', params: { postingId: posting.postingId, scrollTo: 'replies' } }">{{ posting.replyCount }} {{ posting.replyCount === 1 ? "Reply" : "Replies" }}</router-link></span>
       </div>
 
       <div class="post-body-full" v-html="posting.blurb"></div>
@@ -117,7 +133,8 @@
         postings: [],
         totalPostings: null,
 
-        pageReady: false
+        transformersReady: false,
+        postingsReady: false
       }
     },
 
@@ -140,6 +157,10 @@
     methods: {
 
       init: function() {
+        vm.totalTransformers = null;
+        vm.transformersReady = false;
+        vm.postingsReady = false;
+
         vm.parseQuery().then(() => {
           vm.setPageTitle();
           vm.initTransformers();
@@ -199,7 +220,10 @@
 
         var searchTerm = (vm.query.search || '').toLowerCase();
 
-        if (!searchTerm) { return; }
+        if (!searchTerm) {
+          vm.transformersReady = true;
+          return;
+        }
 
         var getMatching = function(snapshot) {
           return _.filter(snapshot.val(), transformer => {
@@ -243,7 +267,7 @@
           });
         }).promise();
 
-        $.when(
+        return $.when(
           usaRequest,
           micromastersRequest,
           actionMastersRequest,
@@ -269,8 +293,7 @@
 
           vm.loadInitialTransformers();
 
-          vm.pageReady = true;
-
+          vm.transformersReady = true;
         });
 
       },
@@ -299,33 +322,46 @@
 
         var queryKeys = _.keys(vm.query);
 
-        if (queryKeys.length) {
+        if (vm.query && (vm.query.search || vm.query.tagId)) {
 
-          vm.getPostingsStore().then(() => {
+          var postingsRequest = $.Deferred(function(deferred) {
+            blogService.getAllPostings().then(function(postingsSnapshot) {
+              deferred.resolve(postingsSnapshot.val());
+            });
+          }).promise();
+
+          var repliesRequest = $.Deferred(function(deferred) {
+            blogService.getAllReplies().then(function(repliesSnapshot) {
+              deferred.resolve(repliesSnapshot.val());
+            });
+          }).promise();
+
+          $.when(postingsRequest, repliesRequest).done(function(postingsResponse, repliesResponse) {
+            postingsStore = _.sortBy(postingsResponse, 'posted').reverse();
+            repliesStore = _.groupBy(repliesResponse, 'postingId');
+
+            _.each(repliesStore, function(replyStore, postingId) {
+              var matchingPosting = _.findWhere(postingsStore, { postingId: Number(postingId) });
+              if (matchingPosting) {
+                matchingPosting.replyCount = replyStore.length;
+              }
+            });
 
             vm.filterPostings();
-            // vm.setPageTitle();
             vm.loadInitialPostings();
 
-            vm.pageReady = true;
-
+            vm.postingsReady = true;
           });
 
         } else {
 
-          vm.pageReady = true;
+          vm.postingsReady = true;
 
           window.setTimeout(() => {
             $('#keywords').focus();
           }, 500);
         }
 
-      },
-
-      getPostingsStore: function() {
-        return blogService.getAllPostings().then(function(response) {
-          postingsStore = _.sortBy(response.val(), 'posted').reverse();
-        });
       },
 
       filterPostings: function() {
@@ -433,6 +469,10 @@
           vm.postings.push(posting);
         });
         numPostingsDisplayed = newPostingTally;
+      },
+
+      formatPosted: function(posted) {
+        return globalService.formatPosted(posted);
       },
 
       submitSearch: function() {
