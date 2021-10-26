@@ -11025,7 +11025,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-30b74439", __vue__options__)
   } else {
-    hotAPI.reload("data-v-30b74439", __vue__options__)
+    hotAPI.rerender("data-v-30b74439", __vue__options__)
   }
 })()}
 },{"components/archive/partials/archive_header":20,"components/archive/partials/teletran_entry":22,"services/global_service":49,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],19:[function(require,module,exports){
