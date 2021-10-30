@@ -12439,8 +12439,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"components/archive/partials/archive_header":20,"services/archive_service":46,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],28:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 3, stdin */\n.teletran-sort {\n  margin: 0 auto;\n  width: 400px;\n  border: 1px solid #222;\n  margin-top: 10px;\n  margin-bottom: 20px;\n  text-align: center;\n  padding: 3px 2px;\n  color: #999;\n  font-variant: small-caps; }\n  /* line 15, stdin */\n  .teletran-sort a[selected=\"selected\"] {\n    color: white; }\n    /* line 17, stdin */\n    .teletran-sort a[selected=\"selected\"]:hover {\n      text-decoration: none; }")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 3, stdin */\n.teletran-sort {\n  margin: 0 auto;\n  width: 90%;\n  max-width: 400px;\n  border: 1px solid #222;\n  margin-top: 10px;\n  margin-bottom: 20px;\n  text-align: center;\n  padding: 3px 2px;\n  color: #999;\n  font-variant: small-caps; }\n  /* line 16, stdin */\n  .teletran-sort a[selected=\"selected\"] {\n    color: white; }\n    /* line 18, stdin */\n    .teletran-sort a[selected=\"selected\"]:hover {\n      text-decoration: none; }")
 ;(function(){
+//
 //
 //
 //
@@ -12651,7 +12652,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-72c45c80", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-72c45c80", __vue__options__)
+    hotAPI.reload("data-v-72c45c80", __vue__options__)
   }
 })()}
 },{"components/archive/partials/archive_header":20,"components/archive/partials/teletran_entry":22,"components/archive/partials/teletran_header":23,"components/archive/partials/teletran_next":24,"services/archive_service":46,"services/cookies_service":48,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],29:[function(require,module,exports){

@@ -2,7 +2,8 @@
 
   .teletran-sort {
     margin: 0 auto;
-    width: 400px;
+    width: 90%;
+    max-width: 400px;
     border: 1px solid #222;
     margin-top: 10px;
     margin-bottom: 20px;
