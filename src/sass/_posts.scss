@@ -120,10 +120,7 @@
 .post-image-left,
 .post-image-right {
 	margin-bottom: 10px;
-
-	.post-body-full & {
-		max-width: 45%;
-	}
+	max-width: 45%;
 }
 .post-image-left {
 	float: left;

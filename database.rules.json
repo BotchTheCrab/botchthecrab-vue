@@ -11,7 +11,32 @@
       },
       "postings": {
         ".read": true,
-        ".write": false
+        ".write": false,
+        "$postingId": {
+          ".write": "data.val() === null && auth.uid === 'MFgm06l3FVe37AE8Vv5Q24D8jZr2'",
+          ".validate": "newData.hasChildren(['postingId', 'posted', 'title', 'content', 'allowReplies', 'categoryIds', 'tagIds'])",
+          "postingId": {
+            ".validate": "newData.isNumber()"
+          },
+          "posted": {
+            ".validate": "newData.val().matches(/^\\d{4}\\-\\d{2}\\-\\d{2} \\d{2}:\\d{2}:\\d{2}$/)"
+          },
+          "title": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "content": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "allowReplies": {
+            ".validate": "newData.isBoolean()"
+          },
+          "categoryIds": {
+            ".validate": "newData.val() !== null"
+          },
+          "tagIds": {
+            ".validate": "newData.val() !== null"
+          }
+        }
       },
       "replies": {
         ".read": true,
