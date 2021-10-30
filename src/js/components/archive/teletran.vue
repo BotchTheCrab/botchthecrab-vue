@@ -1,5 +1,25 @@
-<style>
-  /* */
+<style lang="scss">
+
+  .teletran-sort {
+    margin: 0 auto;
+    width: 400px;
+    border: 1px solid #222;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 3px 2px;
+
+    color: #999;
+    font-variant: small-caps;
+
+    a[selected="selected"] {
+      color: white;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
 </style>
 
 <template>
@@ -9,6 +29,8 @@
     <archive-header></archive-header>
 
     <teletran-header v-bind:faction="faction" v-bind:year="year"></teletran-header>
+
+    <div class="teletran-sort" v-if="year === 'japan'"><label>Sort By:</label> <a v-on:click="updateSort('releaseId')" v-bind:selected="japanSortMethod === 'releaseId'">Release Number</a> | <a v-on:click="updateSort('name')" v-bind:selected="japanSortMethod === 'name'">Name</a></div>
 
     <div id="teletran-container" v-bind:class="containerClass" v-cloak>
       <teletran-entry v-for="entry in transformers" v-bind:entry="entry" v-bind:key="entry.transformerId" v-show="!loading"></teletran-entry>
@@ -23,6 +45,7 @@
 
   // GLOBAL COMPONENTS
   var globalService = require('services/global_service');
+  var cookiesService = require('services/cookies_service');
 
   // ARCHIVE COMPONENTS
   var archiveService = require('services/archive_service');
@@ -33,6 +56,8 @@
   // TELETRAN (PAGE) COMPONENTS
   var TeletranNextVue = require('components/archive/partials/teletran_next');
 
+  var vm;
+
   module.exports = {
 
     data () {
@@ -42,6 +67,7 @@
         displayFaction: null,
         displayYear: null,
         transformers: [],
+        japanSortMethod: 'releaseId',
         loading: true
       }
     },
@@ -54,7 +80,8 @@
     },
 
     beforeMount() {
-      this.updateState();
+      vm = this;
+      vm.updateState();
     },
 
     watch: {
@@ -69,8 +96,6 @@
     methods: {
 
       updateState: function() {
-        var vm = this;
-
         vm.loading = true;
 
         _.extend(this, {
@@ -90,12 +115,6 @@
         });
 
         this.updateTitle();
-
-        // set body class
-        // var factionClass = archiveService.getFactionClass(this.displayFaction);
-        // globalService.setBodyClass(factionClass);
-
-        // var vm = this;
 
         var dataReference = 'transformers_usa';
         if (this.year === 'action_masters') {
@@ -122,8 +141,15 @@
 
               return transformer.faction === displayFaction && transformer.year === displayYear;
             })
-            .sortBy('name')
             .value();
+
+          if (vm.year === 'japan') {
+            var japanSort = cookiesService.readCookie('japan-sort') || 'releaseId';
+            filteredTransformers = _.sortBy(filteredTransformers, japanSort);
+            vm.japanSortMethod = japanSort;
+          } else {
+            filteredTransformers = _.sortBy(filteredTransformers, 'name');
+          }
 
           // not a fan of this, but simply resetting the array doesn't update the view
           vm.transformers.splice(filteredTransformers.length);
@@ -137,6 +163,14 @@
           console.error(error);
         });
 
+      },
+
+      updateSort: function(sortMethod) {
+        sortMethod = sortMethod || 'name';
+        vm.transformers = _.sortBy(vm.transformers, sortMethod);
+        vm.japanSortMethod = sortMethod;
+        cookiesService.setCookie('japan-sort', sortMethod);
+        return false;
       },
 
       updateTitle: function() {

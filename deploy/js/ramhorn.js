@@ -12439,8 +12439,30 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"components/archive/partials/archive_header":20,"services/archive_service":46,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],28:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* */")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 3, stdin */\n.teletran-sort {\n  margin: 0 auto;\n  width: 400px;\n  border: 1px solid #222;\n  margin-top: 10px;\n  margin-bottom: 20px;\n  text-align: center;\n  padding: 3px 2px;\n  color: #999;\n  font-variant: small-caps; }\n  /* line 15, stdin */\n  .teletran-sort a[selected=\"selected\"] {\n    color: white; }\n    /* line 17, stdin */\n    .teletran-sort a[selected=\"selected\"]:hover {\n      text-decoration: none; }")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -12466,6 +12488,7 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* */")
 
 // GLOBAL COMPONENTS
 var globalService = require('services/global_service');
+var cookiesService = require('services/cookies_service');
 
 // ARCHIVE COMPONENTS
 var archiveService = require('services/archive_service');
@@ -12476,6 +12499,8 @@ var TeletranEntryVue = require('components/archive/partials/teletran_entry');
 // TELETRAN (PAGE) COMPONENTS
 var TeletranNextVue = require('components/archive/partials/teletran_next');
 
+var vm;
+
 module.exports = {
 
   data () {
@@ -12485,6 +12510,7 @@ module.exports = {
       displayFaction: null,
       displayYear: null,
       transformers: [],
+      japanSortMethod: 'releaseId',
       loading: true
     }
   },
@@ -12497,7 +12523,8 @@ module.exports = {
   },
 
   beforeMount() {
-    this.updateState();
+    vm = this;
+    vm.updateState();
   },
 
   watch: {
@@ -12512,8 +12539,6 @@ module.exports = {
   methods: {
 
     updateState: function() {
-      var vm = this;
-
       vm.loading = true;
 
       _.extend(this, {
@@ -12533,12 +12558,6 @@ module.exports = {
       });
 
       this.updateTitle();
-
-      // set body class
-      // var factionClass = archiveService.getFactionClass(this.displayFaction);
-      // globalService.setBodyClass(factionClass);
-
-      // var vm = this;
 
       var dataReference = 'transformers_usa';
       if (this.year === 'action_masters') {
@@ -12565,8 +12584,15 @@ module.exports = {
 
             return transformer.faction === displayFaction && transformer.year === displayYear;
           })
-          .sortBy('name')
           .value();
+
+        if (vm.year === 'japan') {
+          var japanSort = cookiesService.readCookie('japan-sort') || 'releaseId';
+          filteredTransformers = _.sortBy(filteredTransformers, japanSort);
+          vm.japanSortMethod = japanSort;
+        } else {
+          filteredTransformers = _.sortBy(filteredTransformers, 'name');
+        }
 
         // not a fan of this, but simply resetting the array doesn't update the view
         vm.transformers.splice(filteredTransformers.length);
@@ -12580,6 +12606,14 @@ module.exports = {
         console.error(error);
       });
 
+    },
+
+    updateSort: function(sortMethod) {
+      sortMethod = sortMethod || 'name';
+      vm.transformers = _.sortBy(vm.transformers, sortMethod);
+      vm.japanSortMethod = sortMethod;
+      cookiesService.setCookie('japan-sort', sortMethod);
+      return false;
     },
 
     updateTitle: function() {
@@ -12607,7 +12641,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('archive-header'),_vm._v(" "),_c('teletran-header',{attrs:{"faction":_vm.faction,"year":_vm.year}}),_vm._v(" "),_c('div',{class:_vm.containerClass,attrs:{"id":"teletran-container"}},[_vm._l((_vm.transformers),function(entry){return _c('teletran-entry',{directives:[{name:"show",rawName:"v-show",value:(!_vm.loading),expression:"!loading"}],key:entry.transformerId,attrs:{"entry":entry}})}),_vm._v(" "),_c('teletran-next',{directives:[{name:"show",rawName:"v-show",value:(!_vm.loading),expression:"!loading"}],key:_vm.$route.fullPath,attrs:{"faction":_vm.faction,"year":_vm.year}})],2)],1)}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('archive-header'),_vm._v(" "),_c('teletran-header',{attrs:{"faction":_vm.faction,"year":_vm.year}}),_vm._v(" "),(_vm.year === 'japan')?_c('div',{staticClass:"teletran-sort"},[_c('label',[_vm._v("Sort By:")]),_vm._v(" "),_c('a',{attrs:{"selected":_vm.japanSortMethod === 'releaseId'},on:{"click":function($event){return _vm.updateSort('releaseId')}}},[_vm._v("Release Number")]),_vm._v(" | "),_c('a',{attrs:{"selected":_vm.japanSortMethod === 'name'},on:{"click":function($event){return _vm.updateSort('name')}}},[_vm._v("Name")])]):_vm._e(),_vm._v(" "),_c('div',{class:_vm.containerClass,attrs:{"id":"teletran-container"}},[_vm._l((_vm.transformers),function(entry){return _c('teletran-entry',{directives:[{name:"show",rawName:"v-show",value:(!_vm.loading),expression:"!loading"}],key:entry.transformerId,attrs:{"entry":entry}})}),_vm._v(" "),_c('teletran-next',{directives:[{name:"show",rawName:"v-show",value:(!_vm.loading),expression:"!loading"}],key:_vm.$route.fullPath,attrs:{"faction":_vm.faction,"year":_vm.year}})],2)],1)}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -12620,7 +12654,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.rerender("data-v-72c45c80", __vue__options__)
   }
 })()}
-},{"components/archive/partials/archive_header":20,"components/archive/partials/teletran_entry":22,"components/archive/partials/teletran_header":23,"components/archive/partials/teletran_next":24,"services/archive_service":46,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],29:[function(require,module,exports){
+},{"components/archive/partials/archive_header":20,"components/archive/partials/teletran_entry":22,"components/archive/partials/teletran_header":23,"components/archive/partials/teletran_next":24,"services/archive_service":46,"services/cookies_service":48,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],29:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* */")
 ;(function(){
 //
