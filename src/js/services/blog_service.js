@@ -7,6 +7,7 @@ var allRepliesSnapshot;
 
 module.exports = {
   getAllPostings: getAllPostings,
+  getAllCategories: getAllCategories,
   getAllTags: getAllTags,
   getAllReplies: getAllReplies,
   setPostingBlurbs: setPostingBlurbs,
@@ -25,6 +26,23 @@ function getAllPostings() {
     firebase.database().ref('blog/postings').once('value').then(function(snapshot) {
       allPostingsSnapshot = snapshot;
       deferred.resolve(allPostingsSnapshot);
+    });
+
+  }
+
+  return deferred.promise();
+}
+
+function getAllCategories() {
+  var deferred = $.Deferred();
+
+  if (allCategoriesSnapshot) {
+    deferred.resolve(allCategoriesSnapshot);
+  } else {
+
+    firebase.database().ref('blog/categories').once('value').then(function(snapshot) {
+      allCategoriesSnapshot = snapshot;
+      deferred.resolve(allCategoriesSnapshot);
     });
 
   }
