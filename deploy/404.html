@@ -63,6 +63,12 @@
       if (path.indexOf('/taglist') === 0) {
         redirectHash('/tags');
       }
+      if (path.indexOf('/galleries') === 0) {
+        redirectHash('/galleries');
+      }
+      if (path.indexOf('/misc') === 0) {
+        redirectHash('/archive/reinforcements');
+      }
 
     }
 
@@ -178,6 +184,9 @@
       switch(path) {
         case '/about':
           redirectHash('/about');
+          break;
+        case '/about/contact.asp':
+          redirectHash('/contact');
           break;
         case '/about/adam.asp':
         case '/about/botch.asp':

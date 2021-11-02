@@ -30,7 +30,7 @@
       <div class="faq_A">Nope, I don't have full-package scans.</div>
 
       <div class="faq_Q">That transformation sound is awesome!</div>
-      <div class="faq_A">I agree. You can download it <a href="/archive/images/Transform.zip">here</a>.</div>
+      <div class="faq_A">I agree. You can download it <a href="/archive/sounds/Transform.mp3" target="transform">here</a>.</div>
 
       <div class="faq_Q">Ever going to archive G2?</div>
       <div class="faq_A">Ask me again next year.</div>

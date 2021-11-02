@@ -183,11 +183,11 @@
     },
     {
       text: "FAQ / Contact",
-      link: '#/about/contact'
+      link: '#/contact'
     },
     {
       text: "R&#0233;sum&#0233;",
-      link: '/images/about/adam/adam-alexander-resume-2017.pdf',
+      link: '/images/about/adam/adam-alexander-resume-2021.pdf',
       external: true
     }
   ];

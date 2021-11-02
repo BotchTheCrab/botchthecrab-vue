@@ -12652,7 +12652,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-72c45c80", __vue__options__)
   } else {
-    hotAPI.reload("data-v-72c45c80", __vue__options__)
+    hotAPI.rerender("data-v-72c45c80", __vue__options__)
   }
 })()}
 },{"components/archive/partials/archive_header":20,"components/archive/partials/teletran_entry":22,"components/archive/partials/teletran_header":23,"components/archive/partials/teletran_next":24,"services/archive_service":46,"services/cookies_service":48,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],29:[function(require,module,exports){
@@ -12911,7 +12911,7 @@ if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
 __vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid center-content"},[_c('div',{staticClass:"page-title"},[_vm._v("Frequently Asked Questions")]),_vm._v(" "),_c('div',{staticClass:"about-desc"},[_c('div',{staticClass:"faq_Q"},[_vm._v("Can I use your images?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Sure, it's not like they're really "),_c('i',[_vm._v("mine")]),_vm._v(". If you were to put a link back to my site as a courtesy, that would be appreciated. Alternatively, you could "),_c('a',{attrs:{"href":"/archive/help.asp"}},[_vm._v("submit scans, edit scans or donate funds")]),_vm._v("!")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("I want to make reproduction boxes, do you have scans for…?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Nope, I don't have full-package scans.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("That transformation sound is awesome!")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("I agree. You can download it "),_c('a',{attrs:{"href":"/archive/images/Transform.zip"}},[_vm._v("here")]),_vm._v(".")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("Ever going to archive G2?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Ask me again next year.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("What about Machine Wars, Beast Wars, Armada, etc.?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Very unlikely. But you never know.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("Can you link to my site?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("If you contribute to this site, I will gladly mention or link to your site in the post that describes that update. Otherwise, probably not.")])]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"page-title"},[_vm._v("Contact")]),_vm._v(" "),_c('div',{staticClass:"about-desc"},[_c('p',[_vm._v("For all other questions, comments, scorn or heapings of praise:")]),_vm._v(" "),_c('p',[_c('a',{attrs:{"href":"mailto:Botch@BotchTheCrab.com"}},[_c('b',[_vm._v("Botch@BotchTheCrab.com")])])])]),_vm._v(" "),_c('div',{staticStyle:{"margin-top":"50px"}},[_c('img',{attrs:{"src":"/images/menu_botch_trans2.png"}})])])}]
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid center-content"},[_c('div',{staticClass:"page-title"},[_vm._v("Frequently Asked Questions")]),_vm._v(" "),_c('div',{staticClass:"about-desc"},[_c('div',{staticClass:"faq_Q"},[_vm._v("Can I use your images?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Sure, it's not like they're really "),_c('i',[_vm._v("mine")]),_vm._v(". If you were to put a link back to my site as a courtesy, that would be appreciated. Alternatively, you could "),_c('a',{attrs:{"href":"/archive/help.asp"}},[_vm._v("submit scans, edit scans or donate funds")]),_vm._v("!")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("I want to make reproduction boxes, do you have scans for…?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Nope, I don't have full-package scans.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("That transformation sound is awesome!")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("I agree. You can download it "),_c('a',{attrs:{"href":"/archive/sounds/Transform.mp3","target":"transform"}},[_vm._v("here")]),_vm._v(".")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("Ever going to archive G2?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Ask me again next year.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("What about Machine Wars, Beast Wars, Armada, etc.?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Very unlikely. But you never know.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("Can you link to my site?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("If you contribute to this site, I will gladly mention or link to your site in the post that describes that update. Otherwise, probably not.")])]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"page-title"},[_vm._v("Contact")]),_vm._v(" "),_c('div',{staticClass:"about-desc"},[_c('p',[_vm._v("For all other questions, comments, scorn or heapings of praise:")]),_vm._v(" "),_c('p',[_c('a',{attrs:{"href":"mailto:Botch@BotchTheCrab.com"}},[_c('b',[_vm._v("Botch@BotchTheCrab.com")])])])]),_vm._v(" "),_c('div',{staticStyle:{"margin-top":"50px"}},[_c('img',{attrs:{"src":"/images/menu_botch_trans2.png"}})])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -14425,11 +14425,11 @@ var menuStructure = [
   },
   {
     text: "FAQ / Contact",
-    link: '#/about/contact'
+    link: '#/contact'
   },
   {
     text: "R&#0233;sum&#0233;",
-    link: '/images/about/adam/adam-alexander-resume-2017.pdf',
+    link: '/images/about/adam/adam-alexander-resume-2021.pdf',
     external: true
   }
 ];
