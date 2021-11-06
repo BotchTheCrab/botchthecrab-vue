@@ -11506,7 +11506,7 @@ module.exports = {
 
     imagePath: function() {
       if (this.entry.imageStatus) {
-        return '/#/archive/prisoners';
+        return '/#/contact';
       }
 
       if (this.entry.areMicromasters){
@@ -12882,25 +12882,10 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 
 // GLOBAL COMPONENTS
 var globalService = require('services/global_service');
 
-// BLOG COMPONENTS
-var blogService = require('services/blog_service');
-
-var vm;
-var postingsStore = null;
-var numPostingsDisplayed = 0;
-var numPostingsPerLoad = 5;
-
 module.exports = {
-
-  data () {
-    return {
-
-    }
-  },
 
   mounted() {
     globalService.setOfficeDocumentTitle('FAQ / Contact');
-
   }
 
 };
@@ -12911,7 +12896,7 @@ if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
 __vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid center-content"},[_c('div',{staticClass:"page-title"},[_vm._v("Frequently Asked Questions")]),_vm._v(" "),_c('div',{staticClass:"about-desc"},[_c('div',{staticClass:"faq_Q"},[_vm._v("Can I use your images?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Sure, it's not like they're really "),_c('i',[_vm._v("mine")]),_vm._v(". If you were to put a link back to my site as a courtesy, that would be appreciated. Alternatively, you could "),_c('a',{attrs:{"href":"/archive/help.asp"}},[_vm._v("submit scans, edit scans or donate funds")]),_vm._v("!")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("I want to make reproduction boxes, do you have scans for…?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Nope, I don't have full-package scans.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("That transformation sound is awesome!")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("I agree. You can download it "),_c('a',{attrs:{"href":"/archive/sounds/Transform.mp3","target":"transform"}},[_vm._v("here")]),_vm._v(".")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("Ever going to archive G2?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Ask me again next year.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("What about Machine Wars, Beast Wars, Armada, etc.?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Very unlikely. But you never know.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("Can you link to my site?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("If you contribute to this site, I will gladly mention or link to your site in the post that describes that update. Otherwise, probably not.")])]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"page-title"},[_vm._v("Contact")]),_vm._v(" "),_c('div',{staticClass:"about-desc"},[_c('p',[_vm._v("For all other questions, comments, scorn or heapings of praise:")]),_vm._v(" "),_c('p',[_c('a',{attrs:{"href":"mailto:Botch@BotchTheCrab.com"}},[_c('b',[_vm._v("Botch@BotchTheCrab.com")])])])]),_vm._v(" "),_c('div',{staticStyle:{"margin-top":"50px"}},[_c('img',{attrs:{"src":"/images/menu_botch_trans2.png"}})])])}]
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid center-content"},[_c('div',{staticClass:"page-title"},[_vm._v("Frequently Asked Questions")]),_vm._v(" "),_c('div',{staticClass:"about-desc"},[_c('div',{staticClass:"faq_Q"},[_vm._v("Can I use your images?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Of course! That's what they're here for. If you were to put a link back to this site as a courtesy, however, that would be appreciated.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("What about Generation 2, Machine Wars, Beast Wars, Armada, etc.?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("No plans at this point, but you never know.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("How can I submit scans?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("You can send them to the email address below! Be sure to tell me where they came from.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("I want to make reproduction boxes, do you have scans for…?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("Nope, I don't have full-package scans.")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("That transformation sound is awesome!")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("I agree. You can download it "),_c('a',{attrs:{"href":"/archive/sounds/Transform.mp3","target":"transform"}},[_vm._v("here")]),_vm._v(".")]),_vm._v(" "),_c('div',{staticClass:"faq_Q"},[_vm._v("Can you link to my site?")]),_vm._v(" "),_c('div',{staticClass:"faq_A"},[_vm._v("If you contribute to this site, I will gladly mention or link to your site in the post that describes that update. Otherwise, probably not.")])]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"page-title"},[_vm._v("Contact")]),_vm._v(" "),_c('div',{staticClass:"about-desc"},[_c('p',[_vm._v("For all other questions, comments, scorn or heapings of praise:")]),_vm._v(" "),_c('p',[_c('a',{attrs:{"href":"mailto:Botch@BotchTheCrab.com"}},[_c('b',[_vm._v("Botch@BotchTheCrab.com")])])])]),_vm._v(" "),_c('div',{staticStyle:{"margin-top":"50px"}},[_c('img',{attrs:{"src":"/images/menu_botch_trans2.png"}})])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -12923,7 +12908,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.rerender("data-v-4caa2d92", __vue__options__)
   }
 })()}
-},{"services/blog_service":47,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],31:[function(require,module,exports){
+},{"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],31:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 6, stdin */\n#create-posting .post-title input {\n  background: transparent;\n  border: transparent;\n  font-size: inherit;\n  font-family: inherit;\n  color: inherit; }\n\n/* line 16, stdin */\n#create-posting .post-body-full:not(.editor-loaded) {\n  visibility: hidden;\n  width: 0;\n  height: 0;\n  overflow: hidden; }\n\n/* line 24, stdin */\n#create-posting #create-posting-categories,\n#create-posting #create-posting-tags {\n  min-width: 300px; }\n\n/* line 29, stdin */\n#create-posting .post-footer-item {\n  margin: 20px 0; }\n  /* line 32, stdin */\n  #create-posting .post-footer-item > label {\n    display: inline-block;\n    width: 120px;\n    text-align: right;\n    margin-right: 10px; }\n\n/* line 43, stdin */\nbody.tox-fullscreen #menu_trigger_container,\nbody.tox-fullscreen #footer {\n  display: none; }\n\n/* line 49, stdin */\n.select2 {\n  margin: 0 !important; }\n  /* line 52, stdin */\n  .select2 .select2-selection__rendered,\n  .select2 .select2-selection__rendered * {\n    white-space: normal; }\n  /* line 57, stdin */\n  .select2 .select2-selection__choice__display {\n    color: black; }\n\n/* line 64, stdin */\n.select2-dropdown.create-posting-select2 .select2-results {\n  background-color: black;\n  text-align: left; }\n\n/* line 69, stdin */\n.select2-dropdown.create-posting-select2 .select2-results__option--selected {\n  background-color: #666; }\n\n/* line 74, stdin */\n#create-posting-posted {\n  font-family: Arial;\n  font-weight: normal;\n  width: 300px;\n  min-height: 32px;\n  border: 1px solid #aaa;\n  border-radius: 4px;\n  padding: 0 5px; }")
 ;(function(){
 //

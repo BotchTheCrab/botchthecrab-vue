@@ -71,7 +71,7 @@
 
       imagePath: function() {
         if (this.entry.imageStatus) {
-          return '/#/archive/prisoners';
+          return '/#/contact';
         }
 
         if (this.entry.areMicromasters){

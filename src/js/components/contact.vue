@@ -24,19 +24,19 @@
 
   	<div class="about-desc">
       <div class="faq_Q">Can I use your images?</div>
-      <div class="faq_A">Sure, it's not like they're really <i>mine</i>. If you were to put a link back to my site as a courtesy, that would be appreciated. Alternatively, you could <a href="/archive/help.asp">submit scans, edit scans or donate funds</a>!</div>
+      <div class="faq_A">Of course! That's what they're here for. If you were to put a link back to this site as a courtesy, however, that would be appreciated.</div>
+
+      <div class="faq_Q">What about Generation 2, Machine Wars, Beast Wars, Armada, etc.?</div>
+      <div class="faq_A">No plans at this point, but you never know.</div>
+
+      <div class="faq_Q">How can I submit scans?</div>
+      <div class="faq_A">You can send them to the email address below! Be sure to tell me where they came from.</div>
 
       <div class="faq_Q">I want to make reproduction boxes, do you have scans for&#133;?</div>
       <div class="faq_A">Nope, I don't have full-package scans.</div>
 
       <div class="faq_Q">That transformation sound is awesome!</div>
       <div class="faq_A">I agree. You can download it <a href="/archive/sounds/Transform.mp3" target="transform">here</a>.</div>
-
-      <div class="faq_Q">Ever going to archive G2?</div>
-      <div class="faq_A">Ask me again next year.</div>
-
-      <div class="faq_Q">What about Machine Wars, Beast Wars, Armada, etc.?</div>
-      <div class="faq_A">Very unlikely. But you never know.</div>
 
       <div class="faq_Q">Can you link to my site?</div>
       <div class="faq_A">If you contribute to this site, I will gladly mention or link to your site in the post that describes that update. Otherwise, probably not.</div>
@@ -48,7 +48,7 @@
   	<!-- PAGE TITLE -->
   	<div class="page-title">Contact</div>
 
-  	<div class="about-desc" style="">
+    <div class="about-desc">
   		<p>For all other questions, comments, scorn or heapings of praise:</p>
   		<p><a href="mailto:Botch@BotchTheCrab.com"><b>Botch@BotchTheCrab.com</b></a></p>
   	</div>
@@ -65,25 +65,10 @@
   // GLOBAL COMPONENTS
   var globalService = require('services/global_service');
 
-  // BLOG COMPONENTS
-  var blogService = require('services/blog_service');
-
-  var vm;
-  var postingsStore = null;
-  var numPostingsDisplayed = 0;
-  var numPostingsPerLoad = 5;
-
   module.exports = {
-
-    data () {
-      return {
-
-      }
-    },
 
     mounted() {
       globalService.setOfficeDocumentTitle('FAQ / Contact');
-
     }
 
   };
