@@ -16,8 +16,7 @@ var fancyBoxDefaults = {
 var fancyBoxSwipeInitialized = false;
 
 module.exports = {
-  fancyBoxSwipeInitialized: fancyBoxSwipeInitialized,
-  initFancyBoxSwipe: initFancyBoxSwipe,
+  // initFancyBoxSwipe: initFancyBoxSwipe,
   buildFancyboxPopIcon: buildFancyboxPopIcon,
   initFancyBox: initFancyBox,
   openBoxArt: openBoxArt,
@@ -28,12 +27,11 @@ module.exports = {
 
 ////////////
 
-function initFancyBoxSwipe() {
+/* function initFancyBoxSwipe() {
   if (!fancyBoxSwipeInitialized) {
-
     fancyBoxSwipeInitialized = true;
 
-    $('body').swipe({
+    $('body').on('swipe', {
       swipeLeft:function(event, direction, distance, duration, fingerCount){
         $('.fancybox-next').trigger('click');
       },
@@ -44,7 +42,12 @@ function initFancyBoxSwipe() {
     });
 
   }
-}
+} */
+
+/* function clearFancyBoxSwipe() {
+  $('body').off('swipe');
+  fancyBoxSwipeInitialized = false;
+} */
 
 function buildFancyboxPopIcon(href) {
   return '<div class="fancybox-download" title="open image in new window">' +
@@ -85,7 +88,7 @@ function initFancyBox() {
         this.title += links;
       }
     },
-    afterLoad: initFancyBoxSwipe
+    // afterLoad: initFancyBoxSwipe
   }, fancyBoxDefaults));
 
   // techspecs
@@ -109,7 +112,7 @@ function initFancyBox() {
         this.title += links;
       }
     },
-    afterLoad: initFancyBoxSwipe
+    // afterLoad: initFancyBoxSwipe
   }, fancyBoxDefaults));
 
   // instructions
@@ -133,7 +136,7 @@ function initFancyBox() {
         this.title += links;
       }
     },
-    afterLoad: initFancyBoxSwipe
+    // afterLoad: initFancyBoxSwipe
   }, fancyBoxDefaults));
 
 }
@@ -169,7 +172,7 @@ function openInstructions(character) {
 }
 
 // open single image
-function openImage(imgSrc, imgName) {
+function openImage(imgName, imgSrc) {
   $.fancybox.open([{
     href : imgSrc,
     title : buildFancyboxPopIcon(imgSrc) + imgName

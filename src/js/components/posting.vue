@@ -274,6 +274,7 @@
   // GLOBAL COMPONENTS
   var globalService = require('services/global_service');
   var cookiesService = require('services/cookies_service');
+  var fancyboxService = require('services/fancybox_service');
 
   // BLOG COMPONENTS
   var blogService = require('services/blog_service');
@@ -287,6 +288,7 @@
   var repliesStore = null;
 
   window.tf = archiveService.tf;
+  window.decode = fancyboxService.openImage;
 
   const $openGraphMetaTag = $('meta[property="og:image"]');
 

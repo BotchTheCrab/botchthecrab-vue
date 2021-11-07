@@ -88,7 +88,7 @@ function tf(tfName, tfFaction, tfSub, tfTeam) {
   }
 
   if (imgSrc) {
-    fancyboxService.openImage(imgSrc, tfName);
+    fancyboxService.openImage(tfName, imgSrc);
   }
   return false;
 }

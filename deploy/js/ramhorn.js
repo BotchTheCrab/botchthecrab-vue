@@ -13050,6 +13050,17 @@ var vm;
 
 var $head = document.getElementsByTagName('head')[0];
 
+function sortBySelectionOrder(event) {
+  var element = event.params.data.element;
+  var $element = $(element);
+  $element.detach();
+  $(this).append($element);
+  $(this).trigger("change");
+
+  // clear text search field
+  $('.select2-search__field').val('');
+}
+
 
 module.exports = {
 
@@ -13115,8 +13126,15 @@ module.exports = {
         var tinymceOptions = {
           selector: '#create-posting-content',
           plugins: 'image code lists charmap fullscreen media link',
+
+          allow_script_urls: true,
+          allow_unsafe_link_target: true,
+          browser_spellcheck: true,
+          extended_valid_elements: 'a[href|target|onclick|class|style]',
+
           toolbar1: 'bold italic underline strikethrough | aligncenter | outdent indent | numlist bullist',
           toolbar2: 'charmap | fullscreen | image media link | code',
+
           skin: 'oxide-dark',
           content_css: 'dark, /css/cassette.css',
           content_style: 'body { text-align: left; margin: 10px; }'
@@ -13152,7 +13170,7 @@ module.exports = {
           data: categoryData,
           closeOnSelect: false,
           dropdownCssClass: 'create-posting-select2'
-        });
+        }).on('select2:select', sortBySelectionOrder);
       });
 
       var allTagsRequest = vm.getAllTags().then(function(response) {
@@ -13168,7 +13186,8 @@ module.exports = {
           data: tagData,
           closeOnSelect: false,
           dropdownCssClass: 'create-posting-select2'
-        });
+        }).on('select2:select', sortBySelectionOrder);
+
       });
 
     },
@@ -13186,7 +13205,8 @@ module.exports = {
     },
 
     getContent: function() {
-      vm.posting.content = vm.tinymce.activeEditor.getContent();
+
+      vm.posting.content = vm.tinymce.activeEditor.getContent().replace('\n', '').replace(/\n/g, '');
 
       var postTime = $('#create-posting-posted').val();
       if (postTime) {
@@ -13237,13 +13257,16 @@ module.exports = {
         posting.postingId = nextPostingId;
 
         var postingUpdate = {};
-        postingUpdate['blog/postings/' + (nextPostingId - 1)] = posting;
+        postingUpdate['blog/postings/' + nextEntryIndex] = posting;
 
         return firebase.database().ref().update(postingUpdate).then(function(response) {
           window.alert("Your posting was successfully submitted!");
 
-          vm.$router.push({
-            path: '/'
+          // refresh postings and redirect to home page
+          blogService.getAllPostings(true).then(function() {
+            vm.$router.push({
+              path: '/'
+            });
           });
 
         }, function(error) {
@@ -14966,6 +14989,7 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 
 // GLOBAL COMPONENTS
 var globalService = require('services/global_service');
 var cookiesService = require('services/cookies_service');
+var fancyboxService = require('services/fancybox_service');
 
 // BLOG COMPONENTS
 var blogService = require('services/blog_service');
@@ -14979,6 +15003,7 @@ var tagsStore = null;
 var repliesStore = null;
 
 window.tf = archiveService.tf;
+window.decode = fancyboxService.openImage;
 
 const $openGraphMetaTag = $('meta[property="og:image"]');
 
@@ -15196,7 +15221,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.rerender("data-v-7add63b4", __vue__options__)
   }
 })()}
-},{"services/archive_service":46,"services/blog_service":47,"services/cookies_service":48,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],43:[function(require,module,exports){
+},{"services/archive_service":46,"services/blog_service":47,"services/cookies_service":48,"services/fancybox_service":49,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],43:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 5, stdin */\n#postings #main-search-form {\n  margin-bottom: 30px; }\n  /* line 9, stdin */\n  #postings #main-search-form #main-search-input input, #postings #main-search-form #main-search-input select {\n    margin: 0 5px 10px; }\n    /* line 12, stdin */\n    #postings #main-search-form #main-search-input input[type=\"submit\"], #postings #main-search-form #main-search-input select[type=\"submit\"] {\n      width: 100px; }\n\n/* line 19, stdin */\n#postings .teletran-container {\n  margin-bottom: 30px; }")
 ;(function(){
 //
@@ -16061,7 +16086,7 @@ function tf(tfName, tfFaction, tfSub, tfTeam) {
   }
 
   if (imgSrc) {
-    fancyboxService.openImage(imgSrc, tfName);
+    fancyboxService.openImage(tfName, imgSrc);
   }
   return false;
 }
@@ -16085,10 +16110,10 @@ module.exports = {
 
 ////////////
 
-function getAllPostings() {
+function getAllPostings(refresh) {
   var deferred = $.Deferred();
 
-  if (allPostingsSnapshot) {
+  if (allPostingsSnapshot && !refresh) {
     deferred.resolve(allPostingsSnapshot);
   } else {
 
@@ -16369,8 +16394,7 @@ var fancyBoxDefaults = {
 var fancyBoxSwipeInitialized = false;
 
 module.exports = {
-  fancyBoxSwipeInitialized: fancyBoxSwipeInitialized,
-  initFancyBoxSwipe: initFancyBoxSwipe,
+  // initFancyBoxSwipe: initFancyBoxSwipe,
   buildFancyboxPopIcon: buildFancyboxPopIcon,
   initFancyBox: initFancyBox,
   openBoxArt: openBoxArt,
@@ -16381,12 +16405,11 @@ module.exports = {
 
 ////////////
 
-function initFancyBoxSwipe() {
+/* function initFancyBoxSwipe() {
   if (!fancyBoxSwipeInitialized) {
-
     fancyBoxSwipeInitialized = true;
 
-    $('body').swipe({
+    $('body').on('swipe', {
       swipeLeft:function(event, direction, distance, duration, fingerCount){
         $('.fancybox-next').trigger('click');
       },
@@ -16397,7 +16420,12 @@ function initFancyBoxSwipe() {
     });
 
   }
-}
+} */
+
+/* function clearFancyBoxSwipe() {
+  $('body').off('swipe');
+  fancyBoxSwipeInitialized = false;
+} */
 
 function buildFancyboxPopIcon(href) {
   return '<div class="fancybox-download" title="open image in new window">' +
@@ -16438,7 +16466,7 @@ function initFancyBox() {
         this.title += links;
       }
     },
-    afterLoad: initFancyBoxSwipe
+    // afterLoad: initFancyBoxSwipe
   }, fancyBoxDefaults));
 
   // techspecs
@@ -16462,7 +16490,7 @@ function initFancyBox() {
         this.title += links;
       }
     },
-    afterLoad: initFancyBoxSwipe
+    // afterLoad: initFancyBoxSwipe
   }, fancyBoxDefaults));
 
   // instructions
@@ -16486,7 +16514,7 @@ function initFancyBox() {
         this.title += links;
       }
     },
-    afterLoad: initFancyBoxSwipe
+    // afterLoad: initFancyBoxSwipe
   }, fancyBoxDefaults));
 
 }
@@ -16522,7 +16550,7 @@ function openInstructions(character) {
 }
 
 // open single image
-function openImage(imgSrc, imgName) {
+function openImage(imgName, imgSrc) {
   $.fancybox.open([{
     href : imgSrc,
     title : buildFancyboxPopIcon(imgSrc) + imgName

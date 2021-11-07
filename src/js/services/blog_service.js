@@ -16,10 +16,10 @@ module.exports = {
 
 ////////////
 
-function getAllPostings() {
+function getAllPostings(refresh) {
   var deferred = $.Deferred();
 
-  if (allPostingsSnapshot) {
+  if (allPostingsSnapshot && !refresh) {
     deferred.resolve(allPostingsSnapshot);
   } else {
 

@@ -137,6 +137,17 @@
 
   var $head = document.getElementsByTagName('head')[0];
 
+  function sortBySelectionOrder(event) {
+    var element = event.params.data.element;
+    var $element = $(element);
+    $element.detach();
+    $(this).append($element);
+    $(this).trigger("change");
+
+    // clear text search field
+    $('.select2-search__field').val('');
+  }
+
 
   module.exports = {
 
@@ -202,8 +213,15 @@
           var tinymceOptions = {
             selector: '#create-posting-content',
             plugins: 'image code lists charmap fullscreen media link',
+
+            allow_script_urls: true,
+            allow_unsafe_link_target: true,
+            browser_spellcheck: true,
+            extended_valid_elements: 'a[href|target|onclick|class|style]',
+
             toolbar1: 'bold italic underline strikethrough | aligncenter | outdent indent | numlist bullist',
             toolbar2: 'charmap | fullscreen | image media link | code',
+
             skin: 'oxide-dark',
             content_css: 'dark, /css/cassette.css',
             content_style: 'body { text-align: left; margin: 10px; }'
@@ -239,7 +257,7 @@
             data: categoryData,
             closeOnSelect: false,
             dropdownCssClass: 'create-posting-select2'
-          });
+          }).on('select2:select', sortBySelectionOrder);
         });
 
         var allTagsRequest = vm.getAllTags().then(function(response) {
@@ -255,7 +273,8 @@
             data: tagData,
             closeOnSelect: false,
             dropdownCssClass: 'create-posting-select2'
-          });
+          }).on('select2:select', sortBySelectionOrder);
+
         });
 
       },
@@ -273,7 +292,8 @@
       },
 
       getContent: function() {
-        vm.posting.content = vm.tinymce.activeEditor.getContent();
+
+        vm.posting.content = vm.tinymce.activeEditor.getContent().replace('\n', '').replace(/\n/g, '');
 
         var postTime = $('#create-posting-posted').val();
         if (postTime) {
@@ -324,13 +344,16 @@
           posting.postingId = nextPostingId;
 
           var postingUpdate = {};
-          postingUpdate['blog/postings/' + (nextPostingId - 1)] = posting;
+          postingUpdate['blog/postings/' + nextEntryIndex] = posting;
 
           return firebase.database().ref().update(postingUpdate).then(function(response) {
             window.alert("Your posting was successfully submitted!");
 
-            vm.$router.push({
-              path: '/'
+            // refresh postings and redirect to home page
+            blogService.getAllPostings(true).then(function() {
+              vm.$router.push({
+                path: '/'
+              });
             });
 
           }, function(error) {
