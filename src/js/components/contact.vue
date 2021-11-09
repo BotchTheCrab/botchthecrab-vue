@@ -1,5 +1,8 @@
 <style lang="scss">
 
+  @import "../../sass/_flexbox.scss";
+  @import "../../sass/_variables.scss";
+
   .faq_Q, .faq_A {
     font-size: 1.2rem;
     line-height: 1.5em;
@@ -11,6 +14,22 @@
   .faq_A {
     margin-bottom: 2em;
     color: #BBBBBB;
+  }
+
+  .about-desc {
+    text-align: center;
+
+    .contact-methods {
+      @include flexbox;
+      @include flex-wrap(wrap);
+      @include justify-content(space-around);
+
+      @media (max-width: $bootstrap-xs-max) {
+        a {
+          margin: 0 50px;
+        }
+      }
+    }
   }
 
 </style>
@@ -50,7 +69,13 @@
 
     <div class="about-desc">
   		<p>For all other questions, comments, scorn or heapings of praise:</p>
-  		<p><a href="mailto:Botch@BotchTheCrab.com"><b>Botch@BotchTheCrab.com</b></a></p>
+
+      <div class="contact-methods">
+        <a href="mailto:Botch@BotchTheCrab.com">Botch@BotchTheCrab.com</a>
+        <a href="http://www.facebook.com/TransformersBoxArtArchive" target="facebook">Facebook</a>
+        <a href="https://twitter.com/tfboxart" target="twitter">Twitter</a>
+        <a href="https://www.instagram.com/tfboxart" target="instagram">Instagram</a>
+      </div>
   	</div>
 
 

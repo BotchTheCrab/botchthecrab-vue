@@ -40,6 +40,18 @@ $footerHeight: 50px;
 		&:first-of-type  {
 			margin-left: 0;
 		}
+
+		img, input[type="image"] {
+			height: 30px;
+		}
+
+		@media (max-width: $bootstrap-xs-max) {
+			margin-left: 10px;
+
+			img, input[type="image"] {
+				height: 24px;
+			}
+		}
 	}
 
 	#footer-search-form {
