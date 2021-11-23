@@ -16072,7 +16072,8 @@ function toTitleCase(str) {
 /* ex: "Optimus Prime" becomes "optimus_prime" */
 function pathWash(s) {
   s = String(s);
-  s = s.replace(/[\s&]/g, '_');
+  // s = s.replace(/[\s&]/g, '_');
+  s = s.replace(/[\s]/g, '_');
   s = s.toLowerCase();
   return s;
 }
@@ -16286,6 +16287,9 @@ function createPostReply(posting, replyData) {
                     'wrote the following on ' + newReply.posted + ':<br />' +
                   '</p>' +
                   '<p>' + newReply.content.replace(/\n/g, '<br/>') + '</p>' +
+                  '<p>' +
+                    '<a href="https://botchthecrab.com/#/posting/' + posting.postingId + '">View posting</a>' +
+                  '</p>' +
                   '<hr style="margin: 2em 0 1em" />' +
                   '<p>' +
                     '<i>To unsubscribe to comments from this post, reply back with the word "Unsubscribe" and Botch will adjust your notification settings.</i>' +

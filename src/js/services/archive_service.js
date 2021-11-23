@@ -46,7 +46,8 @@ function toTitleCase(str) {
 /* ex: "Optimus Prime" becomes "optimus_prime" */
 function pathWash(s) {
   s = String(s);
-  s = s.replace(/[\s&]/g, '_');
+  // s = s.replace(/[\s&]/g, '_');
+  s = s.replace(/[\s]/g, '_');
   s = s.toLowerCase();
   return s;
 }
