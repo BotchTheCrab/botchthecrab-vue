@@ -215,6 +215,7 @@
             plugins: 'image code lists charmap fullscreen media link',
 
             allow_script_urls: true,
+            convert_urls: false,
             allow_unsafe_link_target: true,
             browser_spellcheck: true,
             extended_valid_elements: 'a[href|target|onclick|class|style]',

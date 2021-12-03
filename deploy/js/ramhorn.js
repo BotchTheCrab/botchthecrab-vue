@@ -13278,6 +13278,7 @@ module.exports = {
           plugins: 'image code lists charmap fullscreen media link',
 
           allow_script_urls: true,
+          convert_urls: false,
           allow_unsafe_link_target: true,
           browser_spellcheck: true,
           extended_valid_elements: 'a[href|target|onclick|class|style]',
@@ -13447,7 +13448,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-4b662998", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-4b662998", __vue__options__)
+    hotAPI.reload("data-v-4b662998", __vue__options__)
   }
 })()}
 },{"services/blog_service":47,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],32:[function(require,module,exports){
