@@ -1,5 +1,19 @@
-<style>
-  /* */
+<style lang="scss">
+
+  #watermark {
+    position: fixed;
+    z-index: 0;
+    left: 25px;
+    top: 25px;
+
+    .mm-opened & { display: none; }
+
+    img {
+      width: 100%;
+      max-width: 200px;
+    }
+  }
+
 </style>
 
 <template>

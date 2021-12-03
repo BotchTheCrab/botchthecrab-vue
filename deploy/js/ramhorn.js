@@ -10130,8 +10130,87 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"services/archive_service":46,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],14:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* */")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* ############# */\n/*   VARIABLES   */\n/* ############# */\n/** BOOTSTRAP BOUNDARIES **/\n/* line 5, stdin */\n#archive-home-logo {\n  margin: 0 auto 25px;\n  color: #aaa;\n  font-size: 0.8em;\n  font-family: Tahoma, Geneva, sans-serif;\n  letter-spacing: 0.1em; }\n  /* line 12, stdin */\n  #archive-home-logo img {\n    width: 100%;\n    margin-bottom: 5px;\n    max-width: 541px; }\n\n/* line 19, stdin */\n#archive-logo {\n  margin: 0 auto 10px; }\n  /* line 22, stdin */\n  #archive-logo img {\n    width: 100%;\n    margin-bottom: 5px;\n    max-width: 425px; }\n\n/* line 29, stdin */\n.quicklink-container {\n  margin: 0 auto; }\n  /* line 32, stdin */\n  .quicklink-container .quicklink {\n    margin: 0 auto 30px; }\n    /* line 35, stdin */\n    .quicklink-container .quicklink a {\n      font-family: 'Exo 2', Arial, Verdana, sans-serif;\n      font-size: 1.0em;\n      letter-spacing: 1px; }\n      /* line 40, stdin */\n      .quicklink-container .quicklink a img {\n        border: 0px; }\n        /* line 43, stdin */\n        .quicklink-container .quicklink a img:hover {\n          position: relative;\n          top: -1px;\n          left: -1px; }\n\n@media (min-width: 767px) {\n  /* line 54, stdin */\n  #quicklinks-additional {\n    padding-top: 50px; } }\n\n/* line 61, stdin */\n#archive-search-form input[type=\"text\"],\n#archive-search-form input[type=\"search\"] {\n  width: 190px;\n  margin: 0 auto 5px; }\n\n/* line 68, stdin */\n#quicklinks-legacy {\n  font-size: 0.9rem; }\n  /* line 71, stdin */\n  #quicklinks-legacy a:hover {\n    text-decoration: none; }\n  /* line 75, stdin */\n  #quicklinks-legacy img {\n    margin-bottom: 5px; }")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10315,8 +10394,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid center-content"},[_c('botch-watermark'),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('div',{staticClass:"quicklink-container row text-center"},[_c('div',{staticClass:"quicklink col-sm-6"},[_c('router-link',{attrs:{"to":'/archive/teletran/autobot'}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_autobots_optimus_prime.jpg","alt":"Autobot Box Art"}})])],1),_vm._v(" "),_c('div',{staticClass:"quicklink col-sm-6"},[_c('router-link',{attrs:{"to":'/archive/teletran/decepticon'}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_decepticons_megatron.jpg","alt":"Decepticon Box Art"}})])],1)]),_vm._v(" "),_c('hr',{staticStyle:{"margin":"10px auto 40px"}}),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('div',{staticClass:"quicklink-container row text-center"},[_c('div',{staticClass:"quicklink col-sm-6"},[_c('form',{attrs:{"id":"archive-search-form"},on:{"submit":function($event){$event.preventDefault();return _vm.submitSearch($event)}}},[_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.searchTerm),expression:"searchTerm"}],attrs:{"type":"search","placeholder":"Search the Archive ..."},domProps:{"value":(_vm.searchTerm)},on:{"input":function($event){if($event.target.composing){ return; }_vm.searchTerm=$event.target.value}}})])]),_vm._v(" "),_vm._m(3)]),_vm._v(" "),_vm._m(4)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.postings.length),expression:"postings.length"}],staticClass:"page-title"},[_vm._v("Updates & Blog Posts ...")]),_vm._v(" "),_vm._l((_vm.postings),function(posting){return _c('div',{key:posting.postingId,staticClass:"post-blurb",attrs:{"post-id":posting.postingId}},[_c('div',{staticClass:"post-title-full"},[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: posting.postingId } }}},[_vm._v(_vm._s(posting.title))])],1),_vm._v(" "),_c('div',{staticClass:"post-body-full",domProps:{"innerHTML":_vm._s(posting.blurb)}}),_vm._v(" "),(posting.blurb.length !== posting.content.length)?_c('p',{staticClass:"post-body-trimmed"},[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: posting.postingId } }}},[_vm._v("Continue …")])],1):_vm._e()])}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.postings.length),expression:"postings.length"}],staticClass:"more-posts"},[_c('a',{on:{"click":_vm.loadMorePostings}},[_vm._v("Load More Posts")])])],2)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"text-center",attrs:{"id":"archive-home-logo"}},[_c('img',{attrs:{"src":"/archive/images/home/archive_logo_2014.jpg","alt":"Botch's Transformers Box Art Archive"}}),_vm._v(" "),_c('div',[_vm._v("Generation One Transformers Box Art, Instructions, Tech Specs and much more…")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"quicklink-container row text-center"},[_c('div',{staticClass:"quicklink col-sm-6"},[_c('a',{attrs:{"href":"#/archive/techspecs"}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_techspecs.jpg","alt":"Transformers Tech Specs"}})])]),_vm._v(" "),_c('div',{staticClass:"quicklink col-sm-6"},[_c('a',{attrs:{"href":"#/archive/instructions"}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_instructions.gif","alt":"Transformers Instructions"}})])])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"quicklink-container row text-center"},[_c('div',{staticClass:"quicklink col-sm-6"},[_c('a',{attrs:{"href":"#/archive/catalogs"}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_catalogs.jpg","alt":"Transformers Catalogs"}})])]),_vm._v(" "),_c('div',{staticClass:"quicklink col-sm-6"},[_c('a',{attrs:{"href":"#/archive/boxbattles"}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_boxbattles.jpg","alt":"Transformers Back of the Box Art"}})])])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('a',{attrs:{"href":"#/tags"}},[_vm._v("Browse Post Tags")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"quicklink col-sm-6"},[_c('div',[_c('a',{attrs:{"href":"#/archive/reinforcements"}},[_vm._v("Reinforcements From Cybertron")])]),_vm._v(" "),_c('div',[_c('a',{attrs:{"href":"#/archive/history"}},[_vm._v("Box Art History")])]),_vm._v(" "),_c('div',[_c('a',{attrs:{"href":"#/contact"}},[_vm._v("Contact")])])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid center-content",attrs:{"id":"archive-home"}},[_c('botch-watermark'),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('div',{staticClass:"quicklink-container row text-center"},[_c('div',{staticClass:"quicklink col-sm-6"},[_c('router-link',{attrs:{"to":'/archive/teletran/autobot'}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_autobots_optimus_prime.jpg","alt":"Autobot Box Art"}})])],1),_vm._v(" "),_c('div',{staticClass:"quicklink col-sm-6"},[_c('router-link',{attrs:{"to":'/archive/teletran/decepticon'}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_decepticons_megatron.jpg","alt":"Decepticon Box Art"}})])],1)]),_vm._v(" "),_c('hr',{staticStyle:{"margin":"10px auto 40px"}}),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('div',{staticClass:"quicklink-container row text-center"},[_c('div',{staticClass:"quicklink col-sm-6",attrs:{"id":"quicklinks-additional"}},[_vm._m(3),_vm._v(" "),_vm._m(4),_vm._v(" "),_vm._m(5),_vm._v(" "),_c('br'),_vm._v(" "),_c('form',{attrs:{"id":"archive-search-form"},on:{"submit":function($event){$event.preventDefault();return _vm.submitSearch($event)}}},[_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.searchTerm),expression:"searchTerm"}],attrs:{"type":"search","placeholder":"Search the Archive ..."},domProps:{"value":(_vm.searchTerm)},on:{"input":function($event){if($event.target.composing){ return; }_vm.searchTerm=$event.target.value}}})])]),_vm._v(" "),_vm._m(6)]),_vm._v(" "),_vm._m(7)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.postings.length),expression:"postings.length"}],staticClass:"page-title"},[_vm._v("Updates & Blog Posts ...")]),_vm._v(" "),_vm._l((_vm.postings),function(posting){return _c('div',{key:posting.postingId,staticClass:"post-blurb",attrs:{"post-id":posting.postingId}},[_c('div',{staticClass:"post-title-full"},[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: posting.postingId } }}},[_vm._v(_vm._s(posting.title))])],1),_vm._v(" "),_c('div',{staticClass:"post-body-full",domProps:{"innerHTML":_vm._s(posting.blurb)}}),_vm._v(" "),(posting.blurb.length !== posting.content.length)?_c('p',{staticClass:"post-body-trimmed"},[_c('router-link',{attrs:{"to":{ name: 'posting', params: { postingId: posting.postingId } }}},[_vm._v("Continue …")])],1):_vm._e()])}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.postings.length),expression:"postings.length"}],staticClass:"more-posts"},[_c('a',{on:{"click":_vm.loadMorePostings}},[_vm._v("Load More Posts")])])],2)}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"text-center",attrs:{"id":"archive-home-logo"}},[_c('img',{attrs:{"src":"/archive/images/home/archive_logo_2014.jpg","alt":"Botch's Transformers Box Art Archive"}}),_vm._v(" "),_c('div',[_vm._v("Generation One Transformers Box Art, Instructions, Tech Specs and much more…")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"quicklink-container row text-center"},[_c('div',{staticClass:"quicklink col-sm-6"},[_c('a',{attrs:{"href":"#/archive/techspecs"}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_techspecs.jpg","alt":"Transformers Tech Specs"}})])]),_vm._v(" "),_c('div',{staticClass:"quicklink col-sm-6"},[_c('a',{attrs:{"href":"#/archive/instructions"}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_instructions.gif","alt":"Transformers Instructions"}})])])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"quicklink-container row text-center"},[_c('div',{staticClass:"quicklink col-sm-6"},[_c('a',{attrs:{"href":"#/archive/catalogs"}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_catalogs.jpg","alt":"Transformers Catalogs"}})])]),_vm._v(" "),_c('div',{staticClass:"quicklink col-sm-6"},[_c('a',{attrs:{"href":"#/archive/boxbattles"}},[_c('img',{attrs:{"src":"/archive/images/home/quicklink_boxbattles.jpg","alt":"Transformers Back of the Box Art"}})])])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('a',{attrs:{"href":"#/archive/reinforcements"}},[_vm._v("Reinforcements From Cybertron")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('a',{attrs:{"href":"#/archive/history"}},[_vm._v("Box Art History")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('a',{attrs:{"href":"#/contact"}},[_vm._v("FAQ / Contact")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('a',{attrs:{"href":"#/tags"}},[_vm._v("Browse Post Tags")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"quicklink col-sm-6",attrs:{"id":"quicklinks-legacy"}},[_c('a',{attrs:{"href":"https://www.idwpublishing.com/product/5652","target":"legacy"}},[_c('img',{attrs:{"src":"/archive/images/home/tf-legacy.jpg"}}),_c('br'),_c('i',[_vm._v("Transformers Legacy:"),_c('br'),_vm._v("The Art of Transformers Packaging")])])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -10922,6 +11001,8 @@ var globalService = require('services/global_service');
 var ArchiveHeaderVue = require('components/archive/partials/archive_header');
 var TeletranEntryVue = require('components/archive/partials/teletran_entry');
 
+var vm;
+
 module.exports = {
 
   data () {
@@ -10936,7 +11017,8 @@ module.exports = {
   },
 
   beforeMount() {
-    this.getBoxArtHistory();
+    vm = this;
+    vm.getBoxArtHistory();
   },
 
   mounted() {
@@ -10950,17 +11032,23 @@ module.exports = {
       var boxArtUrl = "https://tfwiki.net/w2/index.php?title=Package_art&action=render";
       var corsProxy = "https://api.allorigins.win/get?url=";
 
-      var vm = this;
-
       $.getJSON(corsProxy + encodeURIComponent(boxArtUrl), function (data) {
           var markup = data && data.contents;
 
-          var startingIndexMarker = '</center>';
-          var startingIndex = markup.indexOf(startingIndexMarker) + startingIndexMarker.length;
-          var endingIndexMarker = '<h3> <span class="mw-headline" id="Generation_2">Generation 2</span></h3>';
+          var startingIndexMarker = '<div class="thumb tright">';
+          var startingIndex = markup.indexOf(startingIndexMarker);
+
+          var endingIndexMarker = '<h3> <span class="mw-headline" id="Generation_2"><i>Generation 2</i></span></h3>';
           var endingIndex = markup.indexOf(endingIndexMarker);
 
+          if (startingIndex < 0 || endingIndex < 0) {
+            console.error("Unable to find starting/ending indices.");
+            vm.displayError();
+            return;
+          }
+
           var historyMarkup = markup.substring(startingIndex, endingIndex);
+
           historyMarkup = historyMarkup.replace(
             /src="\//g,
             'src="https://tfwiki.net/'
@@ -10997,14 +11085,15 @@ module.exports = {
           vm.parsedHistoryMarkup = historyMarkup;
       })
       .fail(function(error) {
-        console.log('FAILURE!');
-        console.log({
-          error: error
-        });
-
-        vm.parsedHistoryMarkup = '<div class="load-error">There was an error loading box art history.</div>';
+        console.error('FAILURE!');
+        console.error(error);
+        vm.displayError();
       });
 
+    },
+
+    displayError: function() {
+      vm.parsedHistoryMarkup = '<div class="load-error">There was an error loading box art history.</div>';
     }
   }
 
@@ -11569,6 +11658,10 @@ module.exports = {
     },
 
     instructionsPath: function() {
+      if (this.entry.instructionsPath) {
+        return this.entry.instructionsPath;
+      }
+
       var path = '/archive/instructions/' + this.getFactionPrefix(this.entry);
       if (this.entry.actionMasterId) {
         path += 'action_masters';
@@ -11922,8 +12015,21 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"services/archive_service":46,"services/global_service":50,"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],26:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 5, stdin */\n#reinforcements hr {\n  margin: 20px auto 35px; }\n\n/* line 9, stdin */\n#reinforcements .teletran-icons {\n  display: none; }\n\n/* line 13, stdin */\n#reinforcements .archive-paperwork-credits {\n  text-align: left; }\n  /* line 16, stdin */\n  #reinforcements .archive-paperwork-credits b {\n    font-size: 120%; }\n\n/* line 22, stdin */\n#reinforcements #Bumper .archive-paperwork-credits {\n  margin: 0 0 15px; }\n\n/* line 28, stdin */\n#reinforcements #Kronoform .teletran-name {\n  height: 62px; }\n\n/* line 31, stdin */\n#reinforcements #Kronoform .teletran-name-note {\n  white-space: normal;\n  line-height: 1.2em;\n  margin-top: 7px; }")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 5, stdin */\n#reinforcements hr {\n  margin: 20px auto 35px; }\n\n/* line 9, stdin */\n#reinforcements .archive-paperwork-credits {\n  text-align: left; }\n  /* line 12, stdin */\n  #reinforcements .archive-paperwork-credits b {\n    font-size: 120%; }\n\n/* line 18, stdin */\n#reinforcements #Powerdashers .teletran-icons, #reinforcements #Bumper .teletran-icons, #reinforcements #Kronoform .teletran-icons {\n  display: none; }\n\n/* line 24, stdin */\n#reinforcements #Bumper .archive-paperwork-credits {\n  margin: 0 0 15px; }\n\n/* line 30, stdin */\n#reinforcements #Kronoform .teletran-name {\n  height: 80px; }\n\n/* line 33, stdin */\n#reinforcements #Kronoform .teletran-name-note {\n  white-space: normal;\n  line-height: 1.2em;\n  margin-top: 7px; }")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -12067,6 +12173,31 @@ var powerdashers = [
   }
 ];
 
+var omnibots = [
+  {
+    name: "Camshaft",
+    faction: "reinforcements",
+    hasInstructions: true,
+    instructionsPath: null
+  },
+  {
+    name: "Downshift",
+    faction: "reinforcements",
+    hasInstructions: true,
+    instructionsPath: null
+  },
+  {
+    name: "Overdrive",
+    faction: "reinforcements",
+    hasInstructions: true,
+    instructionsPath: null
+  },
+];
+_.each(omnibots, function(omnibot) {
+  omnibot.instructionsPath = 'archive/instructions/autobot/1985/instr_' + omnibot.name.toLowerCase() + '.jpg';
+});
+
+
 var bumper = {
   name: "Bumper",
   faction: "reinforcements"
@@ -12100,6 +12231,7 @@ module.exports = {
   data () {
     return {
       powerdashers: powerdashers,
+      omnibots: omnibots,
       bumper: bumper,
       kronoform: kronoform
     }
@@ -12112,14 +12244,7 @@ module.exports = {
 
   mounted() {
     globalService.setArchiveDocumentTitle("Reinforcements From Cybertron");
-  },
-
-  methods: {
-  },
-
-  computed: {
   }
-
 
 };
 
@@ -12128,8 +12253,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid",attrs:{"id":"reinforcements"}},[_c('archive-header'),_vm._v(" "),_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"teletran-container"},_vm._l((_vm.powerdashers),function(entry){return _c('teletran-entry',{attrs:{"entry":entry}})}),1),_vm._v(" "),_c('hr'),_vm._v(" "),_c('div',{staticClass:"teletran-container",attrs:{"id":"Bumper"}},[_c('teletran-entry',{attrs:{"entry":_vm.bumper}}),_vm._v(" "),_vm._m(2)],1),_vm._v(" "),_c('hr'),_vm._v(" "),_c('div',{staticClass:"teletran-container",attrs:{"id":"Kronoform"}},[_vm._m(3),_vm._v(" "),_c('div',{staticClass:"teletran-container"},_vm._l((_vm.kronoform),function(entry){return _c('teletran-entry',{attrs:{"entry":entry}})}),1)])],1)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"teletran-header"},[_c('img',{attrs:{"src":"/archive/images/hd_reinforcements.gif","alt":"Reinforcements from Cybertron"}})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',{staticClass:"archive-paperwork-credits"},[_c('b',[_vm._v("POWERDASHERS!")]),_vm._v(" "),_c('br'),_vm._v("Mail-away Autobots from 1984/5. There were three, and you never knew which one you were going to get. They came in plain boxes and plastic bags, so there was never any official Hasbro box art for them. However, like many other Transformers, they were originally Diaclone toys. The illustrious Scott Gray sent these in: the original Diaclone box art.\n  ")])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"col-lg-10 col-md-10 col-sm-9 col-xs-12"},[_c('p',{staticClass:"archive-paperwork-credits"},[_c('b',[_vm._v("BUMPER")]),_vm._v(", perhaps more commonly known as "),_c('b',[_vm._v("Bumblejumper")]),_vm._v(", was never officially released in America, but he occasionally showed up packaged on a Bumblebee or Cliffjumper card. He is a completely unique mold similar but not identical to "),_c('a',{attrs:{"href":"#/archive/teletran/autobot/1984"}},[_vm._v("Bumblebee and Cliffjumper")]),_vm._v(": Bumper resembles a Mazda Familia 1500XG, whereas Bumblebee was a Volkswagen Beetle and Cliffjumper was a Porsche 944. All three figures come from the Microman series, one of the toylines that was a predecessor and contributor to the Transformers line. The names \"Bumblejumper\" and \"Bumper\" come from a hybridization by the fans of the names \"Bumblebee\" and \"Cliffjumper\", stemming from its appearance on their two cards, and the fact that originally some mistook the toy for a blend and/or recoloring of the two molds. Bumper was only released officially in Brazil (under the name Sedan and in various colors) and that's where this artwork came from.")]),_vm._v(" "),_c('p',{staticClass:"archive-paperwork-credits"},[_vm._v("Sources: "),_c('a',{attrs:{"href":"http://www.toyarchive.com/Transformers/Brazilian/MiniCars.html"}},[_vm._v("Super Toy Archive")]),_vm._v("; "),_c('a',{attrs:{"href":"http://www.geocities.com/transfandomcomic/collection_bumblejumper.html"}},[_vm._v("Planet Sabretron")]),_vm._v("; "),_c('a',{attrs:{"href":"http://www.ocf.berkeley.edu/~mingus/tech/bumper.htm"}},[_vm._v("Slim's Custom Transformer Tech Specs")]),_vm._v(".")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',{staticClass:"archive-paperwork-credits"},[_c('b',[_vm._v("From the KRONOFORM Collection!")]),_vm._v(" "),_c('br'),_vm._v("Transforms from LCD watch to vehicle to robot. I even think I had Kaltor as a kid, when I was too dumb to save the boxes. Oh well.\n    ")])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid",attrs:{"id":"reinforcements"}},[_c('archive-header'),_vm._v(" "),_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"teletran-container",attrs:{"id":"Powerdashers"}},_vm._l((_vm.powerdashers),function(entry){return _c('teletran-entry',{attrs:{"entry":entry}})}),1),_vm._v(" "),_c('hr'),_vm._v(" "),_c('div',{staticClass:"teletran-container",attrs:{"id":"Omnibots"}},[_vm._m(2),_vm._v(" "),_c('div',{staticClass:"teletran-container"},_vm._l((_vm.omnibots),function(entry){return _c('teletran-entry',{attrs:{"entry":entry}})}),1)]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('div',{staticClass:"teletran-container",attrs:{"id":"Bumper"}},[_c('teletran-entry',{attrs:{"entry":_vm.bumper}}),_vm._v(" "),_vm._m(3)],1),_vm._v(" "),_c('hr'),_vm._v(" "),_c('div',{staticClass:"teletran-container",attrs:{"id":"Kronoform"}},[_vm._m(4),_vm._v(" "),_c('div',{staticClass:"teletran-container"},_vm._l((_vm.kronoform),function(entry){return _c('teletran-entry',{attrs:{"entry":entry}})}),1)])],1)}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"teletran-header"},[_c('img',{attrs:{"src":"/archive/images/hd_reinforcements.gif","alt":"Reinforcements from Cybertron"}})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',{staticClass:"archive-paperwork-credits"},[_c('b',[_vm._v("POWERDASHERS!")]),_vm._v(" "),_c('br'),_vm._v("Mail-away Autobots from 1984/5. There were three, and you never knew which one you were going to get. They came in plain boxes and plastic bags, so there was never any official Hasbro box art for them. However, like many other Transformers, they were originally Diaclone toys. The illustrious Scott Gray sent these in: the original Diaclone box art.\n  ")])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',{staticClass:"archive-paperwork-credits"},[_c('b',[_vm._v("Introducing the OMNIBOTS ...")]),_vm._v(" "),_c('br'),_vm._v("Not actually package art, these images are cobbled together from the promotional advertisements for these 1985 G1 figures that were exclusively available via mail order. But these images are nevertheless requested often, so here you go!\n    ")])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"col-lg-10 col-md-10 col-sm-9 col-xs-12"},[_c('p',{staticClass:"archive-paperwork-credits"},[_c('b',[_vm._v("BUMPER")]),_vm._v(", perhaps more commonly known as "),_c('b',[_vm._v("Bumblejumper")]),_vm._v(", was never officially released in America, but he occasionally showed up packaged on a Bumblebee or Cliffjumper card. He is a completely unique mold similar but not identical to "),_c('a',{attrs:{"href":"#/archive/teletran/autobot/1984"}},[_vm._v("Bumblebee and Cliffjumper")]),_vm._v(": Bumper resembles a Mazda Familia 1500XG, whereas Bumblebee was a Volkswagen Beetle and Cliffjumper was a Porsche 944. All three figures come from the Microman series, one of the toylines that was a predecessor and contributor to the Transformers line. The names \"Bumblejumper\" and \"Bumper\" come from a hybridization by the fans of the names \"Bumblebee\" and \"Cliffjumper\", stemming from its appearance on their two cards, and the fact that originally some mistook the toy for a blend and/or recoloring of the two molds. Bumper was only released officially in Brazil (under the name Sedan and in various colors) and that's where this artwork came from.")]),_vm._v(" "),_c('p',{staticClass:"archive-paperwork-credits"},[_vm._v("Sources: "),_c('a',{attrs:{"href":"http://www.toyarchive.com/Transformers/Brazilian/MiniCars.html"}},[_vm._v("Super Toy Archive")]),_vm._v("; "),_c('a',{attrs:{"href":"http://www.geocities.com/transfandomcomic/collection_bumblejumper.html"}},[_vm._v("Planet Sabretron")]),_vm._v("; "),_c('a',{attrs:{"href":"http://www.ocf.berkeley.edu/~mingus/tech/bumper.htm"}},[_vm._v("Slim's Custom Transformer Tech Specs")]),_vm._v(".")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',{staticClass:"archive-paperwork-credits"},[_c('b',[_vm._v("From the KRONOFORM Collection!")]),_vm._v(" "),_c('br'),_vm._v("Transforms from LCD watch to vehicle to robot. I even think I had Kaltor as a kid, when I was too dumb to save the boxes. Oh well.\n    ")])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -14143,8 +14268,22 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"vue":5,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],37:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* */")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 3, stdin */\n#watermark {\n  position: fixed;\n  z-index: 0;\n  left: 25px;\n  top: 25px; }\n  /* line 9, stdin */\n  .mm-opened #watermark {\n    display: none; }\n  /* line 11, stdin */\n  #watermark img {\n    width: 100%;\n    max-width: 200px; }")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //

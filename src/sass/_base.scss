@@ -140,20 +140,6 @@ img.shadow {
 	margin: 0 auto;
 }
 
-#watermark {
-	position: fixed;
-	z-index: 0;
-	left: 25px;
-	top: 25px;
-
-	.mm-opened & { display: none; }
-
-	img {
-		width: 100%;
-		max-width: 200px;
-	}
-}
-
 .container-fluid {
 	position: relative;
 	z-index: 0;

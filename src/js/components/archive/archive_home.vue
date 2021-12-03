@@ -1,10 +1,87 @@
-<style>
-  /* */
+<style lang="scss">
+
+  @import "../../../sass/_variables.scss";
+
+  #archive-home-logo {
+    margin: 0 auto 25px;
+    color: #aaa;
+    font-size: 0.8em;
+    font-family: Tahoma, Geneva, sans-serif;
+    letter-spacing: 0.1em;
+
+    img {
+      width: 100%;
+      margin-bottom: 5px;
+      max-width: 541px;
+    }
+  }
+
+  #archive-logo {
+    margin: 0 auto 10px;
+
+    img {
+      width: 100%;
+      margin-bottom: 5px;
+      max-width: 425px;
+    }
+  }
+
+  .quicklink-container {
+    margin: 0 auto;
+
+    .quicklink {
+      margin: 0 auto 30px;
+
+      a {
+        font-family: 'Exo 2', Arial, Verdana, sans-serif;
+        font-size: 1.0em;
+        letter-spacing: 1px;
+
+        img {
+          border: 0px;
+
+          &:hover {
+            position: relative;
+            top: -1px;
+            left: -1px;
+          }
+        }
+
+      }
+    }
+  }
+
+  #quicklinks-additional {
+    @media (min-width: $bootstrap-xs-max) {
+      padding-top: 50px;
+    }
+  }
+
+  #archive-search-form {
+    input[type="text"],
+    input[type="search"] {
+      width: 190px;
+      margin: 0 auto 5px;
+    }
+  }
+
+  #quicklinks-legacy {
+    font-size: 0.9rem;
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    img {
+      margin-bottom: 5px;
+    }
+  }
+
 </style>
 
 <template>
 
-  <div class="container-fluid center-content">
+  <div id="archive-home" class="container-fluid center-content">
 
     <botch-watermark></botch-watermark>
 
@@ -48,7 +125,12 @@
   	</div>
 
   	<div class="quicklink-container row text-center">
-  		<div class="quicklink col-sm-6">
+      <div class="quicklink col-sm-6" id="quicklinks-additional">
+        <div><a href="#/archive/reinforcements">Reinforcements From Cybertron</a></div>
+        <div><a href="#/archive/history">Box Art History</a></div>
+        <!--<div><a href="#/archive/help">Scan / Edit / Donate</a></div>-->
+        <div><a href="#/contact">FAQ / Contact</a></div>
+        <br />
   			<form id="archive-search-form" @submit.prevent="submitSearch">
   				<div>
   					<input type="search" v-model="searchTerm" placeholder="Search the Archive ..." />
@@ -56,11 +138,8 @@
   			</form>
   			<div><a href="#/tags">Browse Post Tags</a></div>
   		</div>
-  		<div class="quicklink col-sm-6">
-  			<div><a href="#/archive/reinforcements">Reinforcements From Cybertron</a></div>
-  			<div><a href="#/archive/history">Box Art History</a></div>
-  			<!--<div><a href="#/archive/help">Scan / Edit / Donate</a></div>-->
-  			<div><a href="#/contact">Contact</a></div>
+      <div class="quicklink col-sm-6" id="quicklinks-legacy">
+        <a href="https://www.idwpublishing.com/product/5652" target="legacy"><img src="/archive/images/home/tf-legacy.jpg" /><br/><i>Transformers Legacy:<br />The Art of Transformers Packaging</i></a>
   		</div>
   	</div>
 

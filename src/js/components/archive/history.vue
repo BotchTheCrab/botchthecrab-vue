@@ -118,6 +118,8 @@
   var ArchiveHeaderVue = require('components/archive/partials/archive_header');
   var TeletranEntryVue = require('components/archive/partials/teletran_entry');
 
+  var vm;
+
   module.exports = {
 
     data () {
@@ -132,7 +134,8 @@
     },
 
     beforeMount() {
-      this.getBoxArtHistory();
+      vm = this;
+      vm.getBoxArtHistory();
     },
 
     mounted() {
@@ -146,17 +149,23 @@
         var boxArtUrl = "https://tfwiki.net/w2/index.php?title=Package_art&action=render";
         var corsProxy = "https://api.allorigins.win/get?url=";
 
-        var vm = this;
-
         $.getJSON(corsProxy + encodeURIComponent(boxArtUrl), function (data) {
             var markup = data && data.contents;
 
-            var startingIndexMarker = '</center>';
-            var startingIndex = markup.indexOf(startingIndexMarker) + startingIndexMarker.length;
-            var endingIndexMarker = '<h3> <span class="mw-headline" id="Generation_2">Generation 2</span></h3>';
+            var startingIndexMarker = '<div class="thumb tright">';
+            var startingIndex = markup.indexOf(startingIndexMarker);
+
+            var endingIndexMarker = '<h3> <span class="mw-headline" id="Generation_2"><i>Generation 2</i></span></h3>';
             var endingIndex = markup.indexOf(endingIndexMarker);
 
+            if (startingIndex < 0 || endingIndex < 0) {
+              console.error("Unable to find starting/ending indices.");
+              vm.displayError();
+              return;
+            }
+
             var historyMarkup = markup.substring(startingIndex, endingIndex);
+
             historyMarkup = historyMarkup.replace(
               /src="\//g,
               'src="https://tfwiki.net/'
@@ -193,14 +202,15 @@
             vm.parsedHistoryMarkup = historyMarkup;
         })
         .fail(function(error) {
-          console.log('FAILURE!');
-          console.log({
-            error: error
-          });
-
-          vm.parsedHistoryMarkup = '<div class="load-error">There was an error loading box art history.</div>';
+          console.error('FAILURE!');
+          console.error(error);
+          vm.displayError();
         });
 
+      },
+
+      displayError: function() {
+        vm.parsedHistoryMarkup = '<div class="load-error">There was an error loading box art history.</div>';
       }
     }
 

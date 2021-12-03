@@ -134,6 +134,10 @@
       },
 
       instructionsPath: function() {
+        if (this.entry.instructionsPath) {
+          return this.entry.instructionsPath;
+        }
+
         var path = '/archive/instructions/' + this.getFactionPrefix(this.entry);
         if (this.entry.actionMasterId) {
           path += 'action_masters';

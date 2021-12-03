@@ -6,15 +6,17 @@
       margin: 20px auto 35px;
     }
 
-    .teletran-icons {
-      display: none;
-    }
-
     .archive-paperwork-credits {
       text-align: left;
 
       b {
         font-size: 120%;
+      }
+    }
+
+    #Powerdashers, #Bumper, #Kronoform {
+      .teletran-icons {
+        display: none;
       }
     }
 
@@ -26,7 +28,7 @@
 
     #Kronoform {
       .teletran-name {
-        height: 62px;
+        height: 80px;
       }
       .teletran-name-note {
         white-space: normal;
@@ -54,10 +56,23 @@
       <b>POWERDASHERS!</b>
       <br/>Mail-away Autobots from 1984/5. There were three, and you never knew which one you were going to get. They came in plain boxes and plastic bags, so there was never any official Hasbro box art for them. However, like many other Transformers, they were originally Diaclone toys. The illustrious Scott Gray sent these in: the original Diaclone box art.
     </p>
-  	<div class="teletran-container">
+    <div class="teletran-container" id="Powerdashers">
       <teletran-entry v-for="entry in powerdashers" v-bind:entry="entry"></teletran-entry>
   	</div>
 
+    <hr/>
+
+
+    <!-- KRONOFORM -->
+    <div class="teletran-container" id="Omnibots">
+      <p class="archive-paperwork-credits">
+        <b>Introducing the OMNIBOTS ...</b>
+        <br/>Not actually package art, these images are cobbled together from the promotional advertisements for these 1985 G1 figures that were exclusively available via mail order. But these images are nevertheless requested often, so here you go!
+      </p>
+      <div class="teletran-container">
+        <teletran-entry v-for="entry in omnibots" v-bind:entry="entry"></teletran-entry>
+      </div>
+    </div>
 
   	<hr/>
 
@@ -74,7 +89,6 @@
 
   	</div>
 
-
   	<hr/>
 
 
@@ -88,7 +102,6 @@
         <teletran-entry v-for="entry in kronoform" v-bind:entry="entry"></teletran-entry>
     	</div>
     </div>
-
 
   </div>
 
@@ -141,6 +154,31 @@
     }
   ];
 
+  var omnibots = [
+    {
+      name: "Camshaft",
+      faction: "reinforcements",
+      hasInstructions: true,
+      instructionsPath: null
+    },
+    {
+      name: "Downshift",
+      faction: "reinforcements",
+      hasInstructions: true,
+      instructionsPath: null
+    },
+    {
+      name: "Overdrive",
+      faction: "reinforcements",
+      hasInstructions: true,
+      instructionsPath: null
+    },
+  ];
+  _.each(omnibots, function(omnibot) {
+    omnibot.instructionsPath = 'archive/instructions/autobot/1985/instr_' + omnibot.name.toLowerCase() + '.jpg';
+  });
+
+
   var bumper = {
     name: "Bumper",
     faction: "reinforcements"
@@ -174,6 +212,7 @@
     data () {
       return {
         powerdashers: powerdashers,
+        omnibots: omnibots,
         bumper: bumper,
         kronoform: kronoform
       }
@@ -186,14 +225,7 @@
 
     mounted() {
       globalService.setArchiveDocumentTitle("Reinforcements From Cybertron");
-    },
-
-    methods: {
-    },
-
-    computed: {
     }
-
 
   };
 
