@@ -28,10 +28,6 @@
   module.exports = {
     props: ['desination'],
 
-    methods: {
-
-    },
-
     computed: {
 
       desinationName: function() {

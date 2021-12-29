@@ -70,16 +70,16 @@
     <header class="btc-header btc-header-autobot"><span class="nowrap">Welcome to</span> <span class="nowrap">Botch's Office...</span></header>
 
   	<div id="home-portal">
-  		<div id="home-portal-botch" class="col-sm-5"><a href="#/about/botch"><img src="/images/botch/botch_mascot_laurent.png" /></a></div>
+  		<div id="home-portal-botch" class="col-sm-5"><a href="/about/botch"><img src="/images/botch/botch_mascot_laurent.png" /></a></div>
 
   		<div id="home-portal-links" class="col-sm-7">
   			<div>
-  				<a href="#/archive" class="standout">Botch's Transformers Box Art Archive</a>  &#151; <span class="nowrap">the #1 online destination</span> for G1 Transformers package art since 1998 &#151; is why most humans visit this site.
+  				<a href="/archive" class="standout">Botch's Transformers Box Art Archive</a>  &#151; <span class="nowrap">the #1 online destination</span> for G1 Transformers package art since 1998 &#151; is why most humans visit this site.
   			</div>
 
-  			<div>The site's mascot, <a href="#/about/botch" class="standout">Botch the Crab</a>, is the alter-ego of <a href="#/about/adam" class="standout">Adam Alexander</a>, a <a href="/images/about/adam/adam-alexander-resume-2017.pdf" target="resume">front-end web developer</a>, <a href="#/about/music">prog rock musician</a>, and (obviously) a Transformers fan.</div>
+  			<div>The site's mascot, <a href="/about/botch" class="standout">Botch the Crab</a>, is the alter-ego of <a href="/about/adam" class="standout">Adam Alexander</a>, a <a href="/images/about/adam/adam-alexander-resume-2017.pdf" target="resume">front-end web developer</a>, <a href="/about/music">prog rock musician</a>, and (obviously) a Transformers fan.</div>
 
-  			<div>This site is also <a href="#/postings">Adam's blog</a>. Just scroll down to start reading, or search the entire site below.</div>
+  			<div>This site is also <a href="/postings">Adam's blog</a>. Just scroll down to start reading, or search the entire site below.</div>
 
   			<form id="home-search-form" @submit.prevent="submitSearch">
   				<div>

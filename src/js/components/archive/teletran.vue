@@ -91,9 +91,6 @@
       }
     },
 
-    mounted() {
-    },
-
     methods: {
 
       updateState: function() {

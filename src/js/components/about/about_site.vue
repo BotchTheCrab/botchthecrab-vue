@@ -113,30 +113,9 @@
 
   module.exports = {
 
-    data () {
-      return {
-      }
-    },
-
-    components: {
-    },
-
-    beforeMount() {
-    },
-
     mounted() {
       globalService.setOfficeDocumentTitle("About This Site");
-    },
-
-    methods: {
-
-
-    },
-
-    computed: {
-
     }
-
 
   };
 

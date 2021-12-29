@@ -109,34 +109,34 @@
 
   	<div class="quicklink-container row text-center">
   		<div class="quicklink col-sm-6">
-  			<a href="#/archive/techspecs"><img src="/archive/images/home/quicklink_techspecs.jpg" alt="Transformers Tech Specs" /></a>
+  			<a href="/archive/techspecs"><img src="/archive/images/home/quicklink_techspecs.jpg" alt="Transformers Tech Specs" /></a>
   		</div>
   		<div class="quicklink col-sm-6">
-  			<a href="#/archive/instructions"><img src="/archive/images/home/quicklink_instructions.gif" alt="Transformers Instructions" /></a>
+  			<a href="/archive/instructions"><img src="/archive/images/home/quicklink_instructions.gif" alt="Transformers Instructions" /></a>
   		</div>
   	</div>
   	<div class="quicklink-container row text-center">
   		<div class="quicklink col-sm-6">
-  			<a href="#/archive/catalogs"><img src="/archive/images/home/quicklink_catalogs.jpg" alt="Transformers Catalogs" /></a>
+  			<a href="/archive/catalogs"><img src="/archive/images/home/quicklink_catalogs.jpg" alt="Transformers Catalogs" /></a>
   		</div>
   		<div class="quicklink col-sm-6">
-  			<a href="#/archive/boxbattles"><img src="/archive/images/home/quicklink_boxbattles.jpg" alt="Transformers Back of the Box Art" /></a>
+  			<a href="/archive/boxbattles"><img src="/archive/images/home/quicklink_boxbattles.jpg" alt="Transformers Back of the Box Art" /></a>
   		</div>
   	</div>
 
   	<div class="quicklink-container row text-center">
       <div class="quicklink col-sm-6" id="quicklinks-additional">
-        <div><a href="#/archive/reinforcements">Reinforcements From Cybertron</a></div>
-        <div><a href="#/archive/history">Box Art History</a></div>
-        <!--<div><a href="#/archive/help">Scan / Edit / Donate</a></div>-->
-        <div><a href="#/contact">FAQ / Contact</a></div>
+        <div><a href="/archive/reinforcements">Reinforcements From Cybertron</a></div>
+        <div><a href="/archive/history">Box Art History</a></div>
+        <!--<div><a href="/archive/help">Scan / Edit / Donate</a></div>-->
+        <div><a href="/contact">FAQ / Contact</a></div>
         <br />
   			<form id="archive-search-form" @submit.prevent="submitSearch">
   				<div>
   					<input type="search" v-model="searchTerm" placeholder="Search the Archive ..." />
   				</div>
   			</form>
-  			<div><a href="#/tags">Browse Post Tags</a></div>
+  			<div><a href="/tags">Browse Post Tags</a></div>
   		</div>
       <div class="quicklink col-sm-6" id="quicklinks-legacy">
         <a href="https://www.idwpublishing.com/product/5652" target="legacy"><img src="/archive/images/home/tf-legacy.jpg" /><br/><i>Transformers Legacy:<br />The Art of Transformers Packaging</i></a>

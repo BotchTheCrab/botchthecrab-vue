@@ -62,7 +62,7 @@ $(document).ready(function() {
   var AboutMusicVue = require('components/about/about_music');
   var AboutSiteVue = require('components/about/about_site');
 
-  // var NotFound = require('components/404.vue');
+  var NotFound = require('components/404.vue');
 
   var routes = [
     { path: '/', component: HomeVue },
@@ -92,11 +92,13 @@ $(document).ready(function() {
     { path: '/about/botch', component: AboutBotchVue },
     { path: '/about/trio', component: AboutTrioVue },
     { path: '/about/music', component: AboutMusicVue },
-    { path: '/about/site', component: AboutSiteVue }
+    { path: '/about/site', component: AboutSiteVue },
+
+    { path: '/:catchAll(.*)', component: NotFound }
   ];
 
   var router = new VueRouter({
-    // mode: 'history',
+    mode: 'history',
     routes: routes
   });
 

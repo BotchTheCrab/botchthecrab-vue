@@ -37,46 +37,48 @@
 
 <script>
 
+  var globalService = require('services/global_service');
+
   var factionYears = [
     {
       text: "1984",
-      link: '#/archive/teletran/FACTION/1984'
+      link: '/archive/teletran/FACTION/1984'
     },
     {
       text: "1985",
-      link: '#/archive/teletran/FACTION/1985'
+      link: '/archive/teletran/FACTION/1985'
     },
     {
       text: "1986",
-      link: '#/archive/teletran/FACTION/1986'
+      link: '/archive/teletran/FACTION/1986'
     },
     {
       text: "1987",
-      link: '#/archive/teletran/FACTION/1987'
+      link: '/archive/teletran/FACTION/1987'
     },
     {
       text: "1988",
-      link: '#/archive/teletran/FACTION/1988'
+      link: '/archive/teletran/FACTION/1988'
     },
     {
       text: "1989",
-      link: '#/archive/teletran/FACTION/1989'
+      link: '/archive/teletran/FACTION/1989'
     },
     {
       text: "1990",
-      link: '#/archive/teletran/FACTION/1990'
+      link: '/archive/teletran/FACTION/1990'
     },
     {
       text: "Action Masters",
-      link: '#/archive/teletran/FACTION/action_masters'
+      link: '/archive/teletran/FACTION/action_masters'
     },
     {
       text: "Japanese Exclusives",
-      link: '#/archive/teletran/FACTION/japan'
+      link: '/archive/teletran/FACTION/japan'
     },
     {
       text: "European Exclusives",
-      link: '#/archive/teletran/FACTION/europe'
+      link: '/archive/teletran/FACTION/europe'
     }
   ];
 
@@ -84,12 +86,12 @@
     {
       text: "Home",
       menuIconId: 'home',
-      link: '#/'
+      link: '/'
     },
     {
       text: "Transformers <br/>Box Art Archive",
       menuIconId: 'archive',
-      link: '#/archive',
+      link: '/archive',
       children: [
         {
           text: "Recent Updates"
@@ -97,7 +99,7 @@
         {
           text: "Autobots",
           menuIconId: 'autobot',
-          link: '#/archive/teletran/autobot',
+          link: '/archive/teletran/autobot',
           children: _.map(factionYears, function(year) {
             return {
               text: year.text,
@@ -108,7 +110,7 @@
         {
           text: "Decepticons",
           menuIconId: 'decepticon',
-          link: '#/archive/teletran/decepticon',
+          link: '/archive/teletran/decepticon',
           children: _.map(factionYears, function(year) {
             return {
               text: year.text,
@@ -118,72 +120,72 @@
         },
         {
           text: "Tech Specs",
-          link: '#/archive/techspecs'
+          link: '/archive/techspecs'
         },
         {
           text: "Instructions",
-          link: '#/archive/instructions'
+          link: '/archive/instructions'
         },
         {
           text: "Back of the Box Art",
-          link: '#/archive/boxbattles'
+          link: '/archive/boxbattles'
         },
         {
           text: "Catalogs",
-          link: '#/archive/catalogs'
+          link: '/archive/catalogs'
         },
         {
           text: "Reinforcements From Cybertron",
-          link: '#/archive/reinforcements'
+          link: '/archive/reinforcements'
         },
         {
           text: "Box Art History",
-          link: '#/archive/history'
+          link: '/archive/history'
         },
         {
           text: "Edit / Scan / Donate",
-          link: '#/archive/help  '
+          link: '/archive/help  '
         }
       ]
     },
     {
       text: "Music",
       menuIconId: 'music',
-      link: '#/about/music'
+      link: '/about/music'
     },
     {
       text: "More Galleries",
-      link: '#/galleries'
+      link: '/galleries'
     },
     {
       text: "About ...",
-      link: '#/about',
+      link: '/about',
       children: [
         {
           text: "Adam Alexander",
-          link: '#/about/adam'
+          link: '/about/adam'
         },
         {
           text: "Botch the Crab",
-          link: '#/about/botch'
+          link: '/about/botch'
         },
         {
           text: "Botch's Fellow Cassettes",
-          link: '#/about/trio'
+          link: '/about/trio'
         },
         {
           text: "This Site",
-          link: '#/about/site'
+          link: '/about/site'
         }
       ]
     },
     {
       text: "Browse Tags",
-      link: '#/tags'
+      link: '/tags'
     },
     {
       text: "FAQ / Contact",
-      link: '#/contact'
+      link: '/contact'
     },
     {
       text: "R&#0233;sum&#0233;",
@@ -236,7 +238,7 @@
         var $menuContent = $('#menu');
 
         $menuContent.on('click', function($event) {
-          var anchor = $event.target.closest('a[href^="#/"]')
+          var anchor = $event.target.closest('a[href^="/"]')
           if (anchor && anchor.hash) {
             location.hash = anchor.hash;
             vm.btcMenu.API.close();
@@ -251,7 +253,7 @@
 
         // initial menu item selection
         var initialRoute = {
-          path: location.hash.substring(1)
+          path: globalService.getCurrentRoute()
         };
         vm.updateMenuSelection(initialRoute);
 
@@ -268,7 +270,7 @@
 
         if (!path) { return; }
 
-        var $currentLink = $('#menu a[href="#' + currentRoute.path + '"]');
+        var $currentLink = $('#menu a[href="' + currentRoute.path + '"]');
         if ($currentLink.length) {
           var $currentListItem = $currentLink.closest('li');
           if ($currentListItem && $currentListItem.length) {

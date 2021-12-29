@@ -71,11 +71,11 @@
 
       imagePath: function() {
         if (this.entry.imageStatus) {
-          return '/#/contact';
+          return '/contact';
         }
 
         if (this.entry.areMicromasters){
-          return '/#' + globalService.getCurrentRoute() + '/' + this.getUnderscoreName(this.entry);
+          return globalService.getCurrentRoute() + '/' + this.getUnderscoreName(this.entry);
         }
 
         var path = '/archive/' + this.getFactionPrefix(this.entry);

@@ -111,12 +111,6 @@
 
   module.exports = {
 
-    components: {
-    },
-
-    beforeMount() {
-    },
-
     mounted() {
       globalService.setOfficeDocumentTitle("About Botch's Fellow Cassettes");
     },
@@ -126,10 +120,6 @@
       tf: function(name, faction, year) {
         archiveService.tf(name, faction, year);
       }
-
-    },
-
-    computed: {
 
     }
 

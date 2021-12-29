@@ -183,12 +183,6 @@
       }
     },
 
-    components: {
-    },
-
-    beforeMount() {
-    },
-
     mounted() {
       globalService.setOfficeDocumentTitle("Music by Adam Alexander");
     },
@@ -198,10 +192,6 @@
       getIframeSrc: function(bandcampIframeId) {
     		return 'http://bandcamp.com/EmbeddedPlayer/album=' + bandcampIframeId + '/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/';
       }
-
-    },
-
-    computed: {
 
     }
 

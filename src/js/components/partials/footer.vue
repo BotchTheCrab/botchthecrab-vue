@@ -14,13 +14,13 @@
     <!-- Search -->
     <div class="footer-item">
       <form id="footer-search-form" @submit.prevent="submitSearch">
-        <a href="#/postings" title="Search"><img src="/images/footer/icon_search.png" alt="Search" /></a>
+        <a href="/postings" title="Search"><img src="/images/footer/icon_search.png" alt="Search" /></a>
         <input type="search" v-model="searchTerm" placeholder="Search ..." />
       </form>
     </div>
 
     <!-- Email -->
-    <div class="footer-item"><a href="#/contact" title="Email Botch the Crab"><img src="/images/footer/icon_email.svg" alt="Email Botch the Crab" /></a></div>
+    <div class="footer-item"><a href="/contact" title="Email Botch the Crab"><img src="/images/footer/icon_email.svg" alt="Email Botch the Crab" /></a></div>
 
     <!-- Facebook -->
     <div class="footer-item"><a href="http://www.facebook.com/TransformersBoxArtArchive" target="facebook" title="Follow the Archive on Facebook"><img src="/images/footer/icon_facebook.svg" alt="Facebook" /></a></div>

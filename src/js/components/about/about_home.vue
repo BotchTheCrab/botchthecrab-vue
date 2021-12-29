@@ -64,25 +64,25 @@
   	<div v-bind:class="aboutGroupClasses">
 
       <div v-bind:class="aboutSectionClasses">
-  			<div class="about-section-header" onclick="location.href='#/archive'">Botch's Transformers Box Art Archive</div>
+  			<div class="about-section-header" onclick="location.href='/archive'">Botch's Transformers Box Art Archive</div>
   			<div class="about-section-content">
-  				<a href="#/archive"><img src="/archive/autobot/1984/Z_optimus_prime.gif" /></a>
+  				<a href="/archive"><img src="/archive/autobot/1984/Z_optimus_prime.gif" /></a>
 
   				<p>Online since 1998, this site attempts to archive high-quality edited scans of all the original (Generation One) Transformers package art. The Archive also hosts scans of all the G1 tech specs and instructions, as well as a gallery of back-of-the-box art.</p>
 
-  				<p><a href="#/archive">Head to the Archive ...</a></p>
+  				<p><a href="/archive">Head to the Archive ...</a></p>
   				<br/>
   			</div>
   		</div>
 
       <div v-bind:class="aboutSectionClasses">
-  			<div class="about-section-header" onclick="location.href='#/about/botch'">Botch the Crab</div>
+  			<div class="about-section-header" onclick="location.href='/about/botch'">Botch the Crab</div>
   			<div class="about-section-content">
-  				<a href="#/about/botch"><img src="/images/about/about_botch.jpg" /></a>
+  				<a href="/about/botch"><img src="/images/about/about_botch.jpg" /></a>
 
   				<p>This Decepticon cassette-crustacean is the Archive's mascot and the webmaster's online alter-ego. Devious, eloquent and determined to one day get his own toy.</p>
 
-  				<p><a href="#/about/botch">More about Botch ...</a></p>
+  				<p><a href="/about/botch">More about Botch ...</a></p>
   				<br/>
   			</div>
   		</div>
@@ -92,26 +92,26 @@
     <div v-bind:class="aboutGroupClasses">
 
       <div v-bind:class="aboutSectionClasses">
-  			<div class="about-section-header" onclick="location.href='#/about/adam'">The Blog</div>
+  			<div class="about-section-header" onclick="location.href='/about/adam'">The Blog</div>
   			<div class="about-section-content">
-  				<a href="#/about/adam"><img src="/images/about/adam/about_adam_incantation.jpg" /></a>
+  				<a href="/about/adam"><img src="/images/about/adam/about_adam_incantation.jpg" /></a>
 
   				<p>Adam Alexander is the human behind the black crab. In addition to introducing updates to the Archive, he blogs about life, society and, of course, Transformers.</p>
 
-  				<p><a href="#/about/adam">More about Adam ...</a></p>
-  				<!-- <p><a href="#/postings">Read the latest posts ...</a></p> -->
+  				<p><a href="/about/adam">More about Adam ...</a></p>
+  				<!-- <p><a href="/postings">Read the latest posts ...</a></p> -->
   				<br/>
   			</div>
   		</div>
 
       <div v-bind:class="aboutSectionClasses">
-  			<div class="about-section-header" onclick="location.href='#/about/music'">His Music</div>
+  			<div class="about-section-header" onclick="location.href='/about/music'">His Music</div>
   			<div class="about-section-content">
-  				<a href="#/about/music"><img src="/images/about/about_music.jpg" /></a>
+  				<a href="/about/music"><img src="/images/about/about_music.jpg" /></a>
 
   				<p>Adam has been a versatile musician and produced several diverse and experimental rock albums. Listen for free, name-your-price to buy!</p>
 
-  				<p><a href="#/about/music">Listen to some music ...</a></p>
+  				<p><a href="/about/music">Listen to some music ...</a></p>
   				<br/>
   			</div>
   		</div>

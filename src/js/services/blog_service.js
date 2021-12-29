@@ -165,7 +165,7 @@ function createPostReply(posting, replyData) {
                   '</p>' +
                   '<p>' + newReply.content.replace(/\n/g, '<br/>') + '</p>' +
                   '<p>' +
-                    '<a href="https://botchthecrab.com/#/posting/' + posting.postingId + '">View posting</a>' +
+                    '<a href="https://botchthecrab.com/posting/' + posting.postingId + '">View posting</a>' +
                   '</p>' +
                   '<hr style="margin: 2em 0 1em" />' +
                   '<p>' +

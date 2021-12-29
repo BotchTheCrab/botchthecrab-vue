@@ -96,7 +96,7 @@
 
     <div class="history-credits">
   		<div><b>What now?</b></div>
-  		<div>&#0149; Start browsing Generation One box art with either the heroic <a href="#/archive/teletran/autobot"><b>Autobots</b></a> or the evil <a href="#/archive/teletran/decepticon"><b>Decepticons</b></a>!</div>
+  		<div>&#0149; Start browsing Generation One box art with either the heroic <a href="/archive/teletran/autobot"><b>Autobots</b></a> or the evil <a href="/archive/teletran/decepticon"><b>Decepticons</b></a>!</div>
   		<div>&#0149; Continue reading about box art <i>after</i> Generation One by visiting the <a href="http://tfwiki.net/wiki/Package_art" target="tfwiki">Package Art</a> page of <a href="http://tfwiki.net/" target="tfwiki">TFWiki.net</a>.</div>
   	</div>
 
@@ -181,22 +181,22 @@
 
             historyMarkup = historyMarkup.replace(
               'https://tfwiki.net/wiki/File:G1_OptimusPrime_boxart.jpg',
-              '#/archive/search/optimus%20prime'
+              '/postings?search=optimus%20prime'
             );
 
             historyMarkup = historyMarkup.replace(
               'https://tfwiki.net/wiki/File:Thunderwingboxart.jpg',
-              '#/archive/search/thunderwing'
+              '/postings?search=thunderwing'
             );
 
             historyMarkup = historyMarkup.replace(
               'https://tfwiki.net/wiki/File:G1_1984_backofboxbattle.jpg',
-              '#/archive/boxbattles'
+              '/archive/boxbattles'
             );
 
             historyMarkup = historyMarkup.replace(
               'https://tfwiki.net/wiki/File:SpaceshotAngry.jpg',
-              '#/archive/boxbattles'
+              '/archive/boxbattles'
             );
 
             vm.parsedHistoryMarkup = historyMarkup;

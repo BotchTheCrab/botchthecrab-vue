@@ -174,12 +174,6 @@
       }
     },
 
-    components: {
-    },
-
-    beforeMount() {
-    },
-
     mounted() {
       globalService.setOfficeDocumentTitle("About Botch");
     },
@@ -190,12 +184,7 @@
         return this.botchSectionClasses + (clearLeft ? ' clearLeft' : '');
       }
 
-    },
-
-    computed: {
-
     }
-
 
   };
 

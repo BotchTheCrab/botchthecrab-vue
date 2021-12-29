@@ -198,9 +198,6 @@
       vm.getGalleryEntryData();
     },
 
-    mounted() {
-    },
-
     methods: {
 
       getGalleryEntryData: function() {

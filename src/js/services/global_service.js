@@ -8,7 +8,7 @@ module.exports = {
 };
 
 function getCurrentRoute() {
-  return location.hash.substring(1);
+  return location.pathname;
 }
 
 function setBodyClass(currentRoute) {
