@@ -30,10 +30,10 @@
 <script>
 
   function initBackToTop() {
-    var offset = 220;
-    var duration = 500;
+    const offset = 220;
+    const duration = 500;
 
-    $backToTop = $('.back-to-top');
+    const $backToTop = $('.back-to-top');
 
     $(window).scroll(function() {
       if ($(this).scrollTop() > offset) {

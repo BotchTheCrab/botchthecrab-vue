@@ -103,30 +103,9 @@
 
   module.exports = {
 
-    data () {
-      return {
-      }
-    },
-
-    components: {
-    },
-
-    beforeMount() {
-    },
-
     mounted() {
       globalService.setOfficeDocumentTitle("Adam Alexander");
-    },
-
-    methods: {
-
-
-    },
-
-    computed: {
-
     }
-
 
   };
 

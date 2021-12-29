@@ -119,6 +119,8 @@
   var postingsStore = null;
   var numPostingsDisplayed = 0;
   var numPostingsPerLoad = 5;
+  
+  var repliesStore = null;
 
   module.exports = {
 

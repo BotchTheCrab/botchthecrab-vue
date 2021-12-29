@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     browserify = require('browserify'),
     vueify = require('vueify'),
+    uglifyify = require('uglifyify'),
     source = require('vinyl-source-stream'),
   	buffer = require('vinyl-buffer'),
     concatCss = require('gulp-concat-css'),
@@ -80,6 +81,7 @@ gulp.task('Css-Compile', function(done) {
 gulp.task('JavaScript-Bundle', function() {
   return browserify(paths.scripts.root)
     .transform(vueify)
+    .transform('uglifyify')
     .bundle()
     .on('error', function() {
       console.log("OH SHIT!");
