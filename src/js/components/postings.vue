@@ -20,6 +20,20 @@
       margin-bottom: 30px;
     }
 
+    .postings-sort {
+      margin: -20px 0 15px;
+      text-align: right;
+      color: #999;
+      font-variant: small-caps;
+
+      a[selected="selected"] {
+        color: white;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
   }
 
 </style>
@@ -69,6 +83,12 @@
 
     <div v-if="postingsReady && query.search && postings.length === 0">No matching posts</div>
 
+    <div class="postings-sort" v-if="postingsReady && query.search && postings.length > 0">
+      <label>Sort By:</label>
+      <a v-on:click="updateSort('weight')" v-bind:selected="postingsSortMethod === 'weight'">Relevance</a> |
+      <a v-on:click="updateSort('posted')" v-bind:selected="postingsSortMethod === 'posted'">Date</a>
+    </div>
+
     <div class="post-blurb" v-for="posting in postings" v-bind:key="posting.postingId" v-bind:post-id="posting.postingId">
       <div class="post-title-full">
         <router-link v-bind:to="{ name: 'posting', params: { postingId: posting.postingId } }">{{ posting.title }}</router-link>
@@ -101,6 +121,7 @@
 
   // GLOBAL COMPONENTS
   var globalService = require('services/global_service');
+  var cookiesService = require('services/cookies_service');
 
   // ARCHIVE COMPONENTS
   var archiveService = require('services/archive_service');
@@ -119,7 +140,7 @@
   var postingsStore = null;
   var numPostingsDisplayed = 0;
   var numPostingsPerLoad = 5;
-  
+
   var repliesStore = null;
 
   module.exports = {
@@ -133,6 +154,7 @@
         totalTransformers: null,
 
         postings: [],
+        postingsSortMethod: 'weight',
         totalPostings: null,
 
         transformersReady: false,
@@ -176,6 +198,8 @@
         vm.query.scope = vm.query.scope || 'site';
 
         if (vm.query.tag) {
+          vm.postingsSortMethod = 'date';
+
           return blogService.getAllTags().then(function(response) {
             var tagsStore = response.val();
             var matchingTag = _.findWhere(tagsStore, { text: vm.query.tag });
@@ -320,6 +344,8 @@
         postingsStore = null;
         numPostingsDisplayed = 0;
 
+        vm.postingsSortMethod = cookiesService.readCookie('postings-sort') || 'weight';
+
         vm.postings = [];
 
         var queryKeys = _.keys(vm.query);
@@ -392,6 +418,7 @@
           _.each(searchTerms, function(searchTerm) {
             var searchRegExp = new RegExp('\\b' + searchTerm + '\\b', 'ig');
 
+            // filter to postings that match the remaining search terms
             var matchingPostings = _.filter(postingsStore, function(posting) {
               return posting.title.search(searchRegExp) !== -1 ||
                      posting.content.search(searchRegExp) !== -1;
@@ -432,7 +459,7 @@
             }
           });
 
-          postingsStore = _.sortBy(allMatchingPostings, 'weight').reverse();
+          postingsStore = allMatchingPostings;
 
         } else if (tagId) {
 
@@ -451,6 +478,8 @@
       },
 
       loadInitialPostings: function() {
+        postingsStore = _.sortBy(postingsStore, vm.postingsSortMethod).reverse();
+
         var initialPostingsCount = numPostingsPerLoad;
         if (numPostingsDisplayed > numPostingsPerLoad) {
           initialPostingsCount = numPostingsDisplayed;
@@ -485,6 +514,14 @@
             scope: vm.query.newScope
           }
         });
+      },
+
+      updateSort: function(sortMethod) {
+        vm.postingsSortMethod = sortMethod;
+        vm.postings = [];
+        numPostingsDisplayed = 0;
+        vm.loadInitialPostings();
+        cookiesService.setCookie('postings-sort', sortMethod);
       }
 
     }

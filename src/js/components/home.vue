@@ -92,7 +92,9 @@
 
 
     <!-- BLOG POSTS -->
-  	<div class="page-title" v-show="postings.length">Updates &amp; Blog Posts ...</div>
+  	<div class="page-title">Updates</div>
+
+    <div v-show="!postings.length">Loading ...</div>
 
     <div class="post-blurb" v-for="posting in postings" v-bind:key="posting.postingId" v-bind:post-id="posting.postingId">
       <div class="post-title-full">
@@ -130,7 +132,7 @@
   var postingsStore = null;
   var numPostingsDisplayed = 0;
   var numPostingsPerLoad = 5;
-  
+
   var repliesStore = null;
 
   module.exports = {
