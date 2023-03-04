@@ -77,7 +77,7 @@
   				<a href="/archive" class="standout">Botch's Transformers Box Art Archive</a>  &#151; <span class="nowrap">the #1 online destination</span> for G1 Transformers package art since 1998 &#151; is why most humans visit this site.
   			</div>
 
-  			<div>The site's mascot, <a href="/about/botch" class="standout">Botch the Crab</a>, is the alter-ego of <a href="/about/adam" class="standout">Adam Alexander</a>, a <a href="/images/about/adam/adam-alexander-resume-2017.pdf" target="resume">front-end web developer</a>, <a href="/about/music">prog rock musician</a>, and (obviously) a Transformers fan.</div>
+  			<div>The site's mascot, <a href="/about/botch" class="standout">Botch the Crab</a>, is the alter-ego of <a href="/about/adam" class="standout">Adam Alexander</a>, a <a href="/images/about/adam/adam-alexander-resume-2023.pdf" target="resume">front-end web developer</a>, <a href="/about/music">prog rock musician</a>, and (obviously) a Transformers fan.</div>
 
   			<div>This site is also <a href="/postings">Adam's blog</a>. Just scroll down to start reading, or search the entire site below.</div>
 

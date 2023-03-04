@@ -60,7 +60,7 @@
 
     <div id="externalLinks" class="about-desc">
       <ul>
-        <li><a href="/images/about/adam/adam-alexander-resume-2021.pdf" target="resume">R&#0233;sum&#0233;</a></li>
+        <li><a href="/images/about/adam/adam-alexander-resume-2023.pdf" target="resume">R&#0233;sum&#0233;</a></li>
         <li><a href="https://github.com/BotchTheCrab" target="github">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/adam-alexander-7b99b7b0/" target="linkedin">LinkedIn</a></li>
         <li><a href="https://twitter.com/BotchTheCrab" target="twitter">Twitter</a></li>
@@ -81,7 +81,7 @@
 
     <p>During this time I formed <a href="https://bromptonscocktail.bandcamp.com" target="cocktail">Brompton's Cocktail</a>, an experimental rock quartet, and in addition to songwriting and guitar-playing, I took on the role of singer for the first time. I later helped form <a href="https://drpsyclops.bandcamp.com/" target="drpsyclops">The Invincible Doctor Psyclops Invasion</a>, a cinematic spy-rock outfit, wherein I switched from guitar to keyboards, theremins, samples and avant-garde vocalizations. In the wake of both of those bands, I founded <a href="https://themonsterproject.bandcamp.com/" target="monster">The Monster Project</a>, a rock/jazz septet that performed Godzilla and other monster movie soundtrack selections. (I played bass for that project, occasionally with a bow, and conducted.)</p>
 
-    <p>My fifth lifelong love was the internet, whereby I rediscovered my love of Autobots and Decepticons. At first it was a happenstance encounter of some classic Transformers box art online. This burst of nostalgia led to the unearthing of the afore-mentioned large cardboard box. I had already built a website for Brompton's Cocktail; I simultaneously started building an online archive of whatever Transformers box art I could find under the moniker <a href="/about/botch">"Botch"</a>. More importantly, I finally found a lifelong career that interested me, <a href="/images/about/adam/adam-alexander-resume-2017.pdf" target="resume">front-end web development</a>. Meanwhile, <a href="/archive">Botch's Transformers Box Art Archive</a> (this site) has showcased Transformers box art online since 1998.</p>
+    <p>My fifth lifelong love was the internet, whereby I rediscovered my love of Autobots and Decepticons. At first it was a happenstance encounter of some classic Transformers box art online. This burst of nostalgia led to the unearthing of the afore-mentioned large cardboard box. I had already built a website for Brompton's Cocktail; I simultaneously started building an online archive of whatever Transformers box art I could find under the moniker <a href="/about/botch">"Botch"</a>. More importantly, I finally found a lifelong career that interested me, <a href="/images/about/adam/adam-alexander-resume-2023.pdf" target="resume">front-end web development</a>. Meanwhile, <a href="/archive">Botch's Transformers Box Art Archive</a> (this site) has showcased Transformers box art online since 1998.</p>
 
     <p>My sixth lifelong love is <a href="https://www.instagram.com/dollfaceinthedark/" target="heather">Heather</a>, who I met in 1999 at a Brompton's Cocktail show. We courted, fell in love, moved in together, and after six years of romancing we finally got married in a private ceremony on Po'olenana Beach in Maui. She loves horror, cats, bookstores, restaurants, and me.</p>
 

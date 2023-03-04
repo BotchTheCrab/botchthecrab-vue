@@ -189,7 +189,7 @@
     },
     {
       text: "R&#0233;sum&#0233;",
-      link: '/images/about/adam/adam-alexander-resume-2021.pdf',
+      link: '/images/about/adam/adam-alexander-resume-2023.pdf',
       external: true
     }
   ];
