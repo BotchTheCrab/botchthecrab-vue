@@ -100,7 +100,6 @@
       <div class="post-footer-item">
         <label>Tags:</label>
         <select multiple v-model="posting.tagIds" id="create-posting-tags"></select>
-        <div>tagIds.length = {{ posting.tagIds.length }}</div>
       </div>
 
       <div class="post-footer-item">
