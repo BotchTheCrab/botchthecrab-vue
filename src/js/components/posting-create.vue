@@ -311,7 +311,7 @@
 
         var postTime = $('#create-posting-posted').val();
         if (postTime) {
-          vm.posting.posted = postTime.replace('T', ' ') + ':00';
+          vm.posting.posted = (postTime.replace('T', ' ') + ':00').substring(0,19);
         }
 
         var tagSelections = $('#create-posting-tags').select2('data');
@@ -372,7 +372,7 @@
             // refresh postings and redirect to home page
             blogService.getAllPostings(true).then(function() {
               vm.$router.push({
-                path: '/posting/' + nextEntryIndex
+                path: '/posting/' + nextPostingId
               });
             });
 
