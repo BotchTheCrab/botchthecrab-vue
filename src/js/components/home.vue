@@ -159,14 +159,14 @@
       initHome: function() {
 
         var postingsRequest = $.Deferred(function(deferred) {
-          blogService.getAllPostings().then(function(postingsSnapshot) {
-            deferred.resolve(postingsSnapshot.val());
+          blogService.getAllPostings().then(function(allPostings) {
+            deferred.resolve(allPostings);
           });
         }).promise();
 
         var repliesRequest = $.Deferred(function(deferred) {
-          blogService.getAllReplies().then(function(repliesSnapshot) {
-            deferred.resolve(repliesSnapshot.val());
+          blogService.getAllReplies().then(function(allReplies) {
+            deferred.resolve(allReplies);
           });
         }).promise();
 

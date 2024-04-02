@@ -3,11 +3,18 @@
   "version": "4.0.0",
   "description": "Botch the Crab",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Adam Alexander aka Botch the Crab <Adam@BotchTheCrab.com> (http:/www.BotchTheCrab.com)",
+  "author": "Adam Alexander aka Botch the Crab <Adam@BotchTheCrab.com> (http://www.BotchTheCrab.com)",
   "license": "ISC",
+  "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
+    "bootstrap": "^3.1.1",
+    "jquery": "^1.11.0",
+    "jquery-touchswipe": "^1.6.19",
+    "jquery-ui": "^1.10.4",
+    "underscore": "^1.13.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.5"
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-es2015": "^6.24.1",
@@ -19,21 +26,11 @@
     "gulp-cssimport": "^7.0.0",
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^2.6.1",
-    "node-sass": "5.0.0",
+    "node-sass": "^8.0.0",
     "sass": "^1.43.3",
     "uglifyify": "^5.0.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^2.0.0",
     "vueify": "^9.4.1"
-  },
-  "dependencies": {
-    "@fancyapps/fancybox": "^3.5.7",
-    "bootstrap": "^3.1.1",
-    "jquery": "^1.11.0",
-    "jquery-touchswipe": "^1.6.19",
-    "jquery-ui": "^1.10.4",
-    "underscore": "^1.13.1",
-    "vue": "^2.6.11",
-    "vue-router": "^3.1.5"
   }
 }

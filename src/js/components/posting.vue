@@ -343,10 +343,12 @@
       updatePosting: function() {
         var postingId = Number(this.$route.params.postingId);
 
-        blogService.getAllPostings().then(function(response) {
-          postingsStore = _.sortBy(response.val(), 'posted');
+        blogService.getAllPostings().then(function(allPostings) {
+          postingsStore = _.sortBy(allPostings, 'posted');
 
-          vm.posting = _.findWhere(postingsStore, { postingId: postingId });
+          let posting = _.findWhere(postingsStore, { postingId: postingId });
+          posting.content = blogService.parsePostingImageUrlsIntoFirebaseUrls(posting.content);
+          vm.posting = posting;
 
           vm.updateTitle();
           vm.updateOpenGraphImageMetaTag();
@@ -366,8 +368,8 @@
       },
 
       updateTags: function() {
-        blogService.getAllTags().then(function(response) {
-          tagsStore = response.val();
+        blogService.getAllTags().then(function(allTags) {
+          tagsStore = allTags;
 
           vm.tags = _.map(vm.posting.tagIds, function(tagId) {
             return _.findWhere(tagsStore, { tagId: tagId });
@@ -378,8 +380,8 @@
       updateReplies: function(refresh) {
         refresh = refresh || false;
 
-        return blogService.getAllReplies(refresh).then(function(response) {
-          repliesStore = response.val();
+        return blogService.getAllReplies(refresh).then(function(allReplies) {
+          repliesStore = allReplies;
           vm.replies = _.chain(repliesStore)
             .where({ postingId: vm.posting.postingId })
             .each(function(reply) {

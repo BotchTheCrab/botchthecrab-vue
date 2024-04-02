@@ -1,10 +1,10 @@
 module.exports = {
-  getCurrentRoute: getCurrentRoute,
-  setBodyClass: setBodyClass,
-  setOfficeDocumentTitle: setOfficeDocumentTitle,
-  setArchiveDocumentTitle: setArchiveDocumentTitle,
-  formatPosted: formatPosted,
-	scrollTop: scrollTop
+  getCurrentRoute,
+  setBodyClass,
+  setOfficeDocumentTitle,
+  setArchiveDocumentTitle,
+  formatPosted,
+	scrollTop,
 };
 
 function getCurrentRoute() {

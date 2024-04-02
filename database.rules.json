@@ -11,9 +11,9 @@
       },
       "postings": {
         ".read": true,
-        ".write": false,
+        ".write": "auth.uid === 'MFgm06l3FVe37AE8Vv5Q24D8jZr2'",
         "$postingId": {
-          ".write": "data.val() === null && auth.uid === 'MFgm06l3FVe37AE8Vv5Q24D8jZr2'",
+          ".write": "data.val() === null",
           ".validate": "newData.hasChildren(['postingId', 'posted', 'title', 'content', 'allowReplies', 'categoryIds', 'tagIds'])",
           "postingId": {
             ".validate": "newData.isNumber()"

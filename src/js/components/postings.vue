@@ -200,9 +200,8 @@
         if (vm.query.tag) {
           vm.postingsSortMethod = 'date';
 
-          return blogService.getAllTags().then(function(response) {
-            var tagsStore = response.val();
-            var matchingTag = _.findWhere(tagsStore, { text: vm.query.tag });
+          return blogService.getAllTags().then(function(allTags) {
+            var matchingTag = _.findWhere(allTags, { text: vm.query.tag });
             vm.query.tagId = matchingTag.tagId;
           });
         }
@@ -222,9 +221,8 @@
           globalService.setOfficeDocumentTitle(vm.pageTitle);
 
         } else if (tagId) {
-          blogService.getAllTags().then(function(response) {
-            var tagsStore = response.val();
-            var matchingTag = _.findWhere(tagsStore, { tagId: tagId });
+          blogService.getAllTags().then(function(allTags) {
+            var matchingTag = _.findWhere(allTags, { tagId: tagId });
             if (matchingTag && matchingTag.text) {
               vm.pageTitle = `Posts tagged ${matchingTag.text}`;
               globalService.setOfficeDocumentTitle(vm.pageTitle);
@@ -353,14 +351,14 @@
         if (vm.query && (vm.query.search || vm.query.tagId)) {
 
           var postingsRequest = $.Deferred(function(deferred) {
-            blogService.getAllPostings().then(function(postingsSnapshot) {
-              deferred.resolve(postingsSnapshot.val());
+            blogService.getAllPostings().then(function(allPostings) {
+              deferred.resolve(allPostings);
             });
           }).promise();
 
           var repliesRequest = $.Deferred(function(deferred) {
-            blogService.getAllReplies().then(function(repliesSnapshot) {
-              deferred.resolve(repliesSnapshot.val());
+            blogService.getAllReplies().then(function(allReplies) {
+              deferred.resolve(allReplies);
             });
           }).promise();
 

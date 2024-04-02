@@ -181,6 +181,8 @@
   var numPostingsDisplayed = 0;
   var numPostingsPerLoad = 5;
 
+  var TransformersBoxArtArchiveCategoryId = 2;
+
   module.exports = {
 
     components: {
@@ -207,10 +209,10 @@
     methods: {
 
       getPostingsStore: function() {
-        blogService.getAllPostings().then(function(response) {
-          postingsStore = _.chain(response.val()).filter(function(posting) {
-            return posting.categoryIds.indexOf(2) !== -1;
-          }).sortBy(response.val(), 'posted').reverse().value();
+        blogService.getAllPostings().then(function(allPostings) {
+          postingsStore = _.chain(allPostings).filter(function(posting) {
+            return posting.categoryIds.indexOf(TransformersBoxArtArchiveCategoryId) !== -1;
+          }).sortBy(allPostings, 'posted').reverse().value();
           vm.loadInitialPostings();
         });
       },

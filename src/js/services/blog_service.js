@@ -1,17 +1,22 @@
 var allPostings = null;
+var allCategories = null;
+var allTags = null;
+var allReplies = null;
 
-var allPostingsSnapshot;
-var allCategoriesSnapshot;
-var allTagsSnapshot;
-var allRepliesSnapshot;
+const firebaseStoragePostImagesPath = 'https://firebasestorage.googleapis.com/v0/b/botch-the-crab.appspot.com/o/post_images%2F';
+const firebaseStoragePostImagesParams = '?alt=media';
 
 module.exports = {
-  getAllPostings: getAllPostings,
-  getAllCategories: getAllCategories,
-  getAllTags: getAllTags,
-  getAllReplies: getAllReplies,
-  setPostingBlurbs: setPostingBlurbs,
-  createPostReply: createPostReply
+  getAllPostings,
+  parsePostingImageUrlsIntoFirebaseUrls,
+  parseFirebaseUrlsIntoPostingImageUrls,
+  getAllCategories,
+  getAllTags,
+  getAllReplies,
+  setPostingBlurbs,
+  initAuthorization,
+  initContentEditor,
+  createPostReply,
 };
 
 ////////////
@@ -19,13 +24,13 @@ module.exports = {
 function getAllPostings(refresh) {
   var deferred = $.Deferred();
 
-  if (allPostingsSnapshot && !refresh) {
-    deferred.resolve(allPostingsSnapshot);
+  if (allPostings && !refresh) {
+    deferred.resolve(allPostings);
   } else {
 
     firebase.database().ref('blog/postings').once('value').then(function(snapshot) {
-      allPostingsSnapshot = snapshot;
-      deferred.resolve(allPostingsSnapshot);
+      allPostings = _.values(snapshot.val());
+      deferred.resolve(allPostings);
     });
 
   }
@@ -33,16 +38,26 @@ function getAllPostings(refresh) {
   return deferred.promise();
 }
 
-function getAllCategories() {
+function parsePostingImageUrlsIntoFirebaseUrls(postingContent) {
+  return postingContent.replace(/(http:\/\/botchthecrab.com)*(\/post_images\/)([^"]+)/g, firebaseStoragePostImagesPath + '$3' + firebaseStoragePostImagesParams);
+}
+
+function parseFirebaseUrlsIntoPostingImageUrls(postingContent) {
+  const firebaseImagesPathRegExp = new RegExp(firebaseStoragePostImagesPath, 'g');
+  const firebaseImagesParamsRegExp = new RegExp('\\' + firebaseStoragePostImagesParams, 'g');
+  return postingContent.replace(firebaseImagesPathRegExp, '/post_images/').replace(firebaseImagesParamsRegExp, '');
+}
+
+function getAllCategories(refresh) {
   var deferred = $.Deferred();
 
-  if (allCategoriesSnapshot) {
-    deferred.resolve(allCategoriesSnapshot);
+  if (allCategories && !refresh) {
+    deferred.resolve(allCategories);
   } else {
 
     firebase.database().ref('blog/categories').once('value').then(function(snapshot) {
-      allCategoriesSnapshot = snapshot;
-      deferred.resolve(allCategoriesSnapshot);
+      allCategories = _.values(snapshot.val());
+      deferred.resolve(allCategories);
     });
 
   }
@@ -50,16 +65,16 @@ function getAllCategories() {
   return deferred.promise();
 }
 
-function getAllTags() {
+function getAllTags(refresh) {
   var deferred = $.Deferred();
 
-  if (allTagsSnapshot) {
-    deferred.resolve(allTagsSnapshot);
+  if (allTags && !refresh) {
+    deferred.resolve(allTags);
   } else {
 
     firebase.database().ref('blog/tags').once('value').then(function(snapshot) {
-      allTagsSnapshot = snapshot;
-      deferred.resolve(allTagsSnapshot);
+      allTags = _.values(snapshot.val());
+      deferred.resolve(allTags);
     });
 
   }
@@ -70,13 +85,13 @@ function getAllTags() {
 function getAllReplies(refresh) {
   var deferred = $.Deferred();
 
-  if (allRepliesSnapshot && !refresh) {
-    deferred.resolve(allRepliesSnapshot);
+  if (allReplies && !refresh) {
+    deferred.resolve(allReplies);
   } else {
 
     firebase.database().ref('blog/replies').once('value').then(function(snapshot) {
-      allRepliesSnapshot = snapshot;
-      deferred.resolve(allRepliesSnapshot);
+      allReplies = _.values(snapshot.val());
+      deferred.resolve(allReplies);
     });
 
   }
@@ -95,9 +110,99 @@ function setPostingBlurbs(postings) {
     } else {
       posting.blurb = posting.content;
     }
+
+    posting.blurb = parsePostingImageUrlsIntoFirebaseUrls(posting.blurb);
   });
 
   return postings;
+}
+
+function initAuthorization(vm) {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log('SIGNED IN!');
+      vm.init();
+    } else {
+      console.log('NOT SIGNED IN!');
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithRedirect(provider);
+    }
+  });
+}
+
+function initContentEditor(vm) {
+  let s = document.createElement('script');
+  const tinymceApiKey = "casdhqgylieh1y3j27nsdxsrpn4f1qtupm3zddbpqzvref26";
+  s.src = "https://cdn.tiny.cloud/1/" + tinymceApiKey + "/tinymce/5/tinymce.min.js";
+  s.type = "text/javascript";
+  s.referrerPolicy = "origin";
+  s.onload = function() {
+    vm.tinymce = tinymce;
+
+    let tinymceOptions = {
+      selector: '#create-posting-content',
+      plugins: 'image code lists charmap fullscreen media link',
+
+      allow_script_urls: true,
+      convert_urls: false,
+      allow_unsafe_link_target: true,
+      browser_spellcheck: true,
+      extended_valid_elements: 'a[href|target|onclick|class|style]',
+
+      toolbar1: 'bold italic underline strikethrough | aligncenter | outdent indent | numlist bullist',
+      toolbar2: 'charmap | fullscreen | image media link | code',
+
+      skin: 'oxide-dark',
+      content_css: 'dark, /css/cassette.css',
+      content_style: 'body { text-align: left; margin: 10px; }',
+
+      image_class_list: [
+        {title: 'none', value: ''},
+        {title: 'float left', value: 'post-image-left'},
+        {title: 'float right', value: 'post-image-right'},
+      ],
+
+      // image upload properties
+      automatic_uploads: true,
+      file_picker_types: 'image',
+      file_picker_callback: function (success, value, meta) {
+
+        let input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+
+        input.onchange = function () {
+          let fileData = this.files[0];
+          uploadPostingImage(fileData).then(function(fileInfo) {
+            success(fileInfo.url, { title: fileInfo.name });
+          });
+        };
+
+        input.click();
+      }
+    };
+
+    tinymce.init(tinymceOptions);
+
+    vm.editorLoaded = true;
+  };
+
+  const $head = document.getElementsByTagName('head')[0];
+  $head.appendChild(s);
+}
+
+function uploadPostingImage(fileData) {
+  const storageRef = firebase.storage().ref('post_images/' + fileData.name);
+  return storageRef.put(fileData).then(function(snapshot) {
+    if (!snapshot.state === 'success') {
+      window.alert("There was an error attempting to upload your image.");
+      return;
+    }
+    return {
+      url: parsePostingImageUrlsIntoFirebaseUrls('/' + snapshot.metadata.fullPath),
+      name: fileData.name
+    };
+  });
 }
 
 function createPostReply(posting, replyData) {
@@ -107,7 +212,7 @@ function createPostReply(posting, replyData) {
   });
 
   var getTrace = $.get('https://www.cloudflare.com/cdn-cgi/trace').then(function(response) {
-    var ipRegex = /[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
+    var ipRegex = /[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/
     return response.match(ipRegex)[0];
   });
 

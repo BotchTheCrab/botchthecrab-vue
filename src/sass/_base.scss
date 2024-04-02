@@ -42,7 +42,7 @@ body, td {
 	color: $color-text-default;
 }
 
-section {
+main, section {
 	padding: 10px 20px 100px 40px;
 
 	@media (max-width: $bootstrap-xs-max) {

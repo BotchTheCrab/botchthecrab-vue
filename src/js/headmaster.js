@@ -33,7 +33,7 @@ $(document).ready(function() {
   var HomeVue = require('components/home');
   var PostingVue = require('components/posting');
   var PostingsVue = require('components/postings');
-  var CreatePostingVue = require('components/createPosting');
+  var CreatePostingVue = require('components/posting-create');
   var TagsVue = require('components/tags');
   var ContactVue = require('components/contact');
 
@@ -68,7 +68,10 @@ $(document).ready(function() {
     { path: '/', component: HomeVue },
     { path: '/posting/:postingId', name: 'posting', component: PostingVue },
     { path: '/postings', name: 'postings', component: PostingsVue },
-    { path: '/posting/create/new', component: CreatePostingVue },
+
+    { path: '/posting/create/new', name: 'postingCreate', component: CreatePostingVue },
+    { path: '/posting/:postingId/edit', name: 'postingEdit', component: CreatePostingVue },
+
     { path: '/tags', component: TagsVue },
     { path: '/contact', component: ContactVue },
 
