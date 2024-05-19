@@ -70,19 +70,19 @@ function initFancyBox() {
   // art
   $(".fancybox-button-art").fancybox($.extend({
     beforeLoad: function() {
-      var character = $(this.element).data('character');
+      var title = $(this.element).data('title');
       var hasTechSpecs = Boolean($(this.element).data('techspecs'));
       var hasInstructions = Boolean($(this.element).data('instructions'));
 
-      this.title = buildFancyboxPopIcon(this.href) + this.title;
+      this.title = buildFancyboxPopIcon(this.href) + title;
 
       if (hasTechSpecs || hasInstructions) {
         var links = '<div class="fancybox-additional-links">';
         if (hasTechSpecs) {
-          links += '<a class="open-techspecs" href="javascript:void(openTechSpecs(\'' + character + '\'))">Tech Specs</a>';
+          links += '<a class="open-techspecs" href="javascript:void(openTechSpecs(\'' + title + '\'))">Tech Specs</a>';
         }
         if (hasInstructions) {
-          links += '<a class="open-instructions" href="javascript:void(openInstructions(\'' + character + '\'))">Instructions</a>';
+          links += '<a class="open-instructions" href="javascript:void(openInstructions(\'' + title + '\'))">Instructions</a>';
         }
         links += '</div>';
         this.title += links;
@@ -94,7 +94,7 @@ function initFancyBox() {
   // techspecs
   $(".fancybox-button-techspecs").fancybox($.extend({
     beforeLoad: function() {
-      var character = $(this.element).data('character');
+      var title = $(this.element).data('title');
       var hasBoxArt = Boolean($(this.element).data('art'));
       var hasInstructions = Boolean($(this.element).data('instructions'));
 
@@ -103,10 +103,10 @@ function initFancyBox() {
       if (hasBoxArt || hasInstructions) {
         var links = '<div class="fancybox-additional-links">';
         if (hasBoxArt) {
-          links += '<a class="open-boxart" href="javascript:void(openBoxArt(\'' + character + '\'))">Box Art</a>';
+          links += '<a class="open-boxart" href="javascript:void(openBoxArt(\'' + title + '\'))">Box Art</a>';
         }
         if (hasInstructions) {
-          links += '<a class="open-instructions" href="javascript:void(openInstructions(\'' + character + '\'))">Instructions</a>';
+          links += '<a class="open-instructions" href="javascript:void(openInstructions(\'' + title + '\'))">Instructions</a>';
         }
         links += '</div>';
         this.title += links;
@@ -118,7 +118,7 @@ function initFancyBox() {
   // instructions
   $(".fancybox-button-instructions").fancybox($.extend({
     beforeLoad: function() {
-      var character = $(this.element).data('character');
+      var title = $(this.element).data('title');
       var hasBoxArt = Boolean($(this.element).data('art'));
       var hasTechSpecs = Boolean($(this.element).data('techspecs'));
 
@@ -127,10 +127,10 @@ function initFancyBox() {
       if (hasBoxArt || hasTechSpecs) {
         var links = '<div class="fancybox-additional-links">';
         if (hasBoxArt) {
-          links += '<a class="open-boxart" href="javascript:void(openBoxArt(\'' + character + '\'))">Box Art</a>';
+          links += '<a class="open-boxart" href="javascript:void(openBoxArt(\'' + title + '\'))">Box Art</a>';
         }
         if (hasTechSpecs) {
-          links += '<a class="open-techspecs" href="javascript:void(openTechSpecs(\'' + character + '\'))">Tech Specs</a>';
+          links += '<a class="open-techspecs" href="javascript:void(openTechSpecs(\'' + title + '\'))">Tech Specs</a>';
         }
         links += '</div>';
         this.title += links;
@@ -142,31 +142,31 @@ function initFancyBox() {
 }
 
 // direct link to open Box Art from fancyBox
-function openBoxArt(character) {
+function openBoxArt(title) {
   // close the character art
   $.fancybox.close(true);
   // find the character's tech spec link
-  var BoxArt = $('.fancybox-button-art').filter('[title="' + character + '"]');
+  var BoxArt = $('.fancybox-button-art').filter('[title="' + title + '"]');
   // trigger the click
   BoxArt.trigger('click');
 }
 
 // direct link to open Tech Specs from fancyBox
-function openTechSpecs(character) {
+function openTechSpecs(title) {
   // close the character art
   $.fancybox.close(true);
   // find the character's tech spec link
-  var TechSpecs = $('.fancybox-button-techspecs').filter('[title="' + character + ' - Tech Specs"]');
+  var TechSpecs = $('.fancybox-button-techspecs').filter('[title="' + title + ' - Tech Specs"]');
   // trigger the click
   TechSpecs.trigger('click');
 }
 
 // direct link to open Instructions from fancyBox
-function openInstructions(character) {
+function openInstructions(title) {
   // close the character art
   $.fancybox.close(true);
   // find the character's tech spec link
-  var Instructions = $('.fancybox-button-instructions').filter('[title="' + character + ' - Instructions"]');
+  var Instructions = $('.fancybox-button-instructions').filter('[title="' + title + ' - Instructions"]');
   // trigger the click
   Instructions.trigger('click');
 }

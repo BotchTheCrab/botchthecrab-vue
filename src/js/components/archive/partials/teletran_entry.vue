@@ -6,12 +6,12 @@
 
   <div class="teletran-entry">
     <div class="teletran-box">
-      <a v-bind:class="imageClass" rel="fancybox-button" v-bind:title="entry.name" v-bind:data-character="entry.name" v-bind:data-techspecs="entry.hasTechSpec || 'false'" v-bind:data-instructions="entry.hasInstructions || 'false'" v-bind:href="imagePath" v-bind:target="imageTarget">
+      <a v-bind:class="imageClass" rel="fancybox-button" v-bind:title="imageTitle" v-bind:data-character="entry.name" v-bind:data-title="imageTitle" v-bind:data-techspecs="entry.hasTechSpec || 'false'" v-bind:data-instructions="entry.hasInstructions || 'false'" v-bind:href="imagePath" v-bind:target="imageTarget">
         <img class="teletran-thumbnail" v-bind:src="thumbnailPath" v-bind:title="entry.name + ' - Box Art'" />
       </a>
       <div class="teletran-icons" v-if="!this.entry.transformerJapanId">
-        <a v-if="entry.hasTechSpec" class="fancybox-button-techspecs" rel="fancybox-button" v-bind:title="entry.name + ' - Tech Specs'" v-bind:data-character="entry.name" data-art="true" v-bind:data-instructions="entry.hasInstructions || 'false'" v-bind:href="techSpecPath" target="_blank"><img src="/archive/images/icon_techspec.gif" v-bind:title="entry.name + ' - Tech Specs'" /></a>
-        <a v-if="entry.hasInstructions" class="fancybox-button-instructions" rel="fancybox-button" v-bind:title="entry.name + ' - Instructions'" v-bind:data-character="entry.name" data-art="true" v-bind:data-techspecs="entry.hasTechSpec || 'false'" v-bind:href="instructionsPath" target="_blank"><img src="/archive/images/icon_instruction.gif" v-bind:title="entry.name + ' - Instructions'" /></a>
+        <a v-if="entry.hasTechSpec" class="fancybox-button-techspecs" rel="fancybox-button" v-bind:title="imageTitle + ' - Tech Specs'" v-bind:data-character="entry.name" v-bind:data-title="imageTitle" data-art="true" v-bind:data-instructions="entry.hasInstructions || 'false'" v-bind:href="techSpecPath" target="_blank"><img src="/archive/images/icon_techspec.gif" v-bind:title="entry.name + ' - Tech Specs'" /></a>
+        <a v-if="entry.hasInstructions" class="fancybox-button-instructions" rel="fancybox-button" v-bind:title="imageTitle + ' - Instructions'" v-bind:data-character="entry.name" v-bind:data-title="imageTitle" data-art="true" v-bind:data-techspecs="entry.hasTechSpec || 'false'" v-bind:href="instructionsPath" target="_blank"><img src="/archive/images/icon_instruction.gif" v-bind:title="entry.name + ' - Instructions'" /></a>
       </div>
       <div class="teletran-name">
         {{ entry.name }}
@@ -54,6 +54,10 @@
     },
 
     computed: {
+
+      imageTitle: function() {
+        return this.entry.name + (this.entry.note ? ' (' + this.entry.note + ')' : '');
+      },
 
       imageClass: function() {
         if (this.entry.areMicromasters || this.entry.imageStatus){
