@@ -133,7 +133,7 @@ function initAuthorization(vm) {
 function initContentEditor(vm) {
   let s = document.createElement('script');
   const tinymceApiKey = "casdhqgylieh1y3j27nsdxsrpn4f1qtupm3zddbpqzvref26";
-  s.src = "https://cdn.tiny.cloud/1/" + tinymceApiKey + "/tinymce/5/tinymce.min.js";
+  s.src = `https://cdn.tiny.cloud/1/${tinymceApiKey}/tinymce/8/tinymce.min.js`;
   s.type = "text/javascript";
   s.referrerPolicy = "origin";
   s.onload = function() {
