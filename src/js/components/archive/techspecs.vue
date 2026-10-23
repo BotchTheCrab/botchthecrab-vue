@@ -114,7 +114,7 @@
 
   // ARCHIVE COMPONENTS
   var archiveService = require('services/archive_service');
-  var ArchiveHeaderVue = require('components/archive/partials/archive_header');
+  var ArchiveHeaderVue = require('components/archive/partials/archive_header').default;
 
   var yearsUsa = [1984, 1985, 1986, 1987, 1988, 1989, 1990, 'action_masters'];
   var yearsEurope = [1990, 1991, 1992, 1993, 'action_masters'];

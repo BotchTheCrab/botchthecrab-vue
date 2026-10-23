@@ -1,6 +1,6 @@
 <style lang="scss">
 
-  @import "../../sass/_variables.scss";
+  @use "../../sass/variables" as variables;
 
   #home {
 
@@ -10,7 +10,7 @@
       font-size: 3rem;
       margin-bottom: 20px;
       min-height: 4.25rem;
-      @media (max-width: $bootstrap-xxs-max) {
+      @media (max-width: variables.$bootstrap-xxs-max) {
         font-size: 2.25rem;
       }
     }
@@ -23,7 +23,7 @@
       #home-portal-botch {
         margin-bottom: 20px;
         padding-left: 0;
-        @media (max-width: $bootstrap-xxs-max) {
+        @media (max-width: variables.$bootstrap-xxs-max) {
           img {
             height: 175px;
           }

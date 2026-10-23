@@ -4,6 +4,9 @@ data
 # Mac files
 *.DS_Store
 
+# Box Art Scans
+Transformers Box Art Scans/
+
 # Logs
 logs
 *.log

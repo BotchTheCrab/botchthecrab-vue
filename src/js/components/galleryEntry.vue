@@ -1,6 +1,6 @@
 <style lang="scss">
 
-  @import "../../sass/_variables.scss";
+  @use "../../sass/variables" as variables;
 
   #gallery-entry {
 
@@ -61,7 +61,7 @@
       	background-image: url(/fancybox/source/fancybox_sprite.png);
       	opacity: 0.3;
       }
-      @media (max-width: $bootstrap-xs-max) {
+      @media (max-width: variables.$bootstrap-xs-max) {
       	.prevLink img,
       	.nextLink img {
       		top: 70%;

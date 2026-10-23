@@ -1,7 +1,7 @@
 <style lang="scss">
 
-  @import "../../sass/_flexbox.scss";
-  @import "../../sass/_variables.scss";
+  @use "../../sass/flexbox" as flexbox;
+  @use "../../sass/variables" as variables;
 
   .faq_Q, .faq_A {
     font-size: 1.2rem;
@@ -20,11 +20,11 @@
     text-align: center;
 
     .contact-methods {
-      @include flexbox;
-      @include flex-wrap(wrap);
-      @include justify-content(space-around);
+      @include flexbox.flexbox;
+      @include flexbox.flex-wrap(wrap);
+      @include flexbox.justify-content(space-around);
 
-      @media (max-width: $bootstrap-xs-max) {
+      @media (max-width: variables.$bootstrap-xs-max) {
         a {
           margin: 0 50px;
         }

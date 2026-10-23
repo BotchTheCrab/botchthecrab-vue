@@ -56,7 +56,7 @@
 
   // ARCHIVE COMPONENTS
   var archiveService = require('services/archive_service');
-  var ArchiveHeaderVue = require('components/archive/partials/archive_header');
+  var ArchiveHeaderVue = require('components/archive/partials/archive_header').default;
 
   module.exports = {
 

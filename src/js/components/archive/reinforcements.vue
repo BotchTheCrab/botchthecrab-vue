@@ -57,7 +57,11 @@
       <br/>Mail-away Autobots from 1984/5. There were three, and you never knew which one you were going to get. They came in plain boxes and plastic bags, so there was never any official Hasbro box art for them. However, like many other Transformers, they were originally Diaclone toys. The illustrious Scott Gray sent these in: the original Diaclone box art.
     </p>
     <div class="teletran-container" id="Powerdashers">
-      <teletran-entry v-for="entry in powerdashers" v-bind:entry="entry"></teletran-entry>
+      <teletran-entry 
+        v-for="entry in powerdashers" 
+        v-bind:key="entry.imageName"
+        v-bind:entry="entry">
+      </teletran-entry>
   	</div>
 
     <hr/>
@@ -70,7 +74,11 @@
         <br/>Not actually package art, these images are cobbled together from the promotional advertisements for these 1985 G1 figures that were exclusively available via mail order. But these images are nevertheless requested often, so here you go!
       </p>
       <div class="teletran-container">
-        <teletran-entry v-for="entry in omnibots" v-bind:entry="entry"></teletran-entry>
+        <teletran-entry 
+          v-for="entry in omnibots" 
+          v-bind:key="entry.imageName"
+          v-bind:entry="entry">
+        </teletran-entry>
       </div>
     </div>
 
@@ -99,7 +107,11 @@
         <br/>Transforms from LCD watch to vehicle to robot. I even think I had Kaltor as a kid, when I was too dumb to save the boxes. Oh well.
       </p>
       <div class="teletran-container">
-        <teletran-entry v-for="entry in kronoform" v-bind:entry="entry"></teletran-entry>
+        <teletran-entry 
+          v-for="entry in kronoform" 
+          v-bind:key="entry.imageName"
+          v-bind:entry="entry">
+        </teletran-entry>
     	</div>
     </div>
 
@@ -110,8 +122,8 @@
 <script>
 
   // ARCHIVE COMPONENTS
-  var ArchiveHeaderVue = require('components/archive/partials/archive_header');
-  var TeletranEntryVue = require('components/archive/partials/teletran_entry');
+  var ArchiveHeaderVue = require('components/archive/partials/archive_header').default;
+  var TeletranEntryVue = require('components/archive/partials/teletran_entry').default;
 
   // TELETRAN (PAGE) COMPONENTS
 

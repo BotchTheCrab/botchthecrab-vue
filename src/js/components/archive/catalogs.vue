@@ -59,7 +59,7 @@
   var globalService = require('services/global_service');
 
   // ARCHIVE COMPONENTS
-  var ArchiveHeaderVue = require('components/archive/partials/archive_header');
+  var ArchiveHeaderVue = require('components/archive/partials/archive_header').default;
 
   module.exports = {
 

@@ -29,12 +29,12 @@
 
   // ARCHIVE COMPONENTS
   var archiveService = require('services/archive_service');
-  var ArchiveHeaderVue = require('components/archive/partials/archive_header');
-  var TeletranHeaderVue = require('components/archive/partials/teletran_header');
-  var TeletranEntryVue = require('components/archive/partials/teletran_entry');
+  var ArchiveHeaderVue = require('components/archive/partials/archive_header').default;
+  var TeletranHeaderVue = require('components/archive/partials/teletran_header').default;
+  var TeletranEntryVue = require('components/archive/partials/teletran_entry').default;
 
   // TELETRAN (PAGE) COMPONENTS
-  var TeletranBackVue = require('components/archive/partials/teletran_back');
+  var TeletranBackVue = require('components/archive/partials/teletran_back').default;
 
   module.exports = {
 

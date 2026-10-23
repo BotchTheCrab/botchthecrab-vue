@@ -1,3 +1,5 @@
+@use 'colors';
+
 /* ######### */
 /*   FONTS   */
 /* ######### */
@@ -120,11 +122,11 @@
                 4px 5px 3px $color;
 }
 .btc-header-autobot {
-  @include btc-header-text-shadow($color-btc-header-text-shadow-autobot);
+  @include btc-header-text-shadow(colors.$color-btc-header-text-shadow-autobot);
 }
 .btc-header-decepticon {
-  @include btc-header-text-shadow($color-btc-header-text-shadow-decepticon);
+  @include btc-header-text-shadow(colors.$color-btc-header-text-shadow-decepticon);
 }
 .btc-header-neutral {
-  @include btc-header-text-shadow($color-btc-header-text-shadow-neutral);
+  @include btc-header-text-shadow(colors.$color-btc-header-text-shadow-neutral);
 }

@@ -1,6 +1,6 @@
 <style lang="scss">
 
-  @import "../../../sass/_variables.scss";
+  @use "../../../sass/variables" as variables;
 
   #archive-home-logo {
     margin: 0 auto 25px;
@@ -52,7 +52,7 @@
   }
 
   #quicklinks-additional {
-    @media (min-width: $bootstrap-xs-max) {
+    @media (min-width: variables.$bootstrap-xs-max) {
       padding-top: 50px;
     }
   }
@@ -171,7 +171,7 @@
 
   // GLOBAL COMPONENTS
   var globalService = require('services/global_service');
-  var botchWatermarkVue = require('components/partials/botch_watermark');
+  var botchWatermarkVue = require('components/partials/botch_watermark').default;
 
   // BLOG COMPONENTS
   var blogService = require('services/blog_service');

@@ -14,14 +14,14 @@
         float: left;
         border: 0;
         width: 100%;
-        height: 500px;
+        height: 468px;
         max-width: 350px;
         margin-bottom: 20px;
         margin-right: 20px;
 
         @media (max-width: 675px) {
           float: none;
-          height: 405px;
+          height: 430px;
         }
       }
     }
@@ -49,7 +49,7 @@
 
     <div class="about-header">Music by <span class="nowrap">Adam Alexander</span></div>
 
-    <div class="about-desc">I've played in a number of projects over the years. My role often changes: composer, singer, guitarist, bassist, piano and/or keyboardist, and so on. I keep busy. Here are all the albums that I've recorded with different bands.</div>
+    <div class="about-desc">I've played in a number of projects over the years. My role often changes: composer, singer, guitarist, bassist, piano and/or keyboardist, and so on. I keep busy. Here are most of the albums that I've recorded with different bands.</div>
 
 
     <div v-bind:class="albumClasses" v-for="album in albums">
@@ -79,6 +79,26 @@
 
 
   var albums = [
+    {
+      albumId: "Eponymous",
+      bandName: "Die Like Gentlemen",
+      albumTitle: "Die Like Gentlemen",
+      bandcampUrl: "https://dielikegentlemen.bandcamp.com/album/die-like-gentlemen",
+      websiteUrl: "https://dielikegentlemen.com/",
+      facebookUrl: "https://www.facebook.com/DieLikeGentlemen",
+      blurb: "Many bands end with a whimper, but after 14 years of heaviness, Die Like Gentlemen decided to go out with a bang: a controlled demolition, if you will. Our final, self-titled album leaves it all on the field, including a finale intentionally composed as the band's last -- and perhaps greatest -- prog metal epic.",
+      bandcampIframeId: "2570943730"
+    },
+    {
+      albumId: "Truths",
+      bandName: "Die Like Gentlemen",
+      albumTitle: "Hard Truths",
+      bandcampUrl: "https://dielikegentlemen.bandcamp.com/album/hard-truths",
+      websiteUrl: "https://dielikegentlemen.com/",
+      facebookUrl: "https://www.facebook.com/DieLikeGentlemen",
+      blurb: "After a pandemic-enforced hiatus, Die Like Gentlmen returns with tunes railing against the modern world. With hints of thrash, doom, death and prog metal, it's a full hour of twists and turns.",
+      bandcampIframeId: "1762280757"
+    },
     {
       albumId: "Stories",
       bandName: "Die Like Gentlemen",

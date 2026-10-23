@@ -1,3 +1,6 @@
+@use 'variables';
+@use 'colors';
+
 /** BASE **/
 
 html {
@@ -25,13 +28,13 @@ body {
 	text-align: center;
 	margin: 0 0 50px;
 	font-size: 11pt;
-  @include background-gradient($color-background-start, $color-background-end-neutral);
+  @include background-gradient(colors.$color-background-start, colors.$color-background-end-neutral);
 
 	&.autobot {
-	  @include background-gradient($color-background-start, $color-background-end-autobot);
+	  @include background-gradient(colors.$color-background-start, colors.$color-background-end-autobot);
 	}
 	&.decepticon {
-	  @include background-gradient($color-background-start, $color-background-end-decepticon);
+	  @include background-gradient(colors.$color-background-start, colors.$color-background-end-decepticon);
 	}
 }
 
@@ -39,13 +42,13 @@ body {
 
 body, td {
 	font-family: Verdana, sans-serif;
-	color: $color-text-default;
+	color: colors.$color-text-default;
 }
 
 main, section {
 	padding: 10px 20px 100px 40px;
 
-	@media (max-width: $bootstrap-xs-max) {
+	@media (max-width: variables.$bootstrap-xs-max) {
 		padding: 60px 0 25px;
 		min-height: 100vh;
 	}
@@ -82,16 +85,16 @@ form {
 
 a {
 	text-decoration: none;
-	color: $color-link-default;
+	color: colors.$color-link-default;
 }
 a:link, a:active, a:visited, a:hover {
-	color: $color-link-default;
+	color: colors.$color-link-default;
 	/* Firefox outline fix */
 	outline: none;
 }
 a:hover {
 	text-decoration: underline;
-	color: $color-link-default;
+	color: colors.$color-link-default;
 
 	@media (hover: none) {
 		text-decoration: none;

@@ -2,6 +2,10 @@
 /* BOX ART ARCHIVE STYLES */
 /* ###################### */
 
+@use 'flexbox';
+@use 'fonts';
+@use 'variables';
+
 .teletran-header {
 	display: block;
 	margin-bottom: 25px;
@@ -75,9 +79,9 @@
 
 #teletran-container,
 .teletran-container {
-	@include flexbox;
-	@include justify-content(center);
-	@include flex-wrap(wrap);
+	@include flexbox.flexbox;
+	@include flexbox.justify-content(center);
+	@include flexbox.flex-wrap(wrap);
 
 	.teletran-entry {
 		$entrySideMargin: 15px;
@@ -86,7 +90,7 @@
 	}
 
 	&.teletran-container-centered {
-		@include justify-content(center);
+		@include flexbox.justify-content(center);
 	}
 }
 
@@ -104,8 +108,8 @@
 	padding: 10px;
 	background: black;
 
-	@include flexbox;
-	@include align-items(center);
+	@include flexbox.flexbox;
+	@include flexbox.align-items(center);
 
 	cursor: pointer;
 
@@ -197,7 +201,7 @@
 
 
 #teletran-next {
-	@media (min-width: $bootstrap-xs-max) {
+	@media (min-width: variables.$bootstrap-xs-max) {
 		min-width: 350px;
 		max-width: 350px;
 	}

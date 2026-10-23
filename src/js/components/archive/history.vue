@@ -115,8 +115,8 @@
   var globalService = require('services/global_service');
 
   // ARCHIVE COMPONENTS
-  var ArchiveHeaderVue = require('components/archive/partials/archive_header');
-  var TeletranEntryVue = require('components/archive/partials/teletran_entry');
+  var ArchiveHeaderVue = require('components/archive/partials/archive_header').default;
+  var TeletranEntryVue = require('components/archive/partials/teletran_entry').default;
 
   var vm;
 

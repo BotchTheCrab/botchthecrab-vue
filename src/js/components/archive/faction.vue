@@ -26,9 +26,9 @@
   // ARCHIVE COMPONENTS
   var archiveService = require('services/archive_service');
   // var fancyboxService = require('services/fancybox_service');
-  var ArchiveHeaderVue = require('components/archive/partials/archive_header');
-  var TeletranHeaderVue = require('components/archive/partials/teletran_header');
-  var TeletranYearEntryVue = require('components/archive/partials/teletran_year_entry');
+  var ArchiveHeaderVue = require('components/archive/partials/archive_header').default;
+  var TeletranHeaderVue = require('components/archive/partials/teletran_header').default;
+  var TeletranYearEntryVue = require('components/archive/partials/teletran_year_entry').default;
 
   module.exports = {
 

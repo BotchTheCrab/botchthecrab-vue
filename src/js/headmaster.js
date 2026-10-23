@@ -23,46 +23,46 @@ $(document).ready(function() {
 
   // GLOBAL COMPONENTS
   var globalService = require('services/global_service');
-  var MenuContentVue = require('components/partials/menu_content');
-  var MenuTriggerVue = require('components/partials/menu_trigger');
-  var BackToTopVue = require('components/partials/back_to_top');
-  var FooterVue = require('components/partials/footer');
-  var SfxVue = require('components/partials/sfx');
+  var MenuContentVue = require('components/partials/menu_content').default;
+  var MenuTriggerVue = require('components/partials/menu_trigger').default;
+  var BackToTopVue = require('components/partials/back_to_top').default;
+  var FooterVue = require('components/partials/footer').default;
+  var SfxVue = require('components/partials/sfx').default;
 
   // MAIN ROUTES
-  var HomeVue = require('components/home');
-  var PostingVue = require('components/posting');
-  var PostingsVue = require('components/postings');
-  var CreatePostingVue = require('components/posting-create');
-  var TagsVue = require('components/tags');
-  var ContactVue = require('components/contact');
+  var HomeVue = require('components/home').default;
+  var PostingVue = require('components/posting').default;
+  var PostingsVue = require('components/postings').default;
+  var CreatePostingVue = require('components/posting-create').default;
+  var TagsVue = require('components/tags').default;
+  var ContactVue = require('components/contact').default;
 
   // ARCHIVE ROUTES
-  var ArchiveVue = require('components/archive/archive_home');
-  var FactionVue = require('components/archive/faction');
-  var TeletranVue = require('components/archive/teletran');
-  var TeletranMicromastersVue = require('components/archive/teletran_micromasters');
-  var TechSpecsVue = require('components/archive/techspecs');
-  var InstructionsVue = require('components/archive/instructions');
-  var CatalogsVue = require('components/archive/catalogs');
-  var BoxBattlesVue = require('components/archive/boxbattles');
-  var ReinforcementsVue = require('components/archive/reinforcements');
-  var HistoryVue = require('components/archive/history');
+  var ArchiveVue = require('components/archive/archive_home').default;
+  var FactionVue = require('components/archive/faction').default;
+  var TeletranVue = require('components/archive/teletran').default;
+  var TeletranMicromastersVue = require('components/archive/teletran_micromasters').default;
+  var TechSpecsVue = require('components/archive/techspecs').default;
+  var InstructionsVue = require('components/archive/instructions').default;
+  var CatalogsVue = require('components/archive/catalogs').default;
+  var BoxBattlesVue = require('components/archive/boxbattles').default;
+  var ReinforcementsVue = require('components/archive/reinforcements').default;
+  var HistoryVue = require('components/archive/history').default;
 
   // GALLERY ROUTES
-  var GalleriesVue = require('components/galleries');
-  var GalleryVue = require('components/gallery');
-  var GalleryEntryVue = require('components/galleryEntry');
+  var GalleriesVue = require('components/galleries').default;
+  var GalleryVue = require('components/gallery').default;
+  var GalleryEntryVue = require('components/galleryEntry').default;
 
   // ABOUT ROUTES
-  var AboutVue = require('components/about/about_home');
-  var AboutAdamVue = require('components/about/about_adam');
-  var AboutBotchVue = require('components/about/about_botch');
-  var AboutTrioVue = require('components/about/about_trio');
-  var AboutMusicVue = require('components/about/about_music');
-  var AboutSiteVue = require('components/about/about_site');
+  var AboutVue = require('components/about/about_home').default;
+  var AboutAdamVue = require('components/about/about_adam').default;
+  var AboutBotchVue = require('components/about/about_botch').default;
+  var AboutTrioVue = require('components/about/about_trio').default;
+  var AboutMusicVue = require('components/about/about_music').default;
+  var AboutSiteVue = require('components/about/about_site').default;
 
-  var NotFound = require('components/404.vue');
+  var NotFound = require('components/404.vue').default;
 
   var routes = [
     { path: '/', component: HomeVue },

@@ -1,3 +1,5 @@
+@use 'variables';
+
 /* ########## */
 /*   FOOTER   */
 /* ########## */
@@ -21,7 +23,7 @@ $footerHeight: 50px;
 		padding-right: 27px;
 	}
 
-	@media (max-width: $bootstrap-xs-max) {
+	@media (max-width: variables.$bootstrap-xs-max) {
 		position: absolute;
 		bottom: $footerHeight * -1;
 
@@ -45,7 +47,7 @@ $footerHeight: 50px;
 			height: 30px;
 		}
 
-		@media (max-width: $bootstrap-xs-max) {
+		@media (max-width: variables.$bootstrap-xs-max) {
 			margin-left: 10px;
 
 			img, input[type="image"] {
@@ -58,10 +60,9 @@ $footerHeight: 50px;
 		input {
 			margin-left: 5px;
 
-			@media (max-width: $bootstrap-xs-max) {
+			@media (max-width: variables.$bootstrap-xs-max) {
 				display: none;
 			}
 		}
 	}
-
 }

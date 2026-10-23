@@ -71,8 +71,8 @@
     methods: {
 
       loadTags: function() {
-        blogService.getAllTags().then(function(response) {
-          vm.tags = _.sortBy(response.val(), function(tag) {
+        blogService.getAllTags().then(function(allTags) {
+          vm.tags = _.sortBy(allTags, function(tag) {
             return tag.text.toUpperCase();
           });
         });

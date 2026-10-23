@@ -125,7 +125,7 @@
 
   // ARCHIVE COMPONENTS
   var archiveService = require('services/archive_service');
-  var TeletranEntryVue = require('components/archive/partials/teletran_entry');
+  var TeletranEntryVue = require('components/archive/partials/teletran_entry').default;
 
   // BLOG COMPONENTS
   var blogService = require('services/blog_service');
