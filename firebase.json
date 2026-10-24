@@ -16,6 +16,20 @@
     "public": "deploy",
     "rewrites": [
       {
+        "source": "/feed.xml",
+        "function": {
+          "functionId": "rssFeed",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "/rssxml.asp",
+        "function": {
+          "functionId": "rssFeed",
+          "region": "us-central1"
+        }
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
