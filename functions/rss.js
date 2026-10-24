@@ -42,7 +42,7 @@ function getFirstParagraph(content) {
 
   return match[1]
     .replace(/<a\b[^>]*>([\s\S]*?)<\/a>/gi, '$1')
-    .replace(/<\/?b\b[^>]*>/gi, '')
+    .replace(/<\/?(?:b|strong|em|span)\b[^>]*>/gi, '')
     .replace(/<img\b[^>]*>/gi, '')
     .replace(/<table\b[^>]*>[\s\S]*?<\/table>/gi, '');
 }
