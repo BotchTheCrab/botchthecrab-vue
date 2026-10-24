@@ -23,16 +23,16 @@
     <div class="footer-item"><a href="/contact" title="Email Botch the Crab"><img src="/images/footer/icon_email.svg" alt="Email Botch the Crab" /></a></div>
 
     <!-- Facebook -->
-    <div class="footer-item"><a href="http://www.facebook.com/TransformersBoxArtArchive" target="facebook" title="Follow the Archive on Facebook"><img src="/images/footer/icon_facebook.svg" alt="Facebook" /></a></div>
+    <!-- <div class="footer-item"><a href="http://www.facebook.com/TransformersBoxArtArchive" target="facebook" title="Follow the Archive on Facebook"><img src="/images/footer/icon_facebook.svg" alt="Facebook" /></a></div> -->
 
     <!-- Twitter -->
-    <div class="footer-item"><a href="https://twitter.com/tfboxart" target="twitter" title="Follow the Archive on Twitter"><img src="/images/footer/icon_twitter.svg" alt="Twitter" /></a></div>
+    <!-- <div class="footer-item"><a href="https://twitter.com/tfboxart" target="twitter" title="Follow the Archive on Twitter"><img src="/images/footer/icon_twitter.svg" alt="Twitter" /></a></div> -->
 
     <!-- Instagram -->
     <div class="footer-item"><a href="https://www.instagram.com/tfboxart" target="instagram" title="Follow the Botch on Instagram"><img src="/images/footer/icon_instagram.svg" alt="Instagram" /></a></div>
 
     <!-- RSS -->
-    <!-- <div class="footer-item"><a href="/rssxml.asp" target="rss" title="Follow this Site via RSS"><img src="/images/footer/icon_rss.png" alt="RSS" border="0"></a></div> -->
+    <div class="footer-item"><a href="/feed.xml" target="rss" title="Follow this Site via RSS"><img src="/images/footer/icon_rss.png" alt="RSS" border="0"></a></div>
 
     <!-- Paypal -->
     <div class="footer-item">
