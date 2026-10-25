@@ -72,8 +72,8 @@
 
       <div class="contact-methods">
         <a href="mailto:Botch@BotchTheCrab.com">Botch@BotchTheCrab.com</a>
-        <a href="http://www.facebook.com/TransformersBoxArtArchive" target="facebook">Facebook</a>
-        <a href="https://twitter.com/tfboxart" target="twitter">Twitter</a>
+        <!-- <a href="http://www.facebook.com/TransformersBoxArtArchive" target="facebook">Facebook</a> -->
+        <!-- <a href="https://twitter.com/tfboxart" target="twitter">Twitter</a> -->
         <a href="https://www.instagram.com/tfboxart" target="instagram">Instagram</a>
       </div>
   	</div>
