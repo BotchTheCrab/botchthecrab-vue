@@ -1,5 +1,6 @@
 const siteUrl = 'https://botchthecrab.com';
-const channelDescription = 'Botch the Crab babbles about Transformers and life in New York City. He\'s very funny and kind of mean.';
+const rssFeedUrl = `${siteUrl}/feed.xml`;
+const channelDescription = 'Botch the Crab babbles about Transformers and life in general. He\'s sometimes funny and sometimes kind of mean.';
 
 module.exports = {
   createRssFeed
@@ -10,6 +11,7 @@ function createRssFeed(postings) {
     const postingId = encodeURIComponent(posting.postingId);
     const postingUrl = `${siteUrl}/posting/${postingId}`;
     const description = getFirstParagraph(posting.content);
+    const imageUrl = getFirstImage(posting.content);
 
     return [
       '<item>',
@@ -18,18 +20,19 @@ function createRssFeed(postings) {
       `<link>${postingUrl}</link>`,
       `<guid isPermaLink="true">${postingUrl}</guid>`,
       `<pubDate>${formatPubDate(posting.posted)}</pubDate>`,
+      (imageUrl ? `<media:thumbnail url="${escapeXml(imageUrl)}" />` : ''),
       '</item>'
     ].join('');
   }).join('');
 
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">',
     '<channel>',
     `<title>${escapeXml('Botch the Crab')}</title>`,
     `<description>${escapeXml(channelDescription)}</description>`,
     `<link>${siteUrl}</link>`,
-    `<atom:link href="https://botchthecrab.com/feed.xml" rel="self" type="application/rss+xml" />`,
+    `<atom:link href="${rssFeedUrl}" rel="self" type="application/rss+xml" />`,
     items,
     '</channel></rss>'
   ].join('');
@@ -47,6 +50,33 @@ function getFirstParagraph(content) {
     .replace(/<\/?(?:b|strong|em|span)\b[^>]*>/gi, '')
     .replace(/<img\b[^>]*>/gi, '')
     .replace(/<table\b[^>]*>[\s\S]*?<\/table>/gi, '');
+}
+
+function getFirstImage(content) {
+  const imageTags = content.match(/<img\b[^>]*>/gi) || [];
+
+  for (const imageTag of imageTags) {
+    const srcMatch = imageTag.match(/\bsrc\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i);
+
+    if (!srcMatch) {
+      continue;
+    }
+
+    const src = (srcMatch[1] || srcMatch[2] || srcMatch[3])
+      .replace(/&(?:amp|#0*38|#x0*26);/gi, '&');
+
+    try {
+      const imageUrl = new URL(src, siteUrl);
+
+      if (imageUrl.protocol === 'http:' || imageUrl.protocol === 'https:') {
+        return imageUrl.href;
+      }
+    } catch (error) {
+      continue;
+    }
+  }
+
+  return null;
 }
 
 function formatPubDate(posted) {
