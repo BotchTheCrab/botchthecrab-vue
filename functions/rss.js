@@ -24,10 +24,12 @@ function createRssFeed(postings) {
 
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<rss version="2.0"><channel>',
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+    '<channel>',
     `<title>${escapeXml('Botch the Crab')}</title>`,
     `<description>${escapeXml(channelDescription)}</description>`,
     `<link>${siteUrl}</link>`,
+    `<atom:link href="https://botchthecrab.com/feed.xml" rel="self" type="application/rss+xml" />`,
     items,
     '</channel></rss>'
   ].join('');
