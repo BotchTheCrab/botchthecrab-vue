@@ -5,7 +5,7 @@ $(document).ready(function() {
   // Initialize Firebase
   var firebaseConfig = {
     apiKey: "AIzaSyCWCpbe1wdg1v1uJqPZRGv0q6pT8QZiscE",
-    authDomain: "botch-the-crab.firebaseapp.com",
+    authDomain: "botchthecrab.com",
     databaseURL: "https://botch-the-crab.firebaseio.com",
     projectId: "botch-the-crab",
     storageBucket: "botch-the-crab.appspot.com",
