@@ -16,6 +16,7 @@
     "vue-router": "^3.1.5"
   },
   "scripts": {
+    "serve": "http-server ./deploy -p 8053 --proxy http://localhost:8053? -d false",
     "build": "webpack --config webpack.config.js --mode production",
     "watch": "webpack --config webpack.config.js --mode development --watch"
   },
