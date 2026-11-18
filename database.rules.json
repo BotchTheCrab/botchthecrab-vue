@@ -12,6 +12,7 @@
       "postings": {
         ".read": true,
         ".write": "auth.uid === 'MFgm06l3FVe37AE8Vv5Q24D8jZr2'",
+        ".indexOn": ["posted"],
         "$postingId": {
           ".write": "data.val() === null",
           ".validate": "newData.hasChildren(['postingId', 'posted', 'title', 'content', 'allowReplies', 'categoryIds', 'tagIds'])",
