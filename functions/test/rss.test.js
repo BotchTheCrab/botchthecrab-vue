@@ -1,6 +1,6 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
-const {createRssFeed, getOrFetchRssFeed} = require('../rss');
+const {createRssFeed, getOrFetchRssFeed, matchesIfNoneMatch} = require('../rss');
 
 test('coalesces concurrent feed fetches and caches successful results', async () => {
   await assert.rejects(
@@ -22,11 +22,25 @@ test('coalesces concurrent feed fetches and caches successful results', async ()
   await Promise.resolve();
   resolveFetch('<rss />');
 
-  assert.deepEqual(await Promise.all([firstRequest, secondRequest]), ['<rss />', '<rss />']);
+  const results = await Promise.all([firstRequest, secondRequest]);
+
+  assert.deepEqual(results.map((result) => result.xml), ['<rss />', '<rss />']);
+  assert.equal(results[0].etag, results[1].etag);
+  assert.match(results[0].etag, /^"[a-f0-9]{64}"$/);
   assert.equal(fetchCount, 1);
-  assert.equal(await getOrFetchRssFeed(() => {
+  assert.deepEqual(await getOrFetchRssFeed(() => {
     throw new Error('should use the cache');
-  }), '<rss />');
+  }), results[0]);
+});
+
+test('matches strong, weak, and wildcard If-None-Match values', () => {
+  const etag = '"abc123"';
+
+  assert.equal(matchesIfNoneMatch(etag, etag), true);
+  assert.equal(matchesIfNoneMatch(`"other", W/${etag}`, etag), true);
+  assert.equal(matchesIfNoneMatch('*', etag), true);
+  assert.equal(matchesIfNoneMatch('"other"', etag), false);
+  assert.equal(matchesIfNoneMatch(undefined, etag), false);
 });
 
 test('creates RSS 2.0 items with escaped titles, excerpts, links, and dates', () => {

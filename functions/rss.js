@@ -1,22 +1,25 @@
+const crypto = require('node:crypto');
+
 const siteUrl = 'https://botchthecrab.com';
 const rssFeedUrl = `${siteUrl}/feed.xml`;
 const channelDescription = 'Botch the Crab babbles about Transformers and life in general. He\'s sometimes funny and sometimes kind of mean.';
 const cacheTtlMs = 10 * 60 * 1000;
 
-let cachedFeedXml = null;
+let cachedFeed = null;
 let cacheExpiresAt = 0;
 let pendingFetch = null;
 
 module.exports = {
   createRssFeed,
-  getOrFetchRssFeed
+  getOrFetchRssFeed,
+  matchesIfNoneMatch
 };
 
 function getOrFetchRssFeed(fetchFeed) {
   const now = Date.now();
 
-  if (cachedFeedXml !== null && now < cacheExpiresAt) {
-    return Promise.resolve(cachedFeedXml);
+  if (cachedFeed !== null && now < cacheExpiresAt) {
+    return Promise.resolve(cachedFeed);
   }
 
   if (pendingFetch) {
@@ -26,15 +29,29 @@ function getOrFetchRssFeed(fetchFeed) {
   pendingFetch = Promise.resolve()
     .then(fetchFeed)
     .then((feedXml) => {
-      cachedFeedXml = feedXml;
+      const etag = `"${crypto.createHash('sha256').update(feedXml).digest('hex')}"`;
+      cachedFeed = {xml: feedXml, etag};
       cacheExpiresAt = Date.now() + cacheTtlMs;
-      return feedXml;
+      return cachedFeed;
     })
     .finally(() => {
       pendingFetch = null;
     });
 
   return pendingFetch;
+}
+
+function matchesIfNoneMatch(ifNoneMatch, etag) {
+  if (typeof ifNoneMatch !== 'string') {
+    return false;
+  }
+
+  const currentTag = etag.replace(/^W\//, '');
+  const requestTags = ifNoneMatch.match(/(?:W\/)?"[^"]*"|\*/g) || [];
+
+  return requestTags.some((requestTag) =>
+    requestTag === '*' || requestTag.replace(/^W\//, '') === currentTag
+  );
 }
 
 function createRssFeed(postings) {
