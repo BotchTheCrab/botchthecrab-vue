@@ -1,10 +1,41 @@
 const siteUrl = 'https://botchthecrab.com';
 const rssFeedUrl = `${siteUrl}/feed.xml`;
 const channelDescription = 'Botch the Crab babbles about Transformers and life in general. He\'s sometimes funny and sometimes kind of mean.';
+const cacheTtlMs = 10 * 60 * 1000;
+
+let cachedFeedXml = null;
+let cacheExpiresAt = 0;
+let pendingFetch = null;
 
 module.exports = {
-  createRssFeed
+  createRssFeed,
+  getOrFetchRssFeed
 };
+
+function getOrFetchRssFeed(fetchFeed) {
+  const now = Date.now();
+
+  if (cachedFeedXml !== null && now < cacheExpiresAt) {
+    return Promise.resolve(cachedFeedXml);
+  }
+
+  if (pendingFetch) {
+    return pendingFetch;
+  }
+
+  pendingFetch = Promise.resolve()
+    .then(fetchFeed)
+    .then((feedXml) => {
+      cachedFeedXml = feedXml;
+      cacheExpiresAt = Date.now() + cacheTtlMs;
+      return feedXml;
+    })
+    .finally(() => {
+      pendingFetch = null;
+    });
+
+  return pendingFetch;
+}
 
 function createRssFeed(postings) {
   const items = postings.map((posting) => {

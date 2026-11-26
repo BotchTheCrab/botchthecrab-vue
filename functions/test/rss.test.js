@@ -1,6 +1,33 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
-const {createRssFeed} = require('../rss');
+const {createRssFeed, getOrFetchRssFeed} = require('../rss');
+
+test('coalesces concurrent feed fetches and caches successful results', async () => {
+  await assert.rejects(
+    getOrFetchRssFeed(() => Promise.reject(new Error('database unavailable'))),
+    /database unavailable/
+  );
+
+  let fetchCount = 0;
+  let resolveFetch;
+  const fetchFeed = () => {
+    fetchCount++;
+    return new Promise((resolve) => {
+      resolveFetch = resolve;
+    });
+  };
+  const firstRequest = getOrFetchRssFeed(fetchFeed);
+  const secondRequest = getOrFetchRssFeed(fetchFeed);
+
+  await Promise.resolve();
+  resolveFetch('<rss />');
+
+  assert.deepEqual(await Promise.all([firstRequest, secondRequest]), ['<rss />', '<rss />']);
+  assert.equal(fetchCount, 1);
+  assert.equal(await getOrFetchRssFeed(() => {
+    throw new Error('should use the cache');
+  }), '<rss />');
+});
 
 test('creates RSS 2.0 items with escaped titles, excerpts, links, and dates', () => {
   const xml = createRssFeed([{

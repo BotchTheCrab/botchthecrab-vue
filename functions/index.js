@@ -2,7 +2,7 @@ const {initializeApp} = require('firebase-admin/app');
 const {getDatabaseWithUrl} = require('firebase-admin/database');
 const {logger} = require('firebase-functions/logger');
 const {onRequest} = require('firebase-functions/https');
-const {createRssFeed} = require('./rss');
+const {createRssFeed, getOrFetchRssFeed} = require('./rss');
 
 const app = initializeApp();
 const database = getDatabaseWithUrl('https://botch-the-crab.firebaseio.com', app);
@@ -15,21 +15,23 @@ exports.rssFeed = onRequest({region: 'us-central1'}, async (request, response) =
   }
 
   try {
-    const snapshot = await database.ref('blog/postings')
-      .orderByChild('posted')
-      .limitToLast(postLimit)
-      .once('value');
-    const postings = [];
+    const xml = await getOrFetchRssFeed(async () => {
+      const snapshot = await database.ref('blog/postings')
+        .orderByChild('posted')
+        .limitToLast(postLimit)
+        .once('value');
+      const postings = [];
 
-    snapshot.forEach((postingSnapshot) => {
-      postings.push(postingSnapshot.val());
+      snapshot.forEach((postingSnapshot) => {
+        postings.push(postingSnapshot.val());
+      });
+
+      return createRssFeed(postings.reverse());
     });
-
-    const xml = createRssFeed(postings.reverse());
 
     response
       .set('Content-Type', 'application/rss+xml; charset=utf-8')
-      .set('Cache-Control: public, max-age=43200, s-maxage=259200')
+      .set('Cache-Control', 'public, max-age=43200, s-maxage=259200')
       .status(200);
 
     if (request.method === 'HEAD') {
