@@ -29,7 +29,7 @@ exports.rssFeed = onRequest({region: 'us-central1'}, async (request, response) =
 
     response
       .set('Content-Type', 'application/rss+xml; charset=utf-8')
-      .set('Cache-Control', 'public, max-age=300')
+      .set('Cache-Control: public, max-age=43200, s-maxage=259200')
       .status(200);
 
     if (request.method === 'HEAD') {
